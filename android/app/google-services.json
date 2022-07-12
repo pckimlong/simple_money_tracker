@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1013792169057",
+    "project_id": "simple-money-tra",
+    "storage_bucket": "simple-money-tra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013792169057:android:5e583e44bd6c9d5541de20",
+        "android_client_info": {
+          "package_name": "com.kimapp.simple_money_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013792169057-h50jdu2gs5v7knv9tci8ifvcv4rhkj2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWCJ9vlEKdxjZJuNxOU-sTBXaiNJ2qvbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013792169057-h50jdu2gs5v7knv9tci8ifvcv4rhkj2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
