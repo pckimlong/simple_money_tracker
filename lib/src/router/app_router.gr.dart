@@ -32,6 +32,10 @@ class _$AppRouter extends RootStackRouter {
     SignInRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const SignInPage());
+    },
+    SetUpAccountRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const SetUpAccountPage());
     }
   };
 
@@ -39,7 +43,8 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(RootRoute.name, path: '/root'),
-        RouteConfig(SignInRoute.name, path: '/sign-in')
+        RouteConfig(SignInRoute.name, path: '/sign-in'),
+        RouteConfig(SetUpAccountRoute.name, path: '/set-up')
       ];
 }
 
@@ -65,4 +70,12 @@ class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute() : super(SignInRoute.name, path: '/sign-in');
 
   static const String name = 'SignInRoute';
+}
+
+/// generated route for
+/// [SetUpAccountPage]
+class SetUpAccountRoute extends PageRouteInfo<void> {
+  const SetUpAccountRoute() : super(SetUpAccountRoute.name, path: '/set-up');
+
+  static const String name = 'SetUpAccountRoute';
 }

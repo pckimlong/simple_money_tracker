@@ -44,6 +44,8 @@ class AS {
   static final fieldColor = Colors.blueGrey[50];
   static const iconColor = Colors.blueGrey;
 
+  static const sidePadding = 16.0;
+
   static const radiusValue = 5.0;
   static const radius = Radius.circular(radiusValue);
   static const titleTextStyle = TextStyle(

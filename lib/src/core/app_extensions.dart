@@ -1,3 +1,4 @@
+import 'package:simple_money_tracker/src/core/core.dart';
 
 import '../../exports.dart';
 
@@ -39,4 +40,8 @@ extension ThemeDataX on ThemeData {
           offset: const Offset(2, 18),
         ),
       ];
+}
+
+extension OptionX<T> on Option<T> {
+  T getOrCrash() => getOrElse(() => throw OptionIsNoneError());
 }

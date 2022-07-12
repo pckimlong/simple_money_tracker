@@ -1,3 +1,6 @@
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_money_tracker/src/providers/cache_providers.dart';
+
 import 'app_widget.dart';
 import 'exports.dart';
 import 'dart:async';
@@ -19,12 +22,16 @@ void main() async {
       }
       FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
       await EasyLocalization.ensureInitialized();
+      final prefs = await SharedPreferences.getInstance();
       runApp(
         EasyLocalization(
           path: 'assets/translations',
           supportedLocales: const [Locale('en'), Locale('km')],
-          child: const ProviderScope(
-            child: AppWidget(),
+          child: ProviderScope(
+            overrides: [
+              sharePrefsProvider.overrideWithValue(prefs),
+            ],
+            child: const AppWidget(),
           ),
         ),
       );

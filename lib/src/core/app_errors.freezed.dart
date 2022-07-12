@@ -20,44 +20,65 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,8 +181,12 @@ class _$_NoRecord implements _NoRecord {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
   }) {
     return noRecord(message);
   }
@@ -170,8 +195,12 @@ class _$_NoRecord implements _NoRecord {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
   }) {
     return noRecord?.call(message);
   }
@@ -180,8 +209,12 @@ class _$_NoRecord implements _NoRecord {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
     required TResult orElse(),
   }) {
     if (noRecord != null) {
@@ -194,8 +227,11 @@ class _$_NoRecord implements _NoRecord {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
   }) {
     return noRecord(this);
   }
@@ -204,8 +240,11 @@ class _$_NoRecord implements _NoRecord {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
   }) {
     return noRecord?.call(this);
   }
@@ -214,8 +253,11 @@ class _$_NoRecord implements _NoRecord {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
     required TResult orElse(),
   }) {
     if (noRecord != null) {
@@ -233,6 +275,170 @@ abstract class _NoRecord implements Failure {
   @override
   @JsonKey(ignore: true)
   _$$_NoRecordCopyWith<_$_NoRecord> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RestrictedTaskCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory _$$_RestrictedTaskCopyWith(
+          _$_RestrictedTask value, $Res Function(_$_RestrictedTask) then) =
+      __$$_RestrictedTaskCopyWithImpl<$Res>;
+  @override
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$$_RestrictedTaskCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$$_RestrictedTaskCopyWith<$Res> {
+  __$$_RestrictedTaskCopyWithImpl(
+      _$_RestrictedTask _value, $Res Function(_$_RestrictedTask) _then)
+      : super(_value, (v) => _then(v as _$_RestrictedTask));
+
+  @override
+  _$_RestrictedTask get _value => super._value as _$_RestrictedTask;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_RestrictedTask(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RestrictedTask implements _RestrictedTask {
+  const _$_RestrictedTask([this.message]);
+
+  @override
+  final String? message;
+
+  @override
+  String toString() {
+    return 'Failure.restrictedTask(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RestrictedTask &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RestrictedTaskCopyWith<_$_RestrictedTask> get copyWith =>
+      __$$_RestrictedTaskCopyWithImpl<_$_RestrictedTask>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) exeption,
+    required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
+  }) {
+    return restrictedTask(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+  }) {
+    return restrictedTask?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (restrictedTask != null) {
+      return restrictedTask(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Exeption value) exeption,
+    required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
+  }) {
+    return restrictedTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+  }) {
+    return restrictedTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (restrictedTask != null) {
+      return restrictedTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RestrictedTask implements Failure {
+  const factory _RestrictedTask([final String? message]) = _$_RestrictedTask;
+
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RestrictedTaskCopyWith<_$_RestrictedTask> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -302,8 +508,12 @@ class _$_Exeption implements _Exeption {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
   }) {
     return exeption(message);
   }
@@ -312,8 +522,12 @@ class _$_Exeption implements _Exeption {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
   }) {
     return exeption?.call(message);
   }
@@ -322,8 +536,12 @@ class _$_Exeption implements _Exeption {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
     required TResult orElse(),
   }) {
     if (exeption != null) {
@@ -336,8 +554,11 @@ class _$_Exeption implements _Exeption {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
   }) {
     return exeption(this);
   }
@@ -346,8 +567,11 @@ class _$_Exeption implements _Exeption {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
   }) {
     return exeption?.call(this);
   }
@@ -356,8 +580,11 @@ class _$_Exeption implements _Exeption {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
     required TResult orElse(),
   }) {
     if (exeption != null) {
@@ -445,8 +672,12 @@ class _$_AuthExeption implements _AuthExeption {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
   }) {
     return authExeption(message);
   }
@@ -455,8 +686,12 @@ class _$_AuthExeption implements _AuthExeption {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
   }) {
     return authExeption?.call(message);
   }
@@ -465,8 +700,12 @@ class _$_AuthExeption implements _AuthExeption {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
     required TResult orElse(),
   }) {
     if (authExeption != null) {
@@ -479,8 +718,11 @@ class _$_AuthExeption implements _AuthExeption {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
   }) {
     return authExeption(this);
   }
@@ -489,8 +731,11 @@ class _$_AuthExeption implements _AuthExeption {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
   }) {
     return authExeption?.call(this);
   }
@@ -499,8 +744,11 @@ class _$_AuthExeption implements _AuthExeption {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
     required TResult orElse(),
   }) {
     if (authExeption != null) {
@@ -518,6 +766,345 @@ abstract class _AuthExeption implements Failure {
   @override
   @JsonKey(ignore: true)
   _$$_AuthExeptionCopyWith<_$_AuthExeption> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InvalidValueCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory _$$_InvalidValueCopyWith(
+          _$_InvalidValue value, $Res Function(_$_InvalidValue) then) =
+      __$$_InvalidValueCopyWithImpl<$Res>;
+  @override
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$$_InvalidValueCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$$_InvalidValueCopyWith<$Res> {
+  __$$_InvalidValueCopyWithImpl(
+      _$_InvalidValue _value, $Res Function(_$_InvalidValue) _then)
+      : super(_value, (v) => _then(v as _$_InvalidValue));
+
+  @override
+  _$_InvalidValue get _value => super._value as _$_InvalidValue;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_InvalidValue(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InvalidValue implements _InvalidValue {
+  const _$_InvalidValue([this.message]);
+
+  @override
+  final String? message;
+
+  @override
+  String toString() {
+    return 'Failure.invalidValue(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InvalidValue &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InvalidValueCopyWith<_$_InvalidValue> get copyWith =>
+      __$$_InvalidValueCopyWithImpl<_$_InvalidValue>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) exeption,
+    required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
+  }) {
+    return invalidValue(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+  }) {
+    return invalidValue?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (invalidValue != null) {
+      return invalidValue(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Exeption value) exeption,
+    required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
+  }) {
+    return invalidValue(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+  }) {
+    return invalidValue?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (invalidValue != null) {
+      return invalidValue(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidValue implements Failure {
+  const factory _InvalidValue([final String? message]) = _$_InvalidValue;
+
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InvalidValueCopyWith<_$_InvalidValue> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UniqueConstrantCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory _$$_UniqueConstrantCopyWith(
+          _$_UniqueConstrant value, $Res Function(_$_UniqueConstrant) then) =
+      __$$_UniqueConstrantCopyWithImpl<$Res>;
+  @override
+  $Res call({String? message, Object? duplicatedObject});
+}
+
+/// @nodoc
+class __$$_UniqueConstrantCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$$_UniqueConstrantCopyWith<$Res> {
+  __$$_UniqueConstrantCopyWithImpl(
+      _$_UniqueConstrant _value, $Res Function(_$_UniqueConstrant) _then)
+      : super(_value, (v) => _then(v as _$_UniqueConstrant));
+
+  @override
+  _$_UniqueConstrant get _value => super._value as _$_UniqueConstrant;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? duplicatedObject = freezed,
+  }) {
+    return _then(_$_UniqueConstrant(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duplicatedObject == freezed ? _value.duplicatedObject : duplicatedObject,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UniqueConstrant implements _UniqueConstrant {
+  const _$_UniqueConstrant([this.message, this.duplicatedObject]);
+
+  @override
+  final String? message;
+  @override
+  final Object? duplicatedObject;
+
+  @override
+  String toString() {
+    return 'Failure.uniqueConstrant(message: $message, duplicatedObject: $duplicatedObject)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UniqueConstrant &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality()
+                .equals(other.duplicatedObject, duplicatedObject));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(duplicatedObject));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UniqueConstrantCopyWith<_$_UniqueConstrant> get copyWith =>
+      __$$_UniqueConstrantCopyWithImpl<_$_UniqueConstrant>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) exeption,
+    required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
+  }) {
+    return uniqueConstrant(message, duplicatedObject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+  }) {
+    return uniqueConstrant?.call(message, duplicatedObject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (uniqueConstrant != null) {
+      return uniqueConstrant(message, duplicatedObject);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Exeption value) exeption,
+    required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
+  }) {
+    return uniqueConstrant(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+  }) {
+    return uniqueConstrant?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (uniqueConstrant != null) {
+      return uniqueConstrant(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UniqueConstrant implements Failure {
+  const factory _UniqueConstrant(
+      [final String? message,
+      final Object? duplicatedObject]) = _$_UniqueConstrant;
+
+  @override
+  String? get message;
+  Object? get duplicatedObject;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UniqueConstrantCopyWith<_$_UniqueConstrant> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

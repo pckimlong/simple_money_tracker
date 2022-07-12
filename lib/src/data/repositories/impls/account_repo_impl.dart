@@ -7,7 +7,17 @@ class _AccountRepoImpl implements IAccountRepo {
 
   @override
   Stream<Either<Failure, AccountModel>> watchOne() {
-    // TODO: implement watchOne
-    throw UnimplementedError();
+    return _dataSource.watchAccountData().map((event) {
+      if (event == null) return left<Failure, AccountModel>(const Failure.noRecord());
+      return right<Failure, AccountModel>(event);
+    }).onErrorReturnWithFailure();
+  }
+
+  @override
+  Future<Either<Failure, AccountModel>> create(AccountModel data) async {
+    return await errorHandler(() async {
+      await _dataSource.createAccount(data);
+      return right(data);
+    });
   }
 }

@@ -1,3 +1,7 @@
+import 'package:flutterfire_ui/auth.dart';
+import 'package:simple_money_tracker/src/providers/auth_providers.dart';
+import 'package:simple_money_tracker/src/router/app_router.dart';
+
 import '../../../exports.dart';
 
 class SignInPage extends ConsumerWidget {
@@ -5,10 +9,23 @@ class SignInPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In Page'),
-      ),
+    ref.listen<AsyncValue<bool>>(
+      AuthProvider.isAuthenticated,
+      (previous, next) {
+        if (next.valueOrNull ?? false) {
+          context.replaceRoute(const RootRoute());
+        }
+      },
+    );
+
+    return SignInScreen(
+      auth: ref.watch(firebaseAuthProvider),
+      providerConfigs: const [
+        EmailProviderConfiguration(),
+        GoogleProviderConfiguration(clientId: 'clientId'),
+        FacebookProviderConfiguration(clientId: "clientId"),
+        PhoneProviderConfiguration(),
+      ],
     );
   }
 }

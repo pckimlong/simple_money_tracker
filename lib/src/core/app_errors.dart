@@ -11,8 +11,12 @@ part "app_errors.freezed.dart";
 @freezed
 class Failure with _$Failure implements Exception {
   const factory Failure.noRecord([String? message]) = _NoRecord;
+  const factory Failure.restrictedTask([String? message]) = _RestrictedTask;
   const factory Failure.exeption([String? message]) = _Exeption;
   const factory Failure.authExeption([String? message]) = _AuthExeption;
+  const factory Failure.invalidValue([String? message]) = _InvalidValue;
+  const factory Failure.uniqueConstrant([String? message, Object? duplicatedObject]) =
+      _UniqueConstrant;
 
   factory Failure.fromException(Object? error) {
     if (error is FirebaseAuthException) {
@@ -35,6 +39,11 @@ Future<Either<Failure, T>> errorHandler<T extends Object>(
   } on Exception catch (e, stack) {
     log(e.toString(), error: e);
     FirebaseCrashlytics.instance.recordError(e, stack);
+
+    if (e is Failure) {
+      return left(e);
+    }
+
     return left(Failure.fromException(e));
   }
 }
@@ -46,3 +55,5 @@ extension StreamError<T> on Stream<Either<Failure, T>> {
     });
   }
 }
+
+class OptionIsNoneError extends Error {}

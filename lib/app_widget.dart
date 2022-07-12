@@ -1,8 +1,8 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:simple_money_tracker/src/core/core.dart';
+import 'package:simple_money_tracker/src/providers/cache_providers.dart';
 
 import '../../../exports.dart';
-import 'src/core/app_styles.dart';
 import 'src/router/app_router.dart';
 
 class AppWidget extends ConsumerWidget {
@@ -11,35 +11,23 @@ class AppWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = ref.read(appRouterProvider);
+    final themeMode = ref.watch(CacheProvider.themeMode);
+    final flexScheme = ref.watch(CacheProvider.flexScheme);
 
     return MaterialApp.router(
+      title: 'Money Tracker',
       debugShowCheckedModeBanner: false,
-      title: 'Stock System',
-      theme: FlexThemeData.light(
-        scheme: FlexScheme.indigo,
-        surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-        blendLevel: 20,
-        appBarStyle: FlexAppBarStyle.material,
-        tabBarStyle: FlexTabBarStyle.forBackground,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 20,
-          blendOnColors: false,
-          defaultRadius: AS.radiusValue,
-          inputDecoratorUnfocusedHasBorder: false,
-          popupMenuElevation: 8,
-          useTextTheme: true,
-        ),
-        useMaterial3ErrorColors: true,
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
-      ),
+      routeInformationParser: appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationProvider: appRouter.routeInfoProvider(),
+      theme: AppTheme.lightTheme(flexScheme),
+      darkTheme: AppTheme.darkTheme(flexScheme),
+      themeMode: themeMode,
       builder: (context, child) {
         child = EasyLoading.init()(context, child);
         child = ResponsiveWrapper.builder(
           child,
-          // maxWidth: 1200,
           minWidth: 480,
-          // defaultScale: true,
           breakpoints: [
             const ResponsiveBreakpoint.resize(480, name: MOBILE),
             const ResponsiveBreakpoint.resize(800, name: TABLET),
@@ -49,9 +37,6 @@ class AppWidget extends ConsumerWidget {
 
         return child;
       },
-      routeInformationParser: appRouter.defaultRouteParser(),
-      routerDelegate: appRouter.delegate(),
-      routeInformationProvider: appRouter.routeInfoProvider(),
     );
   }
 }

@@ -11,4 +11,5 @@ final accountRepoProvider = Provider<IAccountRepo>((ref) {
 
 abstract class IAccountRepo {
   Stream<Either<Failure, AccountModel>> watchOne();
+  Future<Either<Failure, AccountModel>> create(AccountModel data);
 }
