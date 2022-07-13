@@ -13,8 +13,8 @@ class _CurrencyRepoImpl implements ICurrencyRepo {
   @override
   Future<Either<Failure, CurrencyModel>> create(CurrencyModel data) async {
     return await errorHandler(() async {
-      final id = await _dataSource.createCurrency(data);
-      return right(data.copyWith(id: id));
+      await _dataSource.createCurrency(data);
+      return right(data);
     });
   }
 }

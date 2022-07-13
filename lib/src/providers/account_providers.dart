@@ -25,6 +25,14 @@ class AccountProvider {
     },
   );
 
+  static final balance = Provider.autoDispose<double>((ref) {
+    return ref.watch(dataOption).nullable()?.balance ?? 0.0;
+  });
+
+  static final dataOption = Provider<AsyncValue<Option<AccountModel>>>((ref) {
+    return ref.watch(stream).whenData((value) => value.toOption());
+  });
+
   static final stream = StreamProvider<Either<Failure, AccountModel>>((ref) {
     return ref.watch(accountRepoProvider).watchOne();
   });

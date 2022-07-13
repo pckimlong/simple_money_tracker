@@ -22,6 +22,11 @@ class Failure with _$Failure implements Exception {
     if (error is FirebaseAuthException) {
       return Failure.authExeption(error.message);
     }
+    if (error is FirebaseException) {
+      if (error.code == "not-found") {
+        return Failure.noRecord(error.message);
+      }
+    }
 
     return Failure.exeption(error?.toString());
   }

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:simple_money_tracker/src/data/models/category.dart';
+
+import 'category_model.dart';
 
 part 'transaction.freezed.dart';
 part 'transaction.g.dart';

@@ -2,7 +2,7 @@ import 'package:currency_picker/currency_picker.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:simple_money_tracker/src/data/models/account_model.dart';
 import 'package:simple_money_tracker/src/data/repositories/repositories.dart';
-import 'package:simple_money_tracker/src/providers/auth_providers.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../exports.dart';
 import '../data/models/currency_model.dart';
@@ -49,9 +49,8 @@ class SaveAccountSetUpNotifier extends StateNotifier<AsyncValue<bool>> {
       AccountModel(
         balance: data.initialBalance,
         totalIncome: data.initialBalance,
-        defaultCurrency: currency,
-        selectedCurrency: null,
-        userId: _reader(AuthProvider.uuidProvider).valueOrNull!,
+        defaultCurrencyId: currency.id,
+        selectedCurrencyId: null,
       ),
     );
 
@@ -64,11 +63,14 @@ class SaveAccountSetUpNotifier extends StateNotifier<AsyncValue<bool>> {
   Future<CurrencyModel?> _createDefaultCurrency(AccountSetUpState data) async {
     final currency = data.defaultCurrency.getOrCrash();
 
-    final result = await _reader(currencyRepoProvider).create(CurrencyModel(
-      currency: currency,
-      isDefault: true,
-      exchangedRate: null,
-    ));
+    final result = await _reader(currencyRepoProvider).create(
+      CurrencyModel(
+        id: const Uuid().v1(),
+        currency: currency,
+        isDefault: true,
+        exchangedRate: null,
+      ),
+    );
     return result.fold(
       (failure) => failure.maybeWhen(
         uniqueConstrant: (_, currency) => currency as CurrencyModel?,

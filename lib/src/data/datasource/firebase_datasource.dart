@@ -10,15 +10,37 @@ final datasourceProvider = Provider<FirebaseDataSource>((ref) {
 });
 
 class FirebaseDataSource {
-  final FirebaseFirestore _firestore;
-
   FirebaseDataSource(this._firestore);
 
-  Future<CurrencyId?> createCurrency(CurrencyModel currencyModel) async {
-    await _checkIfCurrencyAlreadyExisted(currencyModel);
-    final doc = _firestore.currencyColl.doc();
-    await doc.set(currencyModel.copyWith(id: doc.id));
-    return doc.id;
+  final FirebaseFirestore _firestore;
+
+  Future<void> createCurrency(CurrencyModel currencyModel) async {
+    await _throwExceptionIfCurrencyAlreadyExisted(currencyModel);
+    final currenciesDoc = _firestore.currenciesDoc;
+
+    await currenciesDoc.set({
+      currencyModel.id: currencyModel.toJson(),
+    }, SetOptions(merge: true));
+  }
+
+  Future<void> updateCurrency(CurrencyModel currencyModel) async {
+    final currenciesDoc = _firestore.currenciesDoc;
+    await currenciesDoc.update({
+      currencyModel.id: currencyModel.toJson(),
+    });
+  }
+
+  Future<void> deleteCurrency(CurrencyId id) async {
+    final currenciesDoc = _firestore.currenciesDoc;
+    final docData = await _firestore.currenciesDoc.get();
+
+    final isDefaultCurrency = docData.data()?[id]?[CurrencyModel.isDefaultKey] as bool?;
+    if (isDefaultCurrency == null) throw Failure.noRecord('No currency with id: $id');
+    if (isDefaultCurrency) {
+      throw const Failure.restrictedTask('Cannot delete default currency');
+    }
+
+    await currenciesDoc.update({id: FieldValue.delete()});
   }
 
   Future<void> createAccount(AccountModel accountModel) async {
@@ -31,9 +53,10 @@ class FirebaseDataSource {
   }
 
   Stream<Either<Failure, IList<CurrencyModel>>> watchAllCurrencies() {
-    return _firestore.currencyColl
-        .snapshots()
-        .map((event) => right(event.docs.map((e) => e.data()!).toIList()));
+    return _firestore.currenciesDoc.snapshots().map((event) {
+      final jsonList = event.data()?.values.toList() ?? [];
+      return right(jsonList.map((e) => CurrencyModel.fromJson(e)).toIList());
+    });
   }
 
   Future<void> _throwExceptionIfAccountAlreadyCreated() async {
@@ -44,15 +67,19 @@ class FirebaseDataSource {
     }
   }
 
-  Future<void> _checkIfCurrencyAlreadyExisted(CurrencyModel currencyModel) async {
-    final result = await _firestore.currencyColl
-        .where('currency.code', isEqualTo: currencyModel.currency.code)
-        .get();
+  Future<void> _throwExceptionIfCurrencyAlreadyExisted(
+      CurrencyModel currencyModel) async {
+    final result = await _firestore.currenciesDoc.get();
+    final existed = result.data()?[currencyModel.id] != null
+        ? CurrencyModel.fromJson(result[currencyModel.id])
+        : null;
 
-    if (result.size > 0) {
-      throw Failure.uniqueConstrant(
-          'Currency with code: ${currencyModel.currency.code} is already existed',
-          result.docs.first.data());
+    if (existed != null) {
+      if (existed.currency.code == currencyModel.currency.code) {
+        throw Failure.uniqueConstrant(
+            'Currency with code: ${currencyModel.currency.code} is already existed',
+            result.data()![currencyModel.id]);
+      }
     }
   }
 }

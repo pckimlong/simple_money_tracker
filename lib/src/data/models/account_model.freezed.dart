@@ -20,11 +20,10 @@ AccountModel _$AccountModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccountModel {
-  String get userId => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
   double get totalIncome => throw _privateConstructorUsedError;
-  CurrencyModel get defaultCurrency => throw _privateConstructorUsedError;
-  CurrencyModel? get selectedCurrency => throw _privateConstructorUsedError;
+  String get defaultCurrencyId => throw _privateConstructorUsedError;
+  String? get selectedCurrencyId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,14 +37,10 @@ abstract class $AccountModelCopyWith<$Res> {
           AccountModel value, $Res Function(AccountModel) then) =
       _$AccountModelCopyWithImpl<$Res>;
   $Res call(
-      {String userId,
-      double balance,
+      {double balance,
       double totalIncome,
-      CurrencyModel defaultCurrency,
-      CurrencyModel? selectedCurrency});
-
-  $CurrencyModelCopyWith<$Res> get defaultCurrency;
-  $CurrencyModelCopyWith<$Res>? get selectedCurrency;
+      String defaultCurrencyId,
+      String? selectedCurrencyId});
 }
 
 /// @nodoc
@@ -58,17 +53,12 @@ class _$AccountModelCopyWithImpl<$Res> implements $AccountModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? userId = freezed,
     Object? balance = freezed,
     Object? totalIncome = freezed,
-    Object? defaultCurrency = freezed,
-    Object? selectedCurrency = freezed,
+    Object? defaultCurrencyId = freezed,
+    Object? selectedCurrencyId = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
       balance: balance == freezed
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
@@ -77,33 +67,15 @@ class _$AccountModelCopyWithImpl<$Res> implements $AccountModelCopyWith<$Res> {
           ? _value.totalIncome
           : totalIncome // ignore: cast_nullable_to_non_nullable
               as double,
-      defaultCurrency: defaultCurrency == freezed
-          ? _value.defaultCurrency
-          : defaultCurrency // ignore: cast_nullable_to_non_nullable
-              as CurrencyModel,
-      selectedCurrency: selectedCurrency == freezed
-          ? _value.selectedCurrency
-          : selectedCurrency // ignore: cast_nullable_to_non_nullable
-              as CurrencyModel?,
+      defaultCurrencyId: defaultCurrencyId == freezed
+          ? _value.defaultCurrencyId
+          : defaultCurrencyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedCurrencyId: selectedCurrencyId == freezed
+          ? _value.selectedCurrencyId
+          : selectedCurrencyId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
-  }
-
-  @override
-  $CurrencyModelCopyWith<$Res> get defaultCurrency {
-    return $CurrencyModelCopyWith<$Res>(_value.defaultCurrency, (value) {
-      return _then(_value.copyWith(defaultCurrency: value));
-    });
-  }
-
-  @override
-  $CurrencyModelCopyWith<$Res>? get selectedCurrency {
-    if (_value.selectedCurrency == null) {
-      return null;
-    }
-
-    return $CurrencyModelCopyWith<$Res>(_value.selectedCurrency!, (value) {
-      return _then(_value.copyWith(selectedCurrency: value));
-    });
   }
 }
 
@@ -115,16 +87,10 @@ abstract class _$$_AccountModelCopyWith<$Res>
       __$$_AccountModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String userId,
-      double balance,
+      {double balance,
       double totalIncome,
-      CurrencyModel defaultCurrency,
-      CurrencyModel? selectedCurrency});
-
-  @override
-  $CurrencyModelCopyWith<$Res> get defaultCurrency;
-  @override
-  $CurrencyModelCopyWith<$Res>? get selectedCurrency;
+      String defaultCurrencyId,
+      String? selectedCurrencyId});
 }
 
 /// @nodoc
@@ -140,17 +106,12 @@ class __$$_AccountModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userId = freezed,
     Object? balance = freezed,
     Object? totalIncome = freezed,
-    Object? defaultCurrency = freezed,
-    Object? selectedCurrency = freezed,
+    Object? defaultCurrencyId = freezed,
+    Object? selectedCurrencyId = freezed,
   }) {
     return _then(_$_AccountModel(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
       balance: balance == freezed
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
@@ -159,14 +120,14 @@ class __$$_AccountModelCopyWithImpl<$Res>
           ? _value.totalIncome
           : totalIncome // ignore: cast_nullable_to_non_nullable
               as double,
-      defaultCurrency: defaultCurrency == freezed
-          ? _value.defaultCurrency
-          : defaultCurrency // ignore: cast_nullable_to_non_nullable
-              as CurrencyModel,
-      selectedCurrency: selectedCurrency == freezed
-          ? _value.selectedCurrency
-          : selectedCurrency // ignore: cast_nullable_to_non_nullable
-              as CurrencyModel?,
+      defaultCurrencyId: defaultCurrencyId == freezed
+          ? _value.defaultCurrencyId
+          : defaultCurrencyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedCurrencyId: selectedCurrencyId == freezed
+          ? _value.selectedCurrencyId
+          : selectedCurrencyId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -175,30 +136,27 @@ class __$$_AccountModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AccountModel extends _AccountModel {
   _$_AccountModel(
-      {required this.userId,
-      required this.balance,
+      {required this.balance,
       required this.totalIncome,
-      required this.defaultCurrency,
-      required this.selectedCurrency})
+      required this.defaultCurrencyId,
+      required this.selectedCurrencyId})
       : super._();
 
   factory _$_AccountModel.fromJson(Map<String, dynamic> json) =>
       _$$_AccountModelFromJson(json);
 
   @override
-  final String userId;
-  @override
   final double balance;
   @override
   final double totalIncome;
   @override
-  final CurrencyModel defaultCurrency;
+  final String defaultCurrencyId;
   @override
-  final CurrencyModel? selectedCurrency;
+  final String? selectedCurrencyId;
 
   @override
   String toString() {
-    return 'AccountModel(userId: $userId, balance: $balance, totalIncome: $totalIncome, defaultCurrency: $defaultCurrency, selectedCurrency: $selectedCurrency)';
+    return 'AccountModel(balance: $balance, totalIncome: $totalIncome, defaultCurrencyId: $defaultCurrencyId, selectedCurrencyId: $selectedCurrencyId)';
   }
 
   @override
@@ -206,25 +164,23 @@ class _$_AccountModel extends _AccountModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AccountModel &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.balance, balance) &&
             const DeepCollectionEquality()
                 .equals(other.totalIncome, totalIncome) &&
             const DeepCollectionEquality()
-                .equals(other.defaultCurrency, defaultCurrency) &&
+                .equals(other.defaultCurrencyId, defaultCurrencyId) &&
             const DeepCollectionEquality()
-                .equals(other.selectedCurrency, selectedCurrency));
+                .equals(other.selectedCurrencyId, selectedCurrencyId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(balance),
       const DeepCollectionEquality().hash(totalIncome),
-      const DeepCollectionEquality().hash(defaultCurrency),
-      const DeepCollectionEquality().hash(selectedCurrency));
+      const DeepCollectionEquality().hash(defaultCurrencyId),
+      const DeepCollectionEquality().hash(selectedCurrencyId));
 
   @JsonKey(ignore: true)
   @override
@@ -239,26 +195,23 @@ class _$_AccountModel extends _AccountModel {
 
 abstract class _AccountModel extends AccountModel {
   factory _AccountModel(
-      {required final String userId,
-      required final double balance,
+      {required final double balance,
       required final double totalIncome,
-      required final CurrencyModel defaultCurrency,
-      required final CurrencyModel? selectedCurrency}) = _$_AccountModel;
+      required final String defaultCurrencyId,
+      required final String? selectedCurrencyId}) = _$_AccountModel;
   _AccountModel._() : super._();
 
   factory _AccountModel.fromJson(Map<String, dynamic> json) =
       _$_AccountModel.fromJson;
 
   @override
-  String get userId;
-  @override
   double get balance;
   @override
   double get totalIncome;
   @override
-  CurrencyModel get defaultCurrency;
+  String get defaultCurrencyId;
   @override
-  CurrencyModel? get selectedCurrency;
+  String? get selectedCurrencyId;
   @override
   @JsonKey(ignore: true)
   _$$_AccountModelCopyWith<_$_AccountModel> get copyWith =>

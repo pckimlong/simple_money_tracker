@@ -1,4 +1,7 @@
+import 'package:currency_picker/currency_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
+import 'package:money2/money2.dart' as m;
 
 import '../../exports.dart';
 
@@ -44,4 +47,37 @@ extension ThemeDataX on ThemeData {
 
 extension OptionX<T> on Option<T> {
   T getOrCrash() => getOrElse(() => throw OptionIsNoneError());
+}
+
+extension AsynceOption<T> on AsyncValue<Option<T>> {
+  T? nullable() => valueOrNull?.toNullable();
+}
+
+extension CurrencyDouble on double {
+  String formatCurrency([Currency? currency]) {
+    if (currency == null) {
+      return NumberFormat.currency(customPattern: "#,###.00").format(this);
+    }
+
+    String pattern = "#${currency.thousandsSeparator}###";
+    pattern += currency.decimalSeparator;
+    pattern += "0" * currency.decimalDigits;
+    if (currency.symbolOnLeft) {
+      pattern = "S$pattern";
+    } else {
+      pattern = "${pattern}S";
+    }
+
+    final money = m.Money.fromNumWithCurrency(
+      this,
+      m.Currency.create(
+        currency.code,
+        currency.decimalDigits,
+        pattern: pattern,
+        name: currency.name,
+        symbol: currency.symbol,
+      ),
+    );
+    return money.toString();
+  }
 }

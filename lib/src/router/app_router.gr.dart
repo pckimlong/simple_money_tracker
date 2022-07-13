@@ -36,13 +36,42 @@ class _$AppRouter extends RootStackRouter {
     SetUpAccountRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const SetUpAccountPage());
+    },
+    TransactionRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const TransactionPage());
+    },
+    CalendarRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const CalendarPage());
+    },
+    ReportRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ReportPage());
+    },
+    ProfileRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ProfilePage());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
-        RouteConfig(RootRoute.name, path: '/root'),
+        RouteConfig(RootRoute.name, path: '/root', children: [
+          RouteConfig('#redirect',
+              path: '',
+              parent: RootRoute.name,
+              redirectTo: 'transactions',
+              fullMatch: true),
+          RouteConfig(TransactionRoute.name,
+              path: 'transactions', parent: RootRoute.name),
+          RouteConfig(CalendarRoute.name,
+              path: 'calendar', parent: RootRoute.name),
+          RouteConfig(ReportRoute.name, path: 'report', parent: RootRoute.name),
+          RouteConfig(ProfileRoute.name,
+              path: 'profile', parent: RootRoute.name)
+        ]),
         RouteConfig(SignInRoute.name, path: '/sign-in'),
         RouteConfig(SetUpAccountRoute.name, path: '/set-up')
       ];
@@ -59,7 +88,8 @@ class SplashRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [RootPage]
 class RootRoute extends PageRouteInfo<void> {
-  const RootRoute() : super(RootRoute.name, path: '/root');
+  const RootRoute({List<PageRouteInfo>? children})
+      : super(RootRoute.name, path: '/root', initialChildren: children);
 
   static const String name = 'RootRoute';
 }
@@ -78,4 +108,36 @@ class SetUpAccountRoute extends PageRouteInfo<void> {
   const SetUpAccountRoute() : super(SetUpAccountRoute.name, path: '/set-up');
 
   static const String name = 'SetUpAccountRoute';
+}
+
+/// generated route for
+/// [TransactionPage]
+class TransactionRoute extends PageRouteInfo<void> {
+  const TransactionRoute() : super(TransactionRoute.name, path: 'transactions');
+
+  static const String name = 'TransactionRoute';
+}
+
+/// generated route for
+/// [CalendarPage]
+class CalendarRoute extends PageRouteInfo<void> {
+  const CalendarRoute() : super(CalendarRoute.name, path: 'calendar');
+
+  static const String name = 'CalendarRoute';
+}
+
+/// generated route for
+/// [ReportPage]
+class ReportRoute extends PageRouteInfo<void> {
+  const ReportRoute() : super(ReportRoute.name, path: 'report');
+
+  static const String name = 'ReportRoute';
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute() : super(ProfileRoute.name, path: 'profile');
+
+  static const String name = 'ProfileRoute';
 }

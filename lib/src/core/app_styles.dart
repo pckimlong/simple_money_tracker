@@ -46,7 +46,7 @@ class AS {
 
   static const sidePadding = 16.0;
 
-  static const radiusValue = 5.0;
+  static const radiusValue = 12.0;
   static const radius = Radius.circular(radiusValue);
   static const titleTextStyle = TextStyle(
     color: primaryColor,
@@ -88,4 +88,11 @@ class AS {
   static const hGap36 = SizedBox(width: 0, height: 36);
   static const hGap4 = SizedBox(width: 0, height: 4);
   static const hGap8 = SizedBox(width: 0, height: 8);
+
+  static Color cardColor(BuildContext context) => context.isDarkTheme
+      ? context.theme.inputDecorationTheme.fillColor!
+      : Colors.white;
+
+  static Color? whiteBackground(BuildContext context) =>
+      context.isDarkTheme ? context.theme.backgroundColor : Colors.white;
 }

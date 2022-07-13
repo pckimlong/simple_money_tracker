@@ -1,7 +1,7 @@
 import 'package:simple_money_tracker/src/data/repositories/i_auth_repo.dart';
 
 import '../../exports.dart';
-import '../data/models/account_model.dart';
+import '../data/models/user_model.dart';
 
 class AuthProvider {
   const AuthProvider._();

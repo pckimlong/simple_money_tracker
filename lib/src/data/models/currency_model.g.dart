@@ -8,7 +8,7 @@ part of 'currency_model.dart';
 
 _$_CurrencyModel _$$_CurrencyModelFromJson(Map<String, dynamic> json) =>
     _$_CurrencyModel(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       currency: CurrencyModel._fromJson(json['currency']),
       isDefault: json['isDefault'] as bool,
       exchangedRate: (json['exchangedRate'] as num?)?.toDouble(),

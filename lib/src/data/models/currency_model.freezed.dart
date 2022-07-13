@@ -20,8 +20,8 @@ CurrencyModel _$CurrencyModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CurrencyModel {
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: CurrencyModel._fromJson)
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
   Currency get currency => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
 
@@ -40,8 +40,9 @@ abstract class $CurrencyModelCopyWith<$Res> {
           CurrencyModel value, $Res Function(CurrencyModel) then) =
       _$CurrencyModelCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
-      @JsonKey(fromJson: CurrencyModel._fromJson) Currency currency,
+      {String id,
+      @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
+          Currency currency,
       bool isDefault,
       double? exchangedRate});
 }
@@ -66,7 +67,7 @@ class _$CurrencyModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       currency: currency == freezed
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -91,8 +92,9 @@ abstract class _$$_CurrencyModelCopyWith<$Res>
       __$$_CurrencyModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
-      @JsonKey(fromJson: CurrencyModel._fromJson) Currency currency,
+      {String id,
+      @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
+          Currency currency,
       bool isDefault,
       double? exchangedRate});
 }
@@ -119,7 +121,7 @@ class __$$_CurrencyModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       currency: currency == freezed
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -140,8 +142,9 @@ class __$$_CurrencyModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CurrencyModel implements _CurrencyModel {
   _$_CurrencyModel(
-      {this.id,
-      @JsonKey(fromJson: CurrencyModel._fromJson) required this.currency,
+      {required this.id,
+      @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
+          required this.currency,
       required this.isDefault,
       required this.exchangedRate});
 
@@ -149,9 +152,9 @@ class _$_CurrencyModel implements _CurrencyModel {
       _$$_CurrencyModelFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
-  @JsonKey(fromJson: CurrencyModel._fromJson)
+  @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
   final Currency currency;
   @override
   final bool isDefault;
@@ -199,8 +202,8 @@ class _$_CurrencyModel implements _CurrencyModel {
 
 abstract class _CurrencyModel implements CurrencyModel {
   factory _CurrencyModel(
-      {final String? id,
-      @JsonKey(fromJson: CurrencyModel._fromJson)
+      {required final String id,
+      @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
           required final Currency currency,
       required final bool isDefault,
       required final double? exchangedRate}) = _$_CurrencyModel;
@@ -209,9 +212,9 @@ abstract class _CurrencyModel implements CurrencyModel {
       _$_CurrencyModel.fromJson;
 
   @override
-  String? get id;
+  String get id;
   @override
-  @JsonKey(fromJson: CurrencyModel._fromJson)
+  @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
   Currency get currency;
   @override
   bool get isDefault;

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../exports.dart';
-import '../models/account_model.dart';
+import '../models/user_model.dart';
 
 part 'impls/auth_repo_impl.dart';
 

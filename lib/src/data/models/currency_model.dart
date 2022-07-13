@@ -10,10 +10,14 @@ typedef CurrencyId = String;
 
 @freezed
 class CurrencyModel with _$CurrencyModel {
+  static const currencyKey = "currency";
+  static const isDefaultKey = "isDefault";
+
   factory CurrencyModel({
-    CurrencyId? id,
-    @JsonKey(fromJson: CurrencyModel._fromJson) required Currency currency,
-    required bool isDefault,
+    required CurrencyId id,
+    @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
+        required Currency currency,
+    @JsonKey(name: CurrencyModel.isDefaultKey) required bool isDefault,
 
     /// Exchange rate with default currency. should be null if this is the default currency this calculate how (1 default currency) = ?
     required double? exchangedRate,
