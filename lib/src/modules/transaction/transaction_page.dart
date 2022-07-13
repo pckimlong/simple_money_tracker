@@ -1,4 +1,7 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
+import 'package:simple_money_tracker/src/data/datasource/firebase_datasource.dart';
+import 'package:simple_money_tracker/src/data/models/tran_model.dart';
 import 'package:simple_money_tracker/src/modules/transaction/add/add_transaction_bottomsheet.dart';
 
 import '../../../exports.dart';
@@ -35,6 +38,56 @@ class TransactionPage extends ConsumerWidget {
           AddTransactionBottomsheet.show(context);
         },
         child: const Icon(Icons.add),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              EasyLoading.show();
+              await ref
+                  .watch(datasourceProvider)
+                  .createIncomeTran(
+                    Income(
+                      id: null,
+                      categoryId: "categoryId",
+                      amount: 20,
+                      date: DateTime.now(),
+                      note: "",
+                      createdAt: DateTime.now(),
+                    ),
+                  )
+                  .catchError(
+                    (error, stackTrace) => EasyLoading.showError(error.toString()),
+                  );
+              EasyLoading.dismiss();
+            },
+            child: const Text(
+              'Test Add income',
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () async {
+                EasyLoading.show();
+                await ref
+                    .watch(datasourceProvider)
+                    .updateIncomeTran(
+                      Income(
+                        id: "RsMDPOyNOyGoDA6d4Ti7",
+                        categoryId: "categoryId",
+                        amount: 100,
+                        date: DateTime.now(),
+                        note: "",
+                        createdAt: DateTime.now(),
+                      ),
+                    )
+                    .catchError(
+                      (error, stackTrace) => EasyLoading.showError(error.toString()),
+                    );
+                EasyLoading.dismiss();
+              },
+              child: const Text('Test Update income')),
+        ],
       ),
     );
   }

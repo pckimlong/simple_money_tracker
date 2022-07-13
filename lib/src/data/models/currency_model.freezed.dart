@@ -23,6 +23,7 @@ mixin _$CurrencyModel {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
   Currency get currency => throw _privateConstructorUsedError;
+  @JsonKey(name: CurrencyModel.isDefaultKey)
   bool get isDefault => throw _privateConstructorUsedError;
 
   /// Exchange rate with default currency. should be null if this is the default currency this calculate how (1 default currency) = ?
@@ -43,7 +44,8 @@ abstract class $CurrencyModelCopyWith<$Res> {
       {String id,
       @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
           Currency currency,
-      bool isDefault,
+      @JsonKey(name: CurrencyModel.isDefaultKey)
+          bool isDefault,
       double? exchangedRate});
 }
 
@@ -95,7 +97,8 @@ abstract class _$$_CurrencyModelCopyWith<$Res>
       {String id,
       @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
           Currency currency,
-      bool isDefault,
+      @JsonKey(name: CurrencyModel.isDefaultKey)
+          bool isDefault,
       double? exchangedRate});
 }
 
@@ -145,7 +148,8 @@ class _$_CurrencyModel implements _CurrencyModel {
       {required this.id,
       @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
           required this.currency,
-      required this.isDefault,
+      @JsonKey(name: CurrencyModel.isDefaultKey)
+          required this.isDefault,
       required this.exchangedRate});
 
   factory _$_CurrencyModel.fromJson(Map<String, dynamic> json) =>
@@ -157,6 +161,7 @@ class _$_CurrencyModel implements _CurrencyModel {
   @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
   final Currency currency;
   @override
+  @JsonKey(name: CurrencyModel.isDefaultKey)
   final bool isDefault;
 
   /// Exchange rate with default currency. should be null if this is the default currency this calculate how (1 default currency) = ?
@@ -205,7 +210,8 @@ abstract class _CurrencyModel implements CurrencyModel {
       {required final String id,
       @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
           required final Currency currency,
-      required final bool isDefault,
+      @JsonKey(name: CurrencyModel.isDefaultKey)
+          required final bool isDefault,
       required final double? exchangedRate}) = _$_CurrencyModel;
 
   factory _CurrencyModel.fromJson(Map<String, dynamic> json) =
@@ -217,6 +223,7 @@ abstract class _CurrencyModel implements CurrencyModel {
   @JsonKey(name: CurrencyModel.currencyKey, fromJson: CurrencyModel._fromJson)
   Currency get currency;
   @override
+  @JsonKey(name: CurrencyModel.isDefaultKey)
   bool get isDefault;
   @override
 

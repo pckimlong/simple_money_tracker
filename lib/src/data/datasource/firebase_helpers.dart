@@ -4,14 +4,16 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:simple_money_tracker/src/data/models/account_model.dart';
 import 'package:simple_money_tracker/src/data/models/user_model.dart';
 
+import '../models/tran_model.dart';
+
 const _userPath = "users";
+
 const _accountPath = "accounts";
-const _currencyPath = "currencies";
-const _categoryPath = "categories";
 
 /// Default account, this might become dynamic in future. when we have
 /// multi account support in one user
 const _defaultAccountId = "default_account_id";
+const _tranPath = "transactions";
 
 /// default docId for storing simple data. because these data wont be large, to help in reducing
 /// read count of firestore, I decided to make it as doc instead of it own collection
@@ -32,13 +34,7 @@ extension FirestoreX on FirebaseFirestore {
         );
   }
 
-  DocumentReference<AccountModel?> get accountDoc {
-    return userDoc.collection(_accountPath).doc(_defaultAccountId).withConverter(
-          fromFirestore: (d, _) => d.exists ? AccountModel.fromJson(d.toMap()) : null,
-          toFirestore: (o, _) => o?.toJson() as Map<String, dynamic>,
-        );
-  }
-
+  /// App items
   CollectionReference<Map<String, dynamic>> get itemColl =>
       userDoc.collection(_itemPath);
   DocumentReference<Map<String, dynamic>> get currenciesDoc =>
@@ -46,19 +42,19 @@ extension FirestoreX on FirebaseFirestore {
   DocumentReference<Map<String, dynamic>> get categoriesDoc =>
       itemColl.doc(_categoryDocId);
 
-  // CollectionReference<CurrencyModel?> get currencyColl {
-  //   return userDoc.collection(_currencyPath).withConverter(
-  //         fromFirestore: (d, _) => d.exists ? CurrencyModel.fromJson(d.toMap()) : null,
-  //         toFirestore: (o, _) => o?.toJson() as Map<String, dynamic>,
-  //       );
-  // }
+  DocumentReference<AccountModel?> get accountDoc {
+    return userDoc.collection(_accountPath).doc(_defaultAccountId).withConverter(
+          fromFirestore: (d, _) => d.exists ? AccountModel.fromJson(d.toMap()) : null,
+          toFirestore: (o, _) => o?.toJson() as Map<String, dynamic>,
+        );
+  }
 
-  // CollectionReference<CategoryModel?> get categoryColl {
-  //   return userDoc.collection(_categoryPath).withConverter(
-  //         fromFirestore: (d, _) => d.exists ? CategoryModel.fromJson(d.toMap()) : null,
-  //         toFirestore: (o, _) => o?.toJson() as Map<String, dynamic>,
-  //       );
-  // }
+  CollectionReference<TranModel?> get tranColl {
+    return accountDoc.collection(_tranPath).withConverter(
+          fromFirestore: (d, _) => d.exists ? TranModel.fromJson(d.toMap()) : null,
+          toFirestore: (d, _) => d?.toJson() as Map<String, dynamic>,
+        );
+  }
 }
 
 extension FirebaseDocX on DocumentSnapshot {

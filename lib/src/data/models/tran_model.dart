@@ -2,16 +2,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'category_model.dart';
 
-part 'transaction.freezed.dart';
-part 'transaction.g.dart';
+part 'tran_model.freezed.dart';
+part 'tran_model.g.dart';
 
 typedef TranId = String;
 
 enum TranType { income, expenses }
 
 @freezed
-class Transaction with _$Transaction {
-  const factory Transaction.income({
+class TranModel with _$TranModel {
+  const factory TranModel.income({
     @Default(TranType.income) TranType type,
     required TranId? id,
     required CategoryId categoryId,
@@ -20,7 +20,7 @@ class Transaction with _$Transaction {
     required String note,
     required DateTime createdAt,
   }) = Income;
-  const factory Transaction.expenses({
+  const factory TranModel.expenses({
     @Default(TranType.expenses) TranType type,
     required TranId? id,
     required CategoryId categoryId,
@@ -30,6 +30,5 @@ class Transaction with _$Transaction {
     required DateTime createdAt,
   }) = Expenses;
 
-  factory Transaction.fromJson(Map<String, dynamic> json) =>
-      _$TransactionFromJson(json);
+  factory TranModel.fromJson(Map<String, dynamic> json) => _$TranModelFromJson(json);
 }

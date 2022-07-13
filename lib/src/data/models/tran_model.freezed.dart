@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'transaction.dart';
+part of 'tran_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Transaction _$TransactionFromJson(Map<String, dynamic> json) {
+TranModel _$TranModelFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'income':
       return Income.fromJson(json);
@@ -22,13 +22,13 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) {
       return Expenses.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'Transaction',
+      throw CheckedFromJsonException(json, 'runtimeType', 'TranModel',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$Transaction {
+mixin _$TranModel {
   TranType get type => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
@@ -88,15 +88,14 @@ mixin _$Transaction {
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TransactionCopyWith<Transaction> get copyWith =>
+  $TranModelCopyWith<TranModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TransactionCopyWith<$Res> {
-  factory $TransactionCopyWith(
-          Transaction value, $Res Function(Transaction) then) =
-      _$TransactionCopyWithImpl<$Res>;
+abstract class $TranModelCopyWith<$Res> {
+  factory $TranModelCopyWith(TranModel value, $Res Function(TranModel) then) =
+      _$TranModelCopyWithImpl<$Res>;
   $Res call(
       {TranType type,
       String? id,
@@ -108,12 +107,12 @@ abstract class $TransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
-  _$TransactionCopyWithImpl(this._value, this._then);
+class _$TranModelCopyWithImpl<$Res> implements $TranModelCopyWith<$Res> {
+  _$TranModelCopyWithImpl(this._value, this._then);
 
-  final Transaction _value;
+  final TranModel _value;
   // ignore: unused_field
-  final $Res Function(Transaction) _then;
+  final $Res Function(TranModel) _then;
 
   @override
   $Res call({
@@ -159,7 +158,7 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$IncomeCopyWith<$Res> implements $TransactionCopyWith<$Res> {
+abstract class _$$IncomeCopyWith<$Res> implements $TranModelCopyWith<$Res> {
   factory _$$IncomeCopyWith(_$Income value, $Res Function(_$Income) then) =
       __$$IncomeCopyWithImpl<$Res>;
   @override
@@ -174,7 +173,7 @@ abstract class _$$IncomeCopyWith<$Res> implements $TransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$IncomeCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
+class __$$IncomeCopyWithImpl<$Res> extends _$TranModelCopyWithImpl<$Res>
     implements _$$IncomeCopyWith<$Res> {
   __$$IncomeCopyWithImpl(_$Income _value, $Res Function(_$Income) _then)
       : super(_value, (v) => _then(v as _$Income));
@@ -263,7 +262,7 @@ class _$Income implements Income {
 
   @override
   String toString() {
-    return 'Transaction.income(type: $type, id: $id, categoryId: $categoryId, amount: $amount, date: $date, note: $note, createdAt: $createdAt)';
+    return 'TranModel.income(type: $type, id: $id, categoryId: $categoryId, amount: $amount, date: $date, note: $note, createdAt: $createdAt)';
   }
 
   @override
@@ -378,7 +377,7 @@ class _$Income implements Income {
   }
 }
 
-abstract class Income implements Transaction {
+abstract class Income implements TranModel {
   const factory Income(
       {final TranType type,
       required final String? id,
@@ -411,7 +410,7 @@ abstract class Income implements Transaction {
 }
 
 /// @nodoc
-abstract class _$$ExpensesCopyWith<$Res> implements $TransactionCopyWith<$Res> {
+abstract class _$$ExpensesCopyWith<$Res> implements $TranModelCopyWith<$Res> {
   factory _$$ExpensesCopyWith(
           _$Expenses value, $Res Function(_$Expenses) then) =
       __$$ExpensesCopyWithImpl<$Res>;
@@ -427,7 +426,7 @@ abstract class _$$ExpensesCopyWith<$Res> implements $TransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ExpensesCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
+class __$$ExpensesCopyWithImpl<$Res> extends _$TranModelCopyWithImpl<$Res>
     implements _$$ExpensesCopyWith<$Res> {
   __$$ExpensesCopyWithImpl(_$Expenses _value, $Res Function(_$Expenses) _then)
       : super(_value, (v) => _then(v as _$Expenses));
@@ -516,7 +515,7 @@ class _$Expenses implements Expenses {
 
   @override
   String toString() {
-    return 'Transaction.expenses(type: $type, id: $id, categoryId: $categoryId, amount: $amount, date: $date, note: $note, createdAt: $createdAt)';
+    return 'TranModel.expenses(type: $type, id: $id, categoryId: $categoryId, amount: $amount, date: $date, note: $note, createdAt: $createdAt)';
   }
 
   @override
@@ -631,7 +630,7 @@ class _$Expenses implements Expenses {
   }
 }
 
-abstract class Expenses implements Transaction {
+abstract class Expenses implements TranModel {
   const factory Expenses(
       {final TranType type,
       required final String? id,

@@ -18,13 +18,19 @@ class CurrencyProvider {
   });
 
   /// Crash if default currency id is not founded
+  /// If in some case selected currency was deleted, this will use defaultCurrency instead
   static final currentCurrency = Provider.autoDispose<AsyncValue<CurrencyModel>>((ref) {
     final id = ref.watch(AccountProvider.dataOption
         .select((value) => value.whenData((value) => value.toNullable()?.currencyId)));
     if (id.hasError) return AsyncValue.error(id.error!);
     if (id.isLoading) return const AsyncValue.loading();
     if (id.valueOrNull == null) return const AsyncValue.error(Failure.noRecord());
-    return ref.watch(watchOneById(id.value!)).whenData((value) => value.getOrCrash());
+    return ref.watch(watchOneById(id.value!)).whenData(
+          (value) => value.match(
+            (t) => t,
+            () => ref.watch(defaultCurrency).value!,
+          ),
+        );
   });
 
   static final watchOneById = Provider.autoDispose

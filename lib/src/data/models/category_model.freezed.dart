@@ -20,7 +20,7 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryModel {
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   TranType get tranType => throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $CategoryModelCopyWith<$Res> {
   factory $CategoryModelCopyWith(
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res>;
-  $Res call({String? id, String name, TranType tranType});
+  $Res call({String id, String name, TranType tranType});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$CategoryModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -77,7 +77,7 @@ abstract class _$$_CategoryModelCopyWith<$Res>
           _$_CategoryModel value, $Res Function(_$_CategoryModel) then) =
       __$$_CategoryModelCopyWithImpl<$Res>;
   @override
-  $Res call({String? id, String name, TranType tranType});
+  $Res call({String id, String name, TranType tranType});
 }
 
 /// @nodoc
@@ -101,7 +101,7 @@ class __$$_CategoryModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ class _$_CategoryModel implements _CategoryModel {
       _$$_CategoryModelFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
   final String name;
   @override
@@ -166,7 +166,7 @@ class _$_CategoryModel implements _CategoryModel {
 
 abstract class _CategoryModel implements CategoryModel {
   factory _CategoryModel(
-      {required final String? id,
+      {required final String id,
       required final String name,
       required final TranType tranType}) = _$_CategoryModel;
 
@@ -174,7 +174,7 @@ abstract class _CategoryModel implements CategoryModel {
       _$_CategoryModel.fromJson;
 
   @override
-  String? get id;
+  String get id;
   @override
   String get name;
   @override

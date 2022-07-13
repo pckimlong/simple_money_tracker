@@ -12,6 +12,7 @@ part "app_errors.freezed.dart";
 class Failure with _$Failure implements Exception {
   const factory Failure.noRecord([String? message]) = _NoRecord;
   const factory Failure.restrictedTask([String? message]) = _RestrictedTask;
+  const factory Failure.unavailable([String? message]) = _Unavailable;
   const factory Failure.exeption([String? message]) = _Exeption;
   const factory Failure.authExeption([String? message]) = _AuthExeption;
   const factory Failure.invalidValue([String? message]) = _InvalidValue;
@@ -23,8 +24,11 @@ class Failure with _$Failure implements Exception {
       return Failure.authExeption(error.message);
     }
     if (error is FirebaseException) {
-      if (error.code == "not-found") {
+      if (error.code == "not-found" || error.code == "cloud_firestore/not-found") {
         return Failure.noRecord(error.message);
+      }
+      if (error.code == "unavailable") {
+        return Failure.unavailable(error.message);
       }
     }
 

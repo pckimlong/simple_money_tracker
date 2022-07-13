@@ -21,6 +21,7 @@ mixin _$Failure {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -32,6 +33,7 @@ mixin _$Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -43,6 +45,7 @@ mixin _$Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -55,6 +58,7 @@ mixin _$Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -65,6 +69,7 @@ mixin _$Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -75,6 +80,7 @@ mixin _$Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -182,6 +188,7 @@ class _$_NoRecord implements _NoRecord {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -196,6 +203,7 @@ class _$_NoRecord implements _NoRecord {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -210,6 +218,7 @@ class _$_NoRecord implements _NoRecord {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -228,6 +237,7 @@ class _$_NoRecord implements _NoRecord {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -241,6 +251,7 @@ class _$_NoRecord implements _NoRecord {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -254,6 +265,7 @@ class _$_NoRecord implements _NoRecord {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -346,6 +358,7 @@ class _$_RestrictedTask implements _RestrictedTask {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -360,6 +373,7 @@ class _$_RestrictedTask implements _RestrictedTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -374,6 +388,7 @@ class _$_RestrictedTask implements _RestrictedTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -392,6 +407,7 @@ class _$_RestrictedTask implements _RestrictedTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -405,6 +421,7 @@ class _$_RestrictedTask implements _RestrictedTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -418,6 +435,7 @@ class _$_RestrictedTask implements _RestrictedTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -439,6 +457,175 @@ abstract class _RestrictedTask implements Failure {
   @override
   @JsonKey(ignore: true)
   _$$_RestrictedTaskCopyWith<_$_RestrictedTask> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UnavailableCopyWith<$Res> implements $FailureCopyWith<$Res> {
+  factory _$$_UnavailableCopyWith(
+          _$_Unavailable value, $Res Function(_$_Unavailable) then) =
+      __$$_UnavailableCopyWithImpl<$Res>;
+  @override
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$$_UnavailableCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$$_UnavailableCopyWith<$Res> {
+  __$$_UnavailableCopyWithImpl(
+      _$_Unavailable _value, $Res Function(_$_Unavailable) _then)
+      : super(_value, (v) => _then(v as _$_Unavailable));
+
+  @override
+  _$_Unavailable get _value => super._value as _$_Unavailable;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_Unavailable(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Unavailable implements _Unavailable {
+  const _$_Unavailable([this.message]);
+
+  @override
+  final String? message;
+
+  @override
+  String toString() {
+    return 'Failure.unavailable(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Unavailable &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UnavailableCopyWith<_$_Unavailable> get copyWith =>
+      __$$_UnavailableCopyWithImpl<_$_Unavailable>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) noRecord,
+    required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
+    required TResult Function(String? message) exeption,
+    required TResult Function(String? message) authExeption,
+    required TResult Function(String? message) invalidValue,
+    required TResult Function(String? message, Object? duplicatedObject)
+        uniqueConstrant,
+  }) {
+    return unavailable(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+  }) {
+    return unavailable?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? noRecord,
+    TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
+    TResult Function(String? message)? exeption,
+    TResult Function(String? message)? authExeption,
+    TResult Function(String? message)? invalidValue,
+    TResult Function(String? message, Object? duplicatedObject)?
+        uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (unavailable != null) {
+      return unavailable(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoRecord value) noRecord,
+    required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
+    required TResult Function(_Exeption value) exeption,
+    required TResult Function(_AuthExeption value) authExeption,
+    required TResult Function(_InvalidValue value) invalidValue,
+    required TResult Function(_UniqueConstrant value) uniqueConstrant,
+  }) {
+    return unavailable(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+  }) {
+    return unavailable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoRecord value)? noRecord,
+    TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
+    TResult Function(_Exeption value)? exeption,
+    TResult Function(_AuthExeption value)? authExeption,
+    TResult Function(_InvalidValue value)? invalidValue,
+    TResult Function(_UniqueConstrant value)? uniqueConstrant,
+    required TResult orElse(),
+  }) {
+    if (unavailable != null) {
+      return unavailable(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unavailable implements Failure {
+  const factory _Unavailable([final String? message]) = _$_Unavailable;
+
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UnavailableCopyWith<_$_Unavailable> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -509,6 +696,7 @@ class _$_Exeption implements _Exeption {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -523,6 +711,7 @@ class _$_Exeption implements _Exeption {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -537,6 +726,7 @@ class _$_Exeption implements _Exeption {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -555,6 +745,7 @@ class _$_Exeption implements _Exeption {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -568,6 +759,7 @@ class _$_Exeption implements _Exeption {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -581,6 +773,7 @@ class _$_Exeption implements _Exeption {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -673,6 +866,7 @@ class _$_AuthExeption implements _AuthExeption {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -687,6 +881,7 @@ class _$_AuthExeption implements _AuthExeption {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -701,6 +896,7 @@ class _$_AuthExeption implements _AuthExeption {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -719,6 +915,7 @@ class _$_AuthExeption implements _AuthExeption {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -732,6 +929,7 @@ class _$_AuthExeption implements _AuthExeption {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -745,6 +943,7 @@ class _$_AuthExeption implements _AuthExeption {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -837,6 +1036,7 @@ class _$_InvalidValue implements _InvalidValue {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -851,6 +1051,7 @@ class _$_InvalidValue implements _InvalidValue {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -865,6 +1066,7 @@ class _$_InvalidValue implements _InvalidValue {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -883,6 +1085,7 @@ class _$_InvalidValue implements _InvalidValue {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -896,6 +1099,7 @@ class _$_InvalidValue implements _InvalidValue {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -909,6 +1113,7 @@ class _$_InvalidValue implements _InvalidValue {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -1009,6 +1214,7 @@ class _$_UniqueConstrant implements _UniqueConstrant {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) noRecord,
     required TResult Function(String? message) restrictedTask,
+    required TResult Function(String? message) unavailable,
     required TResult Function(String? message) exeption,
     required TResult Function(String? message) authExeption,
     required TResult Function(String? message) invalidValue,
@@ -1023,6 +1229,7 @@ class _$_UniqueConstrant implements _UniqueConstrant {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -1037,6 +1244,7 @@ class _$_UniqueConstrant implements _UniqueConstrant {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? noRecord,
     TResult Function(String? message)? restrictedTask,
+    TResult Function(String? message)? unavailable,
     TResult Function(String? message)? exeption,
     TResult Function(String? message)? authExeption,
     TResult Function(String? message)? invalidValue,
@@ -1055,6 +1263,7 @@ class _$_UniqueConstrant implements _UniqueConstrant {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoRecord value) noRecord,
     required TResult Function(_RestrictedTask value) restrictedTask,
+    required TResult Function(_Unavailable value) unavailable,
     required TResult Function(_Exeption value) exeption,
     required TResult Function(_AuthExeption value) authExeption,
     required TResult Function(_InvalidValue value) invalidValue,
@@ -1068,6 +1277,7 @@ class _$_UniqueConstrant implements _UniqueConstrant {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
@@ -1081,6 +1291,7 @@ class _$_UniqueConstrant implements _UniqueConstrant {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoRecord value)? noRecord,
     TResult Function(_RestrictedTask value)? restrictedTask,
+    TResult Function(_Unavailable value)? unavailable,
     TResult Function(_Exeption value)? exeption,
     TResult Function(_AuthExeption value)? authExeption,
     TResult Function(_InvalidValue value)? invalidValue,
