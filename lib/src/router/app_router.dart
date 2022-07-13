@@ -1,5 +1,6 @@
 import 'package:simple_money_tracker/src/modules/auth/sign_in_page.dart';
 import 'package:simple_money_tracker/src/modules/calendar/calendar_page.dart';
+import 'package:simple_money_tracker/src/modules/category/add_category_dialog.dart';
 import 'package:simple_money_tracker/src/modules/profile/profile_page.dart';
 import 'package:simple_money_tracker/src/modules/report/report_page.dart';
 import 'package:simple_money_tracker/src/modules/root/root_page.dart';
@@ -53,6 +54,10 @@ final appRouterProvider = Provider<AppRouter>((ref) {
       path: '/set-up',
       page: SetUpAccountPage,
     ),
+    // AutoRoute(
+    //   path: 'add-category',
+    //   page: AddCategoryDialog,
+    // )
   ],
 )
 class AppRouter extends _$AppRouter {}

@@ -37,6 +37,7 @@ class MyTextFormField extends StatelessWidget {
     this.onEditingComplete,
     this.label,
     this.inputFormatters,
+    this.counterWidget,
   }) : super(key: key);
 
   final bool autofocus;
@@ -70,6 +71,7 @@ class MyTextFormField extends StatelessWidget {
   final void Function()? onEditingComplete;
   final Widget? label;
   final List<TextInputFormatter>? inputFormatters;
+  final Widget? counterWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +101,7 @@ class MyTextFormField extends StatelessWidget {
           horizontal: 12,
           vertical: 13,
         ),
+        counter: counterWidget,
         errorText: errorText,
         // constraints: maxLines == null
         //     ? const BoxConstraints(minHeight: AS.buttonHeight)

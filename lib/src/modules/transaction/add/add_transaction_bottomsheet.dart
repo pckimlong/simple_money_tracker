@@ -1,6 +1,6 @@
 import '../../../../exports.dart';
 import '../../../core/core.dart';
-import 'widgets/tran_type_picker.dart';
+import 'widgets/category_picker.dart';
 
 class AddTransactionBottomsheet extends ConsumerWidget {
   const AddTransactionBottomsheet({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class AddTransactionBottomsheet extends ConsumerWidget {
             height: 400,
             child: PageView(
               children: const [
-                TranTypePicker(),
+                CategoryPicker(),
               ],
             ),
           )

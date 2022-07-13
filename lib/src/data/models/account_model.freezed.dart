@@ -20,9 +20,13 @@ AccountModel _$AccountModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccountModel {
+  @JsonKey(name: AccountModel.balanceKey)
   double get balance => throw _privateConstructorUsedError;
+  @JsonKey(name: AccountModel.totalIncomeKey)
   double get totalIncome => throw _privateConstructorUsedError;
+  @JsonKey(name: AccountModel.defaultCurrencyIdKey)
   String get defaultCurrencyId => throw _privateConstructorUsedError;
+  @JsonKey(name: AccountModel.selectedCurrencyIdKey)
   String? get selectedCurrencyId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,10 +41,14 @@ abstract class $AccountModelCopyWith<$Res> {
           AccountModel value, $Res Function(AccountModel) then) =
       _$AccountModelCopyWithImpl<$Res>;
   $Res call(
-      {double balance,
-      double totalIncome,
-      String defaultCurrencyId,
-      String? selectedCurrencyId});
+      {@JsonKey(name: AccountModel.balanceKey)
+          double balance,
+      @JsonKey(name: AccountModel.totalIncomeKey)
+          double totalIncome,
+      @JsonKey(name: AccountModel.defaultCurrencyIdKey)
+          String defaultCurrencyId,
+      @JsonKey(name: AccountModel.selectedCurrencyIdKey)
+          String? selectedCurrencyId});
 }
 
 /// @nodoc
@@ -87,10 +95,14 @@ abstract class _$$_AccountModelCopyWith<$Res>
       __$$_AccountModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double balance,
-      double totalIncome,
-      String defaultCurrencyId,
-      String? selectedCurrencyId});
+      {@JsonKey(name: AccountModel.balanceKey)
+          double balance,
+      @JsonKey(name: AccountModel.totalIncomeKey)
+          double totalIncome,
+      @JsonKey(name: AccountModel.defaultCurrencyIdKey)
+          String defaultCurrencyId,
+      @JsonKey(name: AccountModel.selectedCurrencyIdKey)
+          String? selectedCurrencyId});
 }
 
 /// @nodoc
@@ -136,22 +148,30 @@ class __$$_AccountModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AccountModel extends _AccountModel {
   _$_AccountModel(
-      {required this.balance,
-      required this.totalIncome,
-      required this.defaultCurrencyId,
-      required this.selectedCurrencyId})
+      {@JsonKey(name: AccountModel.balanceKey)
+          required this.balance,
+      @JsonKey(name: AccountModel.totalIncomeKey)
+          required this.totalIncome,
+      @JsonKey(name: AccountModel.defaultCurrencyIdKey)
+          required this.defaultCurrencyId,
+      @JsonKey(name: AccountModel.selectedCurrencyIdKey)
+          required this.selectedCurrencyId})
       : super._();
 
   factory _$_AccountModel.fromJson(Map<String, dynamic> json) =>
       _$$_AccountModelFromJson(json);
 
   @override
+  @JsonKey(name: AccountModel.balanceKey)
   final double balance;
   @override
+  @JsonKey(name: AccountModel.totalIncomeKey)
   final double totalIncome;
   @override
+  @JsonKey(name: AccountModel.defaultCurrencyIdKey)
   final String defaultCurrencyId;
   @override
+  @JsonKey(name: AccountModel.selectedCurrencyIdKey)
   final String? selectedCurrencyId;
 
   @override
@@ -195,22 +215,30 @@ class _$_AccountModel extends _AccountModel {
 
 abstract class _AccountModel extends AccountModel {
   factory _AccountModel(
-      {required final double balance,
-      required final double totalIncome,
-      required final String defaultCurrencyId,
-      required final String? selectedCurrencyId}) = _$_AccountModel;
+      {@JsonKey(name: AccountModel.balanceKey)
+          required final double balance,
+      @JsonKey(name: AccountModel.totalIncomeKey)
+          required final double totalIncome,
+      @JsonKey(name: AccountModel.defaultCurrencyIdKey)
+          required final String defaultCurrencyId,
+      @JsonKey(name: AccountModel.selectedCurrencyIdKey)
+          required final String? selectedCurrencyId}) = _$_AccountModel;
   _AccountModel._() : super._();
 
   factory _AccountModel.fromJson(Map<String, dynamic> json) =
       _$_AccountModel.fromJson;
 
   @override
+  @JsonKey(name: AccountModel.balanceKey)
   double get balance;
   @override
+  @JsonKey(name: AccountModel.totalIncomeKey)
   double get totalIncome;
   @override
+  @JsonKey(name: AccountModel.defaultCurrencyIdKey)
   String get defaultCurrencyId;
   @override
+  @JsonKey(name: AccountModel.selectedCurrencyIdKey)
   String? get selectedCurrencyId;
   @override
   @JsonKey(ignore: true)

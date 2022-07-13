@@ -19,17 +19,17 @@ class FirebaseDataSource {
   final FirebaseFirestore _firestore;
 
   Future<void> createCurrency(CurrencyModel currencyModel) async {
-    await _throwExceptionIfCurrencyAlreadyExisted(currencyModel);
+    await _checkNewCurrency(currencyModel);
     final currenciesDoc = _firestore.currenciesDoc;
 
-    await currenciesDoc.set({
+    currenciesDoc.set({
       currencyModel.id: currencyModel.toJson(),
     }, SetOptions(merge: true));
   }
 
   Future<void> updateCurrency(CurrencyModel currencyModel) async {
     final currenciesDoc = _firestore.currenciesDoc;
-    await currenciesDoc.update({
+    currenciesDoc.update({
       currencyModel.id: currencyModel.toJson(),
     });
   }
@@ -63,30 +63,6 @@ class FirebaseDataSource {
     });
   }
 
-  Future<void> _throwExceptionIfAccountAlreadyCreated() async {
-    final result = await _firestore.accountDoc.get();
-    if (result.exists) {
-      throw const Failure.restrictedTask(
-          'Cannot create create account, because account is already existed');
-    }
-  }
-
-  Future<void> _throwExceptionIfCurrencyAlreadyExisted(
-      CurrencyModel currencyModel) async {
-    final result = await _firestore.currenciesDoc.get();
-    final existed = result.data()?[currencyModel.id] != null
-        ? CurrencyModel.fromJson(result[currencyModel.id])
-        : null;
-
-    if (existed != null) {
-      if (existed.currency.code == currencyModel.currency.code) {
-        throw Failure.uniqueConstrant(
-            'Currency with code: ${currencyModel.currency.code} is already existed',
-            result.data()![currencyModel.id]);
-      }
-    }
-  }
-
   Future<Income?> createIncomeTran(Income model) async {
     assert(model.type == TranType.income);
 
@@ -103,43 +79,18 @@ class FirebaseDataSource {
     assert(model.type == TranType.income);
     assert(model.id != null);
 
-    _updateIncomeTranOffline(model);
-
-    // return _firestore.runTransaction((txn) async {
-    //   await _updateIncomeTranOnline(txn, model);
-    // }, timeout: const Duration(seconds: 5)).catchError((err, __) async {
-    //   log("Update incomeTran transaction exception", error: err);
-    //   if (err is FirebaseException) {
-    //     if (err.code == "unavailable") {
-    //       _updateIncomeTranOffline(model);
-    //       return;
-    //     } else {
-    //       throw err;
-    //     }
-    //   }
-    //   throw err as Exception;
-    // });
-  }
-
-  Future<void> _updateIncomeTranOnline(Transaction txn, Income income) async {}
-  Future<void> _updateIncomeTranOffline(Income income) async {
-    final id = income.id!;
-    _firestore.tranColl.doc(id).get().then((oldDoc) {
-      if (!oldDoc.exists) throw Failure.noRecord('Cannot find transaction with id:$id');
-      _firestore.tranColl.doc(id).set(income).then((value) {
-        print('to updata amount: ${income.amount}');
-        print('old amount: ${oldDoc.data()!.amount}');
-        final updateAmount = income.amount - oldDoc.data()!.amount;
-        print('total :$updateAmount');
-        _firestore.accountDoc.update({
-          AccountModel.balanceKey: FieldValue.increment(updateAmount),
-          AccountModel.totalIncomeKey: FieldValue.increment(updateAmount),
-        });
-      });
+    final oldDoc = await _firestore.tranColl.doc(model.id).get();
+    if (!oldDoc.exists) throw Failure.noRecord('Cannot find transaction with id:$id');
+    _firestore.tranColl.doc(model.id).set(model);
+    final updateAmount = model.amount - oldDoc.data()!.amount;
+    _firestore.accountDoc.update({
+      AccountModel.balanceKey: FieldValue.increment(updateAmount),
+      AccountModel.totalIncomeKey: FieldValue.increment(updateAmount),
     });
   }
 
   Future<void> createCategory(CategoryModel data) async {
+    await _checkNewCategoryName(data);
     final doc = _firestore.categoriesDoc;
     doc.set({
       data.id: data.toJson(),
@@ -169,5 +120,41 @@ class FirebaseDataSource {
   Future<void> deleteCategory(String categoryId) async {
     final docRef = _firestore.categoriesDoc;
     docRef.update({categoryId: FieldValue.delete()});
+  }
+
+  Future<void> _throwExceptionIfAccountAlreadyCreated() async {
+    final result = await _firestore.accountDoc.get();
+    if (result.exists) {
+      throw const Failure.restrictedTask(
+          'Cannot create create account, because account is already existed');
+    }
+  }
+
+  Future<void> _checkNewCurrency(CurrencyModel currencyModel) async {
+    final result = await _firestore.currenciesDoc.get();
+    final existed = result.data()?[currencyModel.id] != null
+        ? CurrencyModel.fromJson(result[currencyModel.id])
+        : null;
+
+    if (existed != null) {
+      if (existed.currency.code == currencyModel.currency.code) {
+        throw Failure.uniqueConstrant(
+            'Currency with code: ${currencyModel.currency.code} is already existed',
+            result.data()![currencyModel.id]);
+      }
+    }
+  }
+
+  Future<void> _checkNewCategoryName(CategoryModel data) async {
+    final result = await _firestore.categoriesDoc.get();
+    final map = result.data();
+    if (map != null && map.isNotEmpty) {
+      for (final value in map.values) {
+        if (value[CategoryModel.nameKey] == data.name.trim()) {
+          throw Failure.uniqueConstrant(
+              'Category name: ${data.name} is already existed');
+        }
+      }
+    }
   }
 }
