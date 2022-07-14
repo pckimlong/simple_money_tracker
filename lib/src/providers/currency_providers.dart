@@ -49,7 +49,7 @@ class CurrencyProvider {
   });
 
   static final streamAllEither =
-      StreamProvider.autoDispose<Either<Failure, IList<CurrencyModel>>>((ref) {
+      StreamProvider<Either<Failure, IList<CurrencyModel>>>((ref) {
     return ref.watch(currencyRepoProvider).streamAll();
   });
 }

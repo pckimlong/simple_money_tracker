@@ -7,8 +7,7 @@ part of 'tran_model.dart';
 // **************************************************************************
 
 _$Income _$$IncomeFromJson(Map<String, dynamic> json) => _$Income(
-      type: $enumDecodeNullable(_$TranTypeEnumMap, json['type']) ??
-          TranType.income,
+      type: $enumDecodeNullable(_$TranTypeEnumMap, json['type']) ?? TranType.income,
       id: json['id'] as String?,
       categoryId: json['categoryId'] as String,
       amount: (json['amount'] as num).toDouble(),
@@ -30,13 +29,12 @@ Map<String, dynamic> _$$IncomeToJson(_$Income instance) => <String, dynamic>{
     };
 
 const _$TranTypeEnumMap = {
+  TranType.expense: 'expense',
   TranType.income: 'income',
-  TranType.expenses: 'expenses',
 };
 
 _$Expenses _$$ExpensesFromJson(Map<String, dynamic> json) => _$Expenses(
-      type: $enumDecodeNullable(_$TranTypeEnumMap, json['type']) ??
-          TranType.expenses,
+      type: $enumDecodeNullable(_$TranTypeEnumMap, json['type']) ?? TranType.expense,
       id: json['id'] as String?,
       categoryId: json['categoryId'] as String,
       amount: (json['amount'] as num).toDouble(),
@@ -46,8 +44,7 @@ _$Expenses _$$ExpensesFromJson(Map<String, dynamic> json) => _$Expenses(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ExpensesToJson(_$Expenses instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$ExpensesToJson(_$Expenses instance) => <String, dynamic>{
       'type': _$TranTypeEnumMap[instance.type]!,
       'id': instance.id,
       'categoryId': instance.categoryId,

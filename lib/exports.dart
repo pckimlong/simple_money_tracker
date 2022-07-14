@@ -8,4 +8,6 @@ export 'package:responsive_framework/responsive_framework.dart';
 export 'package:fpdart/fpdart.dart' hide Reader, State;
 export 'package:rxdart/rxdart.dart' hide Notification;
 export 'package:dartx/dartx.dart';
-export 'package:fast_immutable_collections/fast_immutable_collections.dart' hide Tuple2, Predicate;
+export 'package:fast_immutable_collections/fast_immutable_collections.dart'
+    hide Tuple2, Predicate;
+export 'package:easy_localization/easy_localization.dart' hide TextDirection;

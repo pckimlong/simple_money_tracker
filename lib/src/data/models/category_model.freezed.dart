@@ -20,8 +20,11 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryModel {
+  @JsonKey(name: CategoryModel.idKey)
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: CategoryModel.nameKey)
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: CategoryModel.tranTypeKey)
   TranType get tranType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +38,10 @@ abstract class $CategoryModelCopyWith<$Res> {
   factory $CategoryModelCopyWith(
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res>;
-  $Res call({String id, String name, TranType tranType});
+  $Res call(
+      {@JsonKey(name: CategoryModel.idKey) String id,
+      @JsonKey(name: CategoryModel.nameKey) String name,
+      @JsonKey(name: CategoryModel.tranTypeKey) TranType tranType});
 }
 
 /// @nodoc
@@ -77,7 +83,10 @@ abstract class _$$_CategoryModelCopyWith<$Res>
           _$_CategoryModel value, $Res Function(_$_CategoryModel) then) =
       __$$_CategoryModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, TranType tranType});
+  $Res call(
+      {@JsonKey(name: CategoryModel.idKey) String id,
+      @JsonKey(name: CategoryModel.nameKey) String name,
+      @JsonKey(name: CategoryModel.tranTypeKey) TranType tranType});
 }
 
 /// @nodoc
@@ -118,16 +127,21 @@ class __$$_CategoryModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CategoryModel implements _CategoryModel {
   _$_CategoryModel(
-      {required this.id, required this.name, required this.tranType});
+      {@JsonKey(name: CategoryModel.idKey) required this.id,
+      @JsonKey(name: CategoryModel.nameKey) required this.name,
+      @JsonKey(name: CategoryModel.tranTypeKey) required this.tranType});
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
 
   @override
+  @JsonKey(name: CategoryModel.idKey)
   final String id;
   @override
+  @JsonKey(name: CategoryModel.nameKey)
   final String name;
   @override
+  @JsonKey(name: CategoryModel.tranTypeKey)
   final TranType tranType;
 
   @override
@@ -166,18 +180,24 @@ class _$_CategoryModel implements _CategoryModel {
 
 abstract class _CategoryModel implements CategoryModel {
   factory _CategoryModel(
-      {required final String id,
-      required final String name,
-      required final TranType tranType}) = _$_CategoryModel;
+      {@JsonKey(name: CategoryModel.idKey)
+          required final String id,
+      @JsonKey(name: CategoryModel.nameKey)
+          required final String name,
+      @JsonKey(name: CategoryModel.tranTypeKey)
+          required final TranType tranType}) = _$_CategoryModel;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$_CategoryModel.fromJson;
 
   @override
+  @JsonKey(name: CategoryModel.idKey)
   String get id;
   @override
+  @JsonKey(name: CategoryModel.nameKey)
   String get name;
   @override
+  @JsonKey(name: CategoryModel.tranTypeKey)
   TranType get tranType;
   @override
   @JsonKey(ignore: true)

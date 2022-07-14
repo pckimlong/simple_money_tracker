@@ -66,7 +66,7 @@ class AS {
   );
 
   static const double buttonHeight = 45;
-  static const double bottomSheetHeaderHeight = 48.0;
+  static const double bottomSheetHeaderHeight = 50.0;
   static const roundedBorderRadius = BorderRadius.all(Radius.circular(radiusValue));
 
   static const wGap12 = SizedBox(width: 12, height: 0);
@@ -95,4 +95,11 @@ class AS {
 
   static Color? whiteBackground(BuildContext context) =>
       context.isDarkTheme ? context.theme.backgroundColor : Colors.white;
+
+  static TextStyle bottomsheetTitleTextStyle(BuildContext context) {
+    return const TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+    );
+  }
 }

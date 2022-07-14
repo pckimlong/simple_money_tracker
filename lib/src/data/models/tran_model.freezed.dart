@@ -48,21 +48,21 @@ mixin _$TranModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         income,
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         expenses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         income,
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         expenses,
     required TResult orElse(),
   }) =>
@@ -88,8 +88,7 @@ mixin _$TranModel {
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TranModelCopyWith<TranModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TranModelCopyWith<TranModel> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -238,8 +237,7 @@ class _$Income implements Income {
       final String? $type})
       : $type = $type ?? 'income';
 
-  factory _$Income.fromJson(Map<String, dynamic> json) =>
-      _$$IncomeFromJson(json);
+  factory _$Income.fromJson(Map<String, dynamic> json) => _$$IncomeFromJson(json);
 
   @override
   @JsonKey()
@@ -272,8 +270,7 @@ class _$Income implements Income {
             other is _$Income &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality().equals(other.categoryId, categoryId) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.note, note) &&
@@ -313,11 +310,11 @@ class _$Income implements Income {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         income,
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         expenses,
   }) {
     return income?.call(type, id, categoryId, amount, date, note, createdAt);
@@ -326,11 +323,11 @@ class _$Income implements Income {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         income,
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         expenses,
     required TResult orElse(),
   }) {
@@ -405,14 +402,12 @@ abstract class Income implements TranModel {
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$IncomeCopyWith<_$Income> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$IncomeCopyWith<_$Income> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$ExpensesCopyWith<$Res> implements $TranModelCopyWith<$Res> {
-  factory _$$ExpensesCopyWith(
-          _$Expenses value, $Res Function(_$Expenses) then) =
+  factory _$$ExpensesCopyWith(_$Expenses value, $Res Function(_$Expenses) then) =
       __$$ExpensesCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -481,7 +476,7 @@ class __$$ExpensesCopyWithImpl<$Res> extends _$TranModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$Expenses implements Expenses {
   const _$Expenses(
-      {this.type = TranType.expenses,
+      {this.type = TranType.expense,
       required this.id,
       required this.categoryId,
       required this.amount,
@@ -491,8 +486,7 @@ class _$Expenses implements Expenses {
       final String? $type})
       : $type = $type ?? 'expenses';
 
-  factory _$Expenses.fromJson(Map<String, dynamic> json) =>
-      _$$ExpensesFromJson(json);
+  factory _$Expenses.fromJson(Map<String, dynamic> json) => _$$ExpensesFromJson(json);
 
   @override
   @JsonKey()
@@ -525,8 +519,7 @@ class _$Expenses implements Expenses {
             other is _$Expenses &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality().equals(other.categoryId, categoryId) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.note, note) &&
@@ -566,11 +559,11 @@ class _$Expenses implements Expenses {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         income,
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         expenses,
   }) {
     return expenses?.call(type, id, categoryId, amount, date, note, createdAt);
@@ -579,11 +572,11 @@ class _$Expenses implements Expenses {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         income,
-    TResult Function(TranType type, String? id, String categoryId,
-            double amount, DateTime date, String note, DateTime createdAt)?
+    TResult Function(TranType type, String? id, String categoryId, double amount,
+            DateTime date, String note, DateTime createdAt)?
         expenses,
     required TResult orElse(),
   }) {
@@ -658,6 +651,5 @@ abstract class Expenses implements TranModel {
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$ExpensesCopyWith<_$Expenses> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ExpensesCopyWith<_$Expenses> get copyWith => throw _privateConstructorUsedError;
 }

@@ -351,7 +351,7 @@ void main() {
           test('should throw assert error if toCreate.type is not TranType.income',
               () async {
             //Arrange
-            final model = mockData.copyWith(type: TranType.expenses);
+            final model = mockData.copyWith(type: TranType.expense);
 
             expect(() async {
               await dataSource.createIncomeTran(model);
@@ -389,7 +389,7 @@ void main() {
           test('should throw assert error if toUpdate.type is not TranType.income',
               () async {
             //Arrange
-            final model = mockData.copyWith(type: TranType.expenses, id: 'id');
+            final model = mockData.copyWith(type: TranType.expense, id: 'id');
 
             expect(() async {
               await dataSource.updateIncomeTran(model);

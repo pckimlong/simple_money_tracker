@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'enter_amount_state.dart';
@@ -11,47 +12,7 @@ part of 'enter_amount_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$EnterAmountEventTearOff {
-  const _$EnterAmountEventTearOff();
-
-  _BackspacePress backspacePress() {
-    return const _BackspacePress();
-  }
-
-  _ClearPress clearPress() {
-    return const _ClearPress();
-  }
-
-  _DotPress dotPress() {
-    return const _DotPress();
-  }
-
-  _EqualPress equalPress() {
-    return const _EqualPress();
-  }
-
-  _NumberPress numberPress(int number) {
-    return _NumberPress(
-      number,
-    );
-  }
-
-  _OperatorPress operatorPress(CalculatorItem calOperator) {
-    return _OperatorPress(
-      calOperator,
-    );
-  }
-
-  _ThreeZeroPress threeZeroPress() {
-    return const _ThreeZeroPress();
-  }
-}
-
-/// @nodoc
-const $EnterAmountEvent = _$EnterAmountEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$EnterAmountEvent {
@@ -143,22 +104,22 @@ class _$EnterAmountEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BackspacePressCopyWith<$Res> {
-  factory _$BackspacePressCopyWith(
-          _BackspacePress value, $Res Function(_BackspacePress) then) =
-      __$BackspacePressCopyWithImpl<$Res>;
+abstract class _$$_BackspacePressCopyWith<$Res> {
+  factory _$$_BackspacePressCopyWith(
+          _$_BackspacePress value, $Res Function(_$_BackspacePress) then) =
+      __$$_BackspacePressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$BackspacePressCopyWithImpl<$Res>
+class __$$_BackspacePressCopyWithImpl<$Res>
     extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$BackspacePressCopyWith<$Res> {
-  __$BackspacePressCopyWithImpl(
-      _BackspacePress _value, $Res Function(_BackspacePress) _then)
-      : super(_value, (v) => _then(v as _BackspacePress));
+    implements _$$_BackspacePressCopyWith<$Res> {
+  __$$_BackspacePressCopyWithImpl(
+      _$_BackspacePress _value, $Res Function(_$_BackspacePress) _then)
+      : super(_value, (v) => _then(v as _$_BackspacePress));
 
   @override
-  _BackspacePress get _value => super._value as _BackspacePress;
+  _$_BackspacePress get _value => super._value as _$_BackspacePress;
 }
 
 /// @nodoc
@@ -174,7 +135,7 @@ class _$_BackspacePress implements _BackspacePress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _BackspacePress);
+        (other.runtimeType == runtimeType && other is _$_BackspacePress);
   }
 
   @override
@@ -278,22 +239,22 @@ abstract class _BackspacePress implements EnterAmountEvent {
 }
 
 /// @nodoc
-abstract class _$ClearPressCopyWith<$Res> {
-  factory _$ClearPressCopyWith(
-          _ClearPress value, $Res Function(_ClearPress) then) =
-      __$ClearPressCopyWithImpl<$Res>;
+abstract class _$$_ClearPressCopyWith<$Res> {
+  factory _$$_ClearPressCopyWith(
+          _$_ClearPress value, $Res Function(_$_ClearPress) then) =
+      __$$_ClearPressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ClearPressCopyWithImpl<$Res>
+class __$$_ClearPressCopyWithImpl<$Res>
     extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$ClearPressCopyWith<$Res> {
-  __$ClearPressCopyWithImpl(
-      _ClearPress _value, $Res Function(_ClearPress) _then)
-      : super(_value, (v) => _then(v as _ClearPress));
+    implements _$$_ClearPressCopyWith<$Res> {
+  __$$_ClearPressCopyWithImpl(
+      _$_ClearPress _value, $Res Function(_$_ClearPress) _then)
+      : super(_value, (v) => _then(v as _$_ClearPress));
 
   @override
-  _ClearPress get _value => super._value as _ClearPress;
+  _$_ClearPress get _value => super._value as _$_ClearPress;
 }
 
 /// @nodoc
@@ -309,7 +270,7 @@ class _$_ClearPress implements _ClearPress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ClearPress);
+        (other.runtimeType == runtimeType && other is _$_ClearPress);
   }
 
   @override
@@ -413,19 +374,22 @@ abstract class _ClearPress implements EnterAmountEvent {
 }
 
 /// @nodoc
-abstract class _$DotPressCopyWith<$Res> {
-  factory _$DotPressCopyWith(_DotPress value, $Res Function(_DotPress) then) =
-      __$DotPressCopyWithImpl<$Res>;
+abstract class _$$_DotPressCopyWith<$Res> {
+  factory _$$_DotPressCopyWith(
+          _$_DotPress value, $Res Function(_$_DotPress) then) =
+      __$$_DotPressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$DotPressCopyWithImpl<$Res> extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$DotPressCopyWith<$Res> {
-  __$DotPressCopyWithImpl(_DotPress _value, $Res Function(_DotPress) _then)
-      : super(_value, (v) => _then(v as _DotPress));
+class __$$_DotPressCopyWithImpl<$Res>
+    extends _$EnterAmountEventCopyWithImpl<$Res>
+    implements _$$_DotPressCopyWith<$Res> {
+  __$$_DotPressCopyWithImpl(
+      _$_DotPress _value, $Res Function(_$_DotPress) _then)
+      : super(_value, (v) => _then(v as _$_DotPress));
 
   @override
-  _DotPress get _value => super._value as _DotPress;
+  _$_DotPress get _value => super._value as _$_DotPress;
 }
 
 /// @nodoc
@@ -441,7 +405,7 @@ class _$_DotPress implements _DotPress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _DotPress);
+        (other.runtimeType == runtimeType && other is _$_DotPress);
   }
 
   @override
@@ -545,22 +509,22 @@ abstract class _DotPress implements EnterAmountEvent {
 }
 
 /// @nodoc
-abstract class _$EqualPressCopyWith<$Res> {
-  factory _$EqualPressCopyWith(
-          _EqualPress value, $Res Function(_EqualPress) then) =
-      __$EqualPressCopyWithImpl<$Res>;
+abstract class _$$_EqualPressCopyWith<$Res> {
+  factory _$$_EqualPressCopyWith(
+          _$_EqualPress value, $Res Function(_$_EqualPress) then) =
+      __$$_EqualPressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$EqualPressCopyWithImpl<$Res>
+class __$$_EqualPressCopyWithImpl<$Res>
     extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$EqualPressCopyWith<$Res> {
-  __$EqualPressCopyWithImpl(
-      _EqualPress _value, $Res Function(_EqualPress) _then)
-      : super(_value, (v) => _then(v as _EqualPress));
+    implements _$$_EqualPressCopyWith<$Res> {
+  __$$_EqualPressCopyWithImpl(
+      _$_EqualPress _value, $Res Function(_$_EqualPress) _then)
+      : super(_value, (v) => _then(v as _$_EqualPress));
 
   @override
-  _EqualPress get _value => super._value as _EqualPress;
+  _$_EqualPress get _value => super._value as _$_EqualPress;
 }
 
 /// @nodoc
@@ -576,7 +540,7 @@ class _$_EqualPress implements _EqualPress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _EqualPress);
+        (other.runtimeType == runtimeType && other is _$_EqualPress);
   }
 
   @override
@@ -680,29 +644,29 @@ abstract class _EqualPress implements EnterAmountEvent {
 }
 
 /// @nodoc
-abstract class _$NumberPressCopyWith<$Res> {
-  factory _$NumberPressCopyWith(
-          _NumberPress value, $Res Function(_NumberPress) then) =
-      __$NumberPressCopyWithImpl<$Res>;
+abstract class _$$_NumberPressCopyWith<$Res> {
+  factory _$$_NumberPressCopyWith(
+          _$_NumberPress value, $Res Function(_$_NumberPress) then) =
+      __$$_NumberPressCopyWithImpl<$Res>;
   $Res call({int number});
 }
 
 /// @nodoc
-class __$NumberPressCopyWithImpl<$Res>
+class __$$_NumberPressCopyWithImpl<$Res>
     extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$NumberPressCopyWith<$Res> {
-  __$NumberPressCopyWithImpl(
-      _NumberPress _value, $Res Function(_NumberPress) _then)
-      : super(_value, (v) => _then(v as _NumberPress));
+    implements _$$_NumberPressCopyWith<$Res> {
+  __$$_NumberPressCopyWithImpl(
+      _$_NumberPress _value, $Res Function(_$_NumberPress) _then)
+      : super(_value, (v) => _then(v as _$_NumberPress));
 
   @override
-  _NumberPress get _value => super._value as _NumberPress;
+  _$_NumberPress get _value => super._value as _$_NumberPress;
 
   @override
   $Res call({
     Object? number = freezed,
   }) {
-    return _then(_NumberPress(
+    return _then(_$_NumberPress(
       number == freezed
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
@@ -728,7 +692,7 @@ class _$_NumberPress implements _NumberPress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NumberPress &&
+            other is _$_NumberPress &&
             const DeepCollectionEquality().equals(other.number, number));
   }
 
@@ -738,8 +702,8 @@ class _$_NumberPress implements _NumberPress {
 
   @JsonKey(ignore: true)
   @override
-  _$NumberPressCopyWith<_NumberPress> get copyWith =>
-      __$NumberPressCopyWithImpl<_NumberPress>(this, _$identity);
+  _$$_NumberPressCopyWith<_$_NumberPress> get copyWith =>
+      __$$_NumberPressCopyWithImpl<_$_NumberPress>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -835,40 +799,40 @@ class _$_NumberPress implements _NumberPress {
 }
 
 abstract class _NumberPress implements EnterAmountEvent {
-  const factory _NumberPress(int number) = _$_NumberPress;
+  const factory _NumberPress(final int number) = _$_NumberPress;
 
   int get number;
   @JsonKey(ignore: true)
-  _$NumberPressCopyWith<_NumberPress> get copyWith =>
+  _$$_NumberPressCopyWith<_$_NumberPress> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$OperatorPressCopyWith<$Res> {
-  factory _$OperatorPressCopyWith(
-          _OperatorPress value, $Res Function(_OperatorPress) then) =
-      __$OperatorPressCopyWithImpl<$Res>;
+abstract class _$$_OperatorPressCopyWith<$Res> {
+  factory _$$_OperatorPressCopyWith(
+          _$_OperatorPress value, $Res Function(_$_OperatorPress) then) =
+      __$$_OperatorPressCopyWithImpl<$Res>;
   $Res call({CalculatorItem calOperator});
 
   $CalculatorItemCopyWith<$Res> get calOperator;
 }
 
 /// @nodoc
-class __$OperatorPressCopyWithImpl<$Res>
+class __$$_OperatorPressCopyWithImpl<$Res>
     extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$OperatorPressCopyWith<$Res> {
-  __$OperatorPressCopyWithImpl(
-      _OperatorPress _value, $Res Function(_OperatorPress) _then)
-      : super(_value, (v) => _then(v as _OperatorPress));
+    implements _$$_OperatorPressCopyWith<$Res> {
+  __$$_OperatorPressCopyWithImpl(
+      _$_OperatorPress _value, $Res Function(_$_OperatorPress) _then)
+      : super(_value, (v) => _then(v as _$_OperatorPress));
 
   @override
-  _OperatorPress get _value => super._value as _OperatorPress;
+  _$_OperatorPress get _value => super._value as _$_OperatorPress;
 
   @override
   $Res call({
     Object? calOperator = freezed,
   }) {
-    return _then(_OperatorPress(
+    return _then(_$_OperatorPress(
       calOperator == freezed
           ? _value.calOperator
           : calOperator // ignore: cast_nullable_to_non_nullable
@@ -901,7 +865,7 @@ class _$_OperatorPress implements _OperatorPress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _OperatorPress &&
+            other is _$_OperatorPress &&
             const DeepCollectionEquality()
                 .equals(other.calOperator, calOperator));
   }
@@ -912,8 +876,8 @@ class _$_OperatorPress implements _OperatorPress {
 
   @JsonKey(ignore: true)
   @override
-  _$OperatorPressCopyWith<_OperatorPress> get copyWith =>
-      __$OperatorPressCopyWithImpl<_OperatorPress>(this, _$identity);
+  _$$_OperatorPressCopyWith<_$_OperatorPress> get copyWith =>
+      __$$_OperatorPressCopyWithImpl<_$_OperatorPress>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1009,31 +973,32 @@ class _$_OperatorPress implements _OperatorPress {
 }
 
 abstract class _OperatorPress implements EnterAmountEvent {
-  const factory _OperatorPress(CalculatorItem calOperator) = _$_OperatorPress;
+  const factory _OperatorPress(final CalculatorItem calOperator) =
+      _$_OperatorPress;
 
   CalculatorItem get calOperator;
   @JsonKey(ignore: true)
-  _$OperatorPressCopyWith<_OperatorPress> get copyWith =>
+  _$$_OperatorPressCopyWith<_$_OperatorPress> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ThreeZeroPressCopyWith<$Res> {
-  factory _$ThreeZeroPressCopyWith(
-          _ThreeZeroPress value, $Res Function(_ThreeZeroPress) then) =
-      __$ThreeZeroPressCopyWithImpl<$Res>;
+abstract class _$$_ThreeZeroPressCopyWith<$Res> {
+  factory _$$_ThreeZeroPressCopyWith(
+          _$_ThreeZeroPress value, $Res Function(_$_ThreeZeroPress) then) =
+      __$$_ThreeZeroPressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ThreeZeroPressCopyWithImpl<$Res>
+class __$$_ThreeZeroPressCopyWithImpl<$Res>
     extends _$EnterAmountEventCopyWithImpl<$Res>
-    implements _$ThreeZeroPressCopyWith<$Res> {
-  __$ThreeZeroPressCopyWithImpl(
-      _ThreeZeroPress _value, $Res Function(_ThreeZeroPress) _then)
-      : super(_value, (v) => _then(v as _ThreeZeroPress));
+    implements _$$_ThreeZeroPressCopyWith<$Res> {
+  __$$_ThreeZeroPressCopyWithImpl(
+      _$_ThreeZeroPress _value, $Res Function(_$_ThreeZeroPress) _then)
+      : super(_value, (v) => _then(v as _$_ThreeZeroPress));
 
   @override
-  _ThreeZeroPress get _value => super._value as _ThreeZeroPress;
+  _$_ThreeZeroPress get _value => super._value as _$_ThreeZeroPress;
 }
 
 /// @nodoc
@@ -1049,7 +1014,7 @@ class _$_ThreeZeroPress implements _ThreeZeroPress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ThreeZeroPress);
+        (other.runtimeType == runtimeType && other is _$_ThreeZeroPress);
   }
 
   @override
@@ -1153,25 +1118,6 @@ abstract class _ThreeZeroPress implements EnterAmountEvent {
 }
 
 /// @nodoc
-class _$EnterAmountStateTearOff {
-  const _$EnterAmountStateTearOff();
-
-  _EnterAmountState call(
-      {required IList<CalculatorItem> calItems,
-      required bool incorrecFormat,
-      required Option<String> valueErrorMgs}) {
-    return _EnterAmountState(
-      calItems: calItems,
-      incorrecFormat: incorrecFormat,
-      valueErrorMgs: valueErrorMgs,
-    );
-  }
-}
-
-/// @nodoc
-const $EnterAmountState = _$EnterAmountStateTearOff();
-
-/// @nodoc
 mixin _$EnterAmountState {
   /// Calculate items for perfom calculate. eg 2+20-5*5
   /// When click = this will use to calculate value
@@ -1232,11 +1178,11 @@ class _$EnterAmountStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$EnterAmountStateCopyWith<$Res>
+abstract class _$$_EnterAmountStateCopyWith<$Res>
     implements $EnterAmountStateCopyWith<$Res> {
-  factory _$EnterAmountStateCopyWith(
-          _EnterAmountState value, $Res Function(_EnterAmountState) then) =
-      __$EnterAmountStateCopyWithImpl<$Res>;
+  factory _$$_EnterAmountStateCopyWith(
+          _$_EnterAmountState value, $Res Function(_$_EnterAmountState) then) =
+      __$$_EnterAmountStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {IList<CalculatorItem> calItems,
@@ -1245,15 +1191,15 @@ abstract class _$EnterAmountStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$EnterAmountStateCopyWithImpl<$Res>
+class __$$_EnterAmountStateCopyWithImpl<$Res>
     extends _$EnterAmountStateCopyWithImpl<$Res>
-    implements _$EnterAmountStateCopyWith<$Res> {
-  __$EnterAmountStateCopyWithImpl(
-      _EnterAmountState _value, $Res Function(_EnterAmountState) _then)
-      : super(_value, (v) => _then(v as _EnterAmountState));
+    implements _$$_EnterAmountStateCopyWith<$Res> {
+  __$$_EnterAmountStateCopyWithImpl(
+      _$_EnterAmountState _value, $Res Function(_$_EnterAmountState) _then)
+      : super(_value, (v) => _then(v as _$_EnterAmountState));
 
   @override
-  _EnterAmountState get _value => super._value as _EnterAmountState;
+  _$_EnterAmountState get _value => super._value as _$_EnterAmountState;
 
   @override
   $Res call({
@@ -1261,7 +1207,7 @@ class __$EnterAmountStateCopyWithImpl<$Res>
     Object? incorrecFormat = freezed,
     Object? valueErrorMgs = freezed,
   }) {
-    return _then(_EnterAmountState(
+    return _then(_$_EnterAmountState(
       calItems: calItems == freezed
           ? _value.calItems
           : calItems // ignore: cast_nullable_to_non_nullable
@@ -1287,18 +1233,17 @@ class _$_EnterAmountState extends _EnterAmountState {
       required this.valueErrorMgs})
       : super._();
 
-  @override
-
   /// Calculate items for perfom calculate. eg 2+20-5*5
   /// When click = this will use to calculate value
-  final IList<CalculatorItem> calItems;
   @override
+  final IList<CalculatorItem> calItems;
 
   /// If value to calculate is incorrect
-  final bool incorrecFormat;
   @override
+  final bool incorrecFormat;
 
   /// Value error message
+  @override
   final Option<String> valueErrorMgs;
 
   @override
@@ -1310,7 +1255,7 @@ class _$_EnterAmountState extends _EnterAmountState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _EnterAmountState &&
+            other is _$_EnterAmountState &&
             const DeepCollectionEquality().equals(other.calItems, calItems) &&
             const DeepCollectionEquality()
                 .equals(other.incorrecFormat, incorrecFormat) &&
@@ -1327,15 +1272,15 @@ class _$_EnterAmountState extends _EnterAmountState {
 
   @JsonKey(ignore: true)
   @override
-  _$EnterAmountStateCopyWith<_EnterAmountState> get copyWith =>
-      __$EnterAmountStateCopyWithImpl<_EnterAmountState>(this, _$identity);
+  _$$_EnterAmountStateCopyWith<_$_EnterAmountState> get copyWith =>
+      __$$_EnterAmountStateCopyWithImpl<_$_EnterAmountState>(this, _$identity);
 }
 
 abstract class _EnterAmountState extends EnterAmountState {
   factory _EnterAmountState(
-      {required IList<CalculatorItem> calItems,
-      required bool incorrecFormat,
-      required Option<String> valueErrorMgs}) = _$_EnterAmountState;
+      {required final IList<CalculatorItem> calItems,
+      required final bool incorrecFormat,
+      required final Option<String> valueErrorMgs}) = _$_EnterAmountState;
   _EnterAmountState._() : super._();
 
   @override
@@ -1353,39 +1298,9 @@ abstract class _EnterAmountState extends EnterAmountState {
   Option<String> get valueErrorMgs;
   @override
   @JsonKey(ignore: true)
-  _$EnterAmountStateCopyWith<_EnterAmountState> get copyWith =>
+  _$$_EnterAmountStateCopyWith<_$_EnterAmountState> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$CalculatorItemTearOff {
-  const _$CalculatorItemTearOff();
-
-  _Add add() {
-    return const _Add();
-  }
-
-  _Divide divide() {
-    return const _Divide();
-  }
-
-  _Multiply multiply() {
-    return const _Multiply();
-  }
-
-  _Number number(String value) {
-    return _Number(
-      value,
-    );
-  }
-
-  _Substract substract() {
-    return const _Substract();
-  }
-}
-
-/// @nodoc
-const $CalculatorItem = _$CalculatorItemTearOff();
 
 /// @nodoc
 mixin _$CalculatorItem {
@@ -1465,19 +1380,19 @@ class _$CalculatorItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AddCopyWith<$Res> {
-  factory _$AddCopyWith(_Add value, $Res Function(_Add) then) =
-      __$AddCopyWithImpl<$Res>;
+abstract class _$$_AddCopyWith<$Res> {
+  factory _$$_AddCopyWith(_$_Add value, $Res Function(_$_Add) then) =
+      __$$_AddCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$AddCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
-    implements _$AddCopyWith<$Res> {
-  __$AddCopyWithImpl(_Add _value, $Res Function(_Add) _then)
-      : super(_value, (v) => _then(v as _Add));
+class __$$_AddCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
+    implements _$$_AddCopyWith<$Res> {
+  __$$_AddCopyWithImpl(_$_Add _value, $Res Function(_$_Add) _then)
+      : super(_value, (v) => _then(v as _$_Add));
 
   @override
-  _Add get _value => super._value as _Add;
+  _$_Add get _value => super._value as _$_Add;
 }
 
 /// @nodoc
@@ -1493,7 +1408,7 @@ class _$_Add implements _Add {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Add);
+        (other.runtimeType == runtimeType && other is _$_Add);
   }
 
   @override
@@ -1585,19 +1500,19 @@ abstract class _Add implements CalculatorItem {
 }
 
 /// @nodoc
-abstract class _$DivideCopyWith<$Res> {
-  factory _$DivideCopyWith(_Divide value, $Res Function(_Divide) then) =
-      __$DivideCopyWithImpl<$Res>;
+abstract class _$$_DivideCopyWith<$Res> {
+  factory _$$_DivideCopyWith(_$_Divide value, $Res Function(_$_Divide) then) =
+      __$$_DivideCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$DivideCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
-    implements _$DivideCopyWith<$Res> {
-  __$DivideCopyWithImpl(_Divide _value, $Res Function(_Divide) _then)
-      : super(_value, (v) => _then(v as _Divide));
+class __$$_DivideCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
+    implements _$$_DivideCopyWith<$Res> {
+  __$$_DivideCopyWithImpl(_$_Divide _value, $Res Function(_$_Divide) _then)
+      : super(_value, (v) => _then(v as _$_Divide));
 
   @override
-  _Divide get _value => super._value as _Divide;
+  _$_Divide get _value => super._value as _$_Divide;
 }
 
 /// @nodoc
@@ -1613,7 +1528,7 @@ class _$_Divide implements _Divide {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Divide);
+        (other.runtimeType == runtimeType && other is _$_Divide);
   }
 
   @override
@@ -1705,19 +1620,21 @@ abstract class _Divide implements CalculatorItem {
 }
 
 /// @nodoc
-abstract class _$MultiplyCopyWith<$Res> {
-  factory _$MultiplyCopyWith(_Multiply value, $Res Function(_Multiply) then) =
-      __$MultiplyCopyWithImpl<$Res>;
+abstract class _$$_MultiplyCopyWith<$Res> {
+  factory _$$_MultiplyCopyWith(
+          _$_Multiply value, $Res Function(_$_Multiply) then) =
+      __$$_MultiplyCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$MultiplyCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
-    implements _$MultiplyCopyWith<$Res> {
-  __$MultiplyCopyWithImpl(_Multiply _value, $Res Function(_Multiply) _then)
-      : super(_value, (v) => _then(v as _Multiply));
+class __$$_MultiplyCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
+    implements _$$_MultiplyCopyWith<$Res> {
+  __$$_MultiplyCopyWithImpl(
+      _$_Multiply _value, $Res Function(_$_Multiply) _then)
+      : super(_value, (v) => _then(v as _$_Multiply));
 
   @override
-  _Multiply get _value => super._value as _Multiply;
+  _$_Multiply get _value => super._value as _$_Multiply;
 }
 
 /// @nodoc
@@ -1733,7 +1650,7 @@ class _$_Multiply implements _Multiply {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Multiply);
+        (other.runtimeType == runtimeType && other is _$_Multiply);
   }
 
   @override
@@ -1825,26 +1742,26 @@ abstract class _Multiply implements CalculatorItem {
 }
 
 /// @nodoc
-abstract class _$NumberCopyWith<$Res> {
-  factory _$NumberCopyWith(_Number value, $Res Function(_Number) then) =
-      __$NumberCopyWithImpl<$Res>;
+abstract class _$$_NumberCopyWith<$Res> {
+  factory _$$_NumberCopyWith(_$_Number value, $Res Function(_$_Number) then) =
+      __$$_NumberCopyWithImpl<$Res>;
   $Res call({String value});
 }
 
 /// @nodoc
-class __$NumberCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
-    implements _$NumberCopyWith<$Res> {
-  __$NumberCopyWithImpl(_Number _value, $Res Function(_Number) _then)
-      : super(_value, (v) => _then(v as _Number));
+class __$$_NumberCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
+    implements _$$_NumberCopyWith<$Res> {
+  __$$_NumberCopyWithImpl(_$_Number _value, $Res Function(_$_Number) _then)
+      : super(_value, (v) => _then(v as _$_Number));
 
   @override
-  _Number get _value => super._value as _Number;
+  _$_Number get _value => super._value as _$_Number;
 
   @override
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_Number(
+    return _then(_$_Number(
       value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -1870,7 +1787,7 @@ class _$_Number implements _Number {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Number &&
+            other is _$_Number &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -1880,8 +1797,8 @@ class _$_Number implements _Number {
 
   @JsonKey(ignore: true)
   @override
-  _$NumberCopyWith<_Number> get copyWith =>
-      __$NumberCopyWithImpl<_Number>(this, _$identity);
+  _$$_NumberCopyWith<_$_Number> get copyWith =>
+      __$$_NumberCopyWithImpl<_$_Number>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1965,28 +1882,31 @@ class _$_Number implements _Number {
 }
 
 abstract class _Number implements CalculatorItem {
-  const factory _Number(String value) = _$_Number;
+  const factory _Number(final String value) = _$_Number;
 
   String get value;
   @JsonKey(ignore: true)
-  _$NumberCopyWith<_Number> get copyWith => throw _privateConstructorUsedError;
+  _$$_NumberCopyWith<_$_Number> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SubstractCopyWith<$Res> {
-  factory _$SubstractCopyWith(
-          _Substract value, $Res Function(_Substract) then) =
-      __$SubstractCopyWithImpl<$Res>;
+abstract class _$$_SubstractCopyWith<$Res> {
+  factory _$$_SubstractCopyWith(
+          _$_Substract value, $Res Function(_$_Substract) then) =
+      __$$_SubstractCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SubstractCopyWithImpl<$Res> extends _$CalculatorItemCopyWithImpl<$Res>
-    implements _$SubstractCopyWith<$Res> {
-  __$SubstractCopyWithImpl(_Substract _value, $Res Function(_Substract) _then)
-      : super(_value, (v) => _then(v as _Substract));
+class __$$_SubstractCopyWithImpl<$Res>
+    extends _$CalculatorItemCopyWithImpl<$Res>
+    implements _$$_SubstractCopyWith<$Res> {
+  __$$_SubstractCopyWithImpl(
+      _$_Substract _value, $Res Function(_$_Substract) _then)
+      : super(_value, (v) => _then(v as _$_Substract));
 
   @override
-  _Substract get _value => super._value as _Substract;
+  _$_Substract get _value => super._value as _$_Substract;
 }
 
 /// @nodoc
@@ -2002,7 +1922,7 @@ class _$_Substract implements _Substract {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Substract);
+        (other.runtimeType == runtimeType && other is _$_Substract);
   }
 
   @override

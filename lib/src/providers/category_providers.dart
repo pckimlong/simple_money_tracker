@@ -12,7 +12,7 @@ class CategoryProvider {
   static final expenseCategories =
       Provider.autoDispose<AsyncValue<IList<CategoryModel>>>((ref) {
     return ref.watch(streamAll).whenData((value) =>
-        value.where((element) => element.tranType == TranType.expenses).toIList());
+        value.where((element) => element.tranType == TranType.expense).toIList());
   });
 
   static final incomeCategories =
@@ -29,7 +29,7 @@ class CategoryProvider {
   });
 
   static final streamAllEither =
-      StreamProvider.autoDispose<Either<Failure, IList<CategoryModel>>>((ref) {
+      StreamProvider<Either<Failure, IList<CategoryModel>>>((ref) {
     return ref.watch(categoryRepoProvider).streamAll();
   });
 

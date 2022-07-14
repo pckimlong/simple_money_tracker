@@ -39,6 +39,9 @@ class MyTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.counterWidget,
     this.focusBorder,
+    this.textAlign = TextAlign.start,
+    this.suffixTextStyle,
+    this.preffixTextStyle,
   }) : super(key: key);
 
   final bool autofocus;
@@ -74,6 +77,9 @@ class MyTextFormField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Widget? counterWidget;
   final InputBorder? focusBorder;
+  final TextAlign textAlign;
+  final TextStyle? suffixTextStyle;
+  final TextStyle? preffixTextStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +95,7 @@ class MyTextFormField extends StatelessWidget {
       maxLines: maxLines,
       minLines: minLines,
       style: textStyle,
+      textAlign: textAlign,
       onTap: onTap,
       inputFormatters: inputFormatters,
       obscureText: obscureText,
@@ -99,6 +106,7 @@ class MyTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         label: label,
         suffix: suffix,
+
         contentPadding: contentPadding ??
             const EdgeInsets.symmetric(
               horizontal: 12,
@@ -117,6 +125,8 @@ class MyTextFormField extends StatelessWidget {
         suffixText: suffixText,
         prefix: prefix,
         prefixIcon: prefixIcon,
+        prefixStyle: preffixTextStyle,
+        suffixStyle: suffixTextStyle,
         prefixText: prefixText,
         isDense: true,
         hintText: hintText,

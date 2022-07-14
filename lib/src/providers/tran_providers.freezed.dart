@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AddTranState {
   Option<CategoryModel> get category => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddTranStateCopyWith<AddTranState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $AddTranStateCopyWith<$Res> {
   factory $AddTranStateCopyWith(
           AddTranState value, $Res Function(AddTranState) then) =
       _$AddTranStateCopyWithImpl<$Res>;
-  $Res call({Option<CategoryModel> category});
+  $Res call({Option<CategoryModel> category, double amount});
 }
 
 /// @nodoc
@@ -42,12 +43,17 @@ class _$AddTranStateCopyWithImpl<$Res> implements $AddTranStateCopyWith<$Res> {
   @override
   $Res call({
     Object? category = freezed,
+    Object? amount = freezed,
   }) {
     return _then(_value.copyWith(
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Option<CategoryModel>,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -59,7 +65,7 @@ abstract class _$$_AddTranStateCopyWith<$Res>
           _$_AddTranState value, $Res Function(_$_AddTranState) then) =
       __$$_AddTranStateCopyWithImpl<$Res>;
   @override
-  $Res call({Option<CategoryModel> category});
+  $Res call({Option<CategoryModel> category, double amount});
 }
 
 /// @nodoc
@@ -76,12 +82,17 @@ class __$$_AddTranStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? category = freezed,
+    Object? amount = freezed,
   }) {
     return _then(_$_AddTranState(
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Option<CategoryModel>,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -89,15 +100,18 @@ class __$$_AddTranStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AddTranState extends _AddTranState {
-  _$_AddTranState({this.category = const None()}) : super._();
+  _$_AddTranState({this.category = const None(), this.amount = 0}) : super._();
 
   @override
   @JsonKey()
   final Option<CategoryModel> category;
+  @override
+  @JsonKey()
+  final double amount;
 
   @override
   String toString() {
-    return 'AddTranState(category: $category)';
+    return 'AddTranState(category: $category, amount: $amount)';
   }
 
   @override
@@ -105,12 +119,15 @@ class _$_AddTranState extends _AddTranState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddTranState &&
-            const DeepCollectionEquality().equals(other.category, category));
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(other.amount, amount));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(category));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(amount));
 
   @JsonKey(ignore: true)
   @override
@@ -119,12 +136,15 @@ class _$_AddTranState extends _AddTranState {
 }
 
 abstract class _AddTranState extends AddTranState {
-  factory _AddTranState({final Option<CategoryModel> category}) =
-      _$_AddTranState;
+  factory _AddTranState(
+      {final Option<CategoryModel> category,
+      final double amount}) = _$_AddTranState;
   _AddTranState._() : super._();
 
   @override
   Option<CategoryModel> get category;
+  @override
+  double get amount;
   @override
   @JsonKey(ignore: true)
   _$$_AddTranStateCopyWith<_$_AddTranState> get copyWith =>

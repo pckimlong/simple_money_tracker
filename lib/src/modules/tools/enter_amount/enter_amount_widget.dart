@@ -11,12 +11,14 @@ class EnterAmountWidget extends HookConsumerWidget {
     this.initialNumber,
     required this.onDisplayTextChanged,
     required this.onDonePressed,
+    required this.onResultChanged,
     this.onError,
   }) : super(key: key);
 
   final void Function(String? message)? onError;
   final num? initialNumber;
   final void Function(String value) onDisplayTextChanged;
+  final void Function(num? value) onResultChanged;
   final void Function(num value) onDonePressed;
 
   void _bindInitialValue(WidgetRef ref) {
@@ -31,6 +33,7 @@ class EnterAmountWidget extends HookConsumerWidget {
 
   void _listen(WidgetRef ref, GlobalKey<ShakerState> shakeKey) {
     ref.listen<EnterAmountState>(enterAmountProvider, (previous, next) {
+      onResultChanged(next.result);
       if (previous?.calItems != next.calItems) {
         ref.read(enterAmountProvider.notifier).clearValueError();
         onDisplayTextChanged(next.displayText);

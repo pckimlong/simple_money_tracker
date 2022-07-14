@@ -32,6 +32,10 @@ class AddTranNotifier extends StateNotifier<AddTranState> {
   void onCategoryChanged(CategoryModel categoryModel) {
     state = state.copyWith(category: some(categoryModel));
   }
+
+  void onAmountChanged(double value) {
+    state = state.copyWith(amount: value);
+  }
 }
 
 @freezed
@@ -40,6 +44,7 @@ class AddTranState with _$AddTranState {
 
   factory AddTranState({
     @Default(None()) Option<CategoryModel> category,
+    @Default(0) double amount,
   }) = _AddTranState;
 
   Option<TranType> get tranType => category.map((t) => t.tranType);

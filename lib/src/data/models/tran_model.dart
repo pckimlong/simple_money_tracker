@@ -7,7 +7,7 @@ part 'tran_model.g.dart';
 
 typedef TranId = String;
 
-enum TranType { income, expenses }
+enum TranType { expense, income }
 
 @freezed
 class TranModel with _$TranModel {
@@ -21,7 +21,7 @@ class TranModel with _$TranModel {
     required DateTime createdAt,
   }) = Income;
   const factory TranModel.expenses({
-    @Default(TranType.expenses) TranType type,
+    @Default(TranType.expense) TranType type,
     required TranId? id,
     required CategoryId categoryId,
     required double amount,

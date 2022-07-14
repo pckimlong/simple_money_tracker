@@ -1,0 +1,8 @@
+{
+    "income": "Income",
+    "expense": "Expense",
+    "choose_category" : {
+        "title": "Choose Category",
+        "new" : "NEW"
+    }
+}
