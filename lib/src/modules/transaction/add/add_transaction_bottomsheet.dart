@@ -1,14 +1,17 @@
+import 'package:simple_money_tracker/src/modules/transaction/add/widgets/tran_detail_form_page.dart';
+import 'package:simple_money_tracker/src/providers/tran_providers.dart';
+
 import '../../../../exports.dart';
 import '../../../core/core.dart';
 import 'widgets/category_picker.dart';
 
-class AddTransactionBottomsheet extends ConsumerWidget {
+class AddTransactionBottomsheet extends HookConsumerWidget {
   const AddTransactionBottomsheet({Key? key}) : super(key: key);
 
   static void show(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      enableDrag: false,
+      // enableDrag: false,
       isScrollControlled: true,
       builder: (context) {
         return SingleChildScrollView(
@@ -26,8 +29,21 @@ class AddTransactionBottomsheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final pageController = usePageController();
+    ref.listen<AddTranState>(
+      TranProvider.addStateData,
+      (previous, next) {
+        // category
+        if (previous?.category != next.category) {
+          pageController.nextPage(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.ease,
+          );
+        }
+      },
+    );
+
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: BoxDecoration(
         color: AS.cardColor(context),
         borderRadius: const BorderRadius.only(
@@ -40,13 +56,15 @@ class AddTransactionBottomsheet extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: 400,
+            height: context.screenHeight * 0.7,
             child: PageView(
+              controller: pageController,
               children: const [
-                CategoryPicker(),
+                Padding(padding: EdgeInsets.all(16), child: CategoryPicker()),
+                TranDetailFormPage(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

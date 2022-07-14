@@ -11,3 +11,4 @@ export 'seletable_item.dart';
 export 'bottomsheet_header.dart';
 export 'base_delete_dialog.dart';
 export 'text_field_like_container.dart';
+export 'shaker.dart';

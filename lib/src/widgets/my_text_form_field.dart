@@ -38,6 +38,7 @@ class MyTextFormField extends StatelessWidget {
     this.label,
     this.inputFormatters,
     this.counterWidget,
+    this.focusBorder,
   }) : super(key: key);
 
   final bool autofocus;
@@ -72,6 +73,7 @@ class MyTextFormField extends StatelessWidget {
   final Widget? label;
   final List<TextInputFormatter>? inputFormatters;
   final Widget? counterWidget;
+  final InputBorder? focusBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -97,10 +99,11 @@ class MyTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         label: label,
         suffix: suffix,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 13,
-        ),
+        contentPadding: contentPadding ??
+            const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 13,
+            ),
         counter: counterWidget,
         errorText: errorText,
         // constraints: maxLines == null
@@ -110,6 +113,7 @@ class MyTextFormField extends StatelessWidget {
         //         maxHeight: AS.buttonHeight,
         //       ),
         suffixIcon: suffixIcon,
+        focusedBorder: focusBorder,
         suffixText: suffixText,
         prefix: prefix,
         prefixIcon: prefixIcon,
