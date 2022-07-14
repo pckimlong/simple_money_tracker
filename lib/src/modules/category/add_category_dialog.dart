@@ -7,21 +7,23 @@ import '../../core/core.dart';
 import '../../widgets/widgets.dart';
 
 class AddCategoryDialog extends HookConsumerWidget {
-  const AddCategoryDialog({Key? key}) : super(key: key);
+  const AddCategoryDialog({Key? key, required this.tranType}) : super(key: key);
 
-  static void show(BuildContext context, {required TranType type}) async {
+  static void show(BuildContext context, {required TranType? type}) async {
     return showDialog(
       context: context,
-      builder: (_) => const AddCategoryDialog(),
+      builder: (_) => AddCategoryDialog(tranType: type),
     );
   }
+
+  final TranType? tranType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(CategoryProvider.save);
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final nameController = useTextEditingController();
-    final type = useState<TranType>(TranType.expense);
+    final type = useState<TranType>(tranType ?? TranType.expense);
 
     ref.listen<AsyncValue<bool>>(
       CategoryProvider.save,

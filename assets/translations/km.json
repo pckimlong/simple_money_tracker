@@ -4,5 +4,10 @@
     "choose_category" : {
         "title": "ជ្រើសរើសប្រភេទ",
         "new" : "បង្កើតថ្មី"
-    }
+    },
+    "date":{
+        "yesterday": "ម្សិលមិញ",
+        "today": "ថ្ងៃនេះ",
+        "tomorrow": "ថ្ងៃស្អែក"
+        }
 }

@@ -162,7 +162,8 @@ class FirebaseDataSource {
     final map = result.data();
     if (map != null && map.isNotEmpty) {
       for (final value in map.values) {
-        if (value[CategoryModel.nameKey] == data.name.trim()) {
+        if (value[CategoryModel.nameKey] == data.name.trim() &&
+            value[CategoryModel.tranTypeKey] == data.tranType.name) {
           throw Failure.uniqueConstrant(
               'Category name: ${data.name} is already existed');
         }

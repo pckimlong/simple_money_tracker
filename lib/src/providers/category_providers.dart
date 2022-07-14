@@ -48,6 +48,7 @@ class SaveCategoryNotifier extends StateNotifier<AsyncValue<bool>> {
     if (state.isLoading || state == const AsyncValue.data(true)) return;
     if (name.trim().isEmpty) {
       state = const AsyncValue.error(Failure.invalidValue('Name must not empty'));
+      return;
     }
 
     state = const AsyncValue.loading();

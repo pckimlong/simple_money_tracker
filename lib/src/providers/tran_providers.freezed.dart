@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AddTranState {
   Option<CategoryModel> get category => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
+  DateTime get onDate => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddTranStateCopyWith<AddTranState> get copyWith =>
@@ -29,7 +31,11 @@ abstract class $AddTranStateCopyWith<$Res> {
   factory $AddTranStateCopyWith(
           AddTranState value, $Res Function(AddTranState) then) =
       _$AddTranStateCopyWithImpl<$Res>;
-  $Res call({Option<CategoryModel> category, double amount});
+  $Res call(
+      {Option<CategoryModel> category,
+      double amount,
+      DateTime onDate,
+      String note});
 }
 
 /// @nodoc
@@ -44,6 +50,8 @@ class _$AddTranStateCopyWithImpl<$Res> implements $AddTranStateCopyWith<$Res> {
   $Res call({
     Object? category = freezed,
     Object? amount = freezed,
+    Object? onDate = freezed,
+    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       category: category == freezed
@@ -54,6 +62,14 @@ class _$AddTranStateCopyWithImpl<$Res> implements $AddTranStateCopyWith<$Res> {
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
+      onDate: onDate == freezed
+          ? _value.onDate
+          : onDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -65,7 +81,11 @@ abstract class _$$_AddTranStateCopyWith<$Res>
           _$_AddTranState value, $Res Function(_$_AddTranState) then) =
       __$$_AddTranStateCopyWithImpl<$Res>;
   @override
-  $Res call({Option<CategoryModel> category, double amount});
+  $Res call(
+      {Option<CategoryModel> category,
+      double amount,
+      DateTime onDate,
+      String note});
 }
 
 /// @nodoc
@@ -83,6 +103,8 @@ class __$$_AddTranStateCopyWithImpl<$Res>
   $Res call({
     Object? category = freezed,
     Object? amount = freezed,
+    Object? onDate = freezed,
+    Object? note = freezed,
   }) {
     return _then(_$_AddTranState(
       category: category == freezed
@@ -93,6 +115,14 @@ class __$$_AddTranStateCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
+      onDate: onDate == freezed
+          ? _value.onDate
+          : onDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -100,7 +130,12 @@ class __$$_AddTranStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AddTranState extends _AddTranState {
-  _$_AddTranState({this.category = const None(), this.amount = 0}) : super._();
+  _$_AddTranState(
+      {this.category = const None(),
+      this.amount = 0,
+      required this.onDate,
+      this.note = ''})
+      : super._();
 
   @override
   @JsonKey()
@@ -108,10 +143,15 @@ class _$_AddTranState extends _AddTranState {
   @override
   @JsonKey()
   final double amount;
+  @override
+  final DateTime onDate;
+  @override
+  @JsonKey()
+  final String note;
 
   @override
   String toString() {
-    return 'AddTranState(category: $category, amount: $amount)';
+    return 'AddTranState(category: $category, amount: $amount, onDate: $onDate, note: $note)';
   }
 
   @override
@@ -120,14 +160,18 @@ class _$_AddTranState extends _AddTranState {
         (other.runtimeType == runtimeType &&
             other is _$_AddTranState &&
             const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(other.amount, amount));
+            const DeepCollectionEquality().equals(other.amount, amount) &&
+            const DeepCollectionEquality().equals(other.onDate, onDate) &&
+            const DeepCollectionEquality().equals(other.note, note));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(amount));
+      const DeepCollectionEquality().hash(amount),
+      const DeepCollectionEquality().hash(onDate),
+      const DeepCollectionEquality().hash(note));
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +182,19 @@ class _$_AddTranState extends _AddTranState {
 abstract class _AddTranState extends AddTranState {
   factory _AddTranState(
       {final Option<CategoryModel> category,
-      final double amount}) = _$_AddTranState;
+      final double amount,
+      required final DateTime onDate,
+      final String note}) = _$_AddTranState;
   _AddTranState._() : super._();
 
   @override
   Option<CategoryModel> get category;
   @override
   double get amount;
+  @override
+  DateTime get onDate;
+  @override
+  String get note;
   @override
   @JsonKey(ignore: true)
   _$$_AddTranStateCopyWith<_$_AddTranState> get copyWith =>

@@ -15,6 +15,7 @@ class SelectableItem extends StatelessWidget {
     this.width,
     this.height,
     this.isEndIndicator = false,
+    this.radius = 10,
   }) : super(key: key);
 
   final VoidCallback? onTap;
@@ -25,6 +26,7 @@ class SelectableItem extends StatelessWidget {
   final double? width;
   final double? height;
   final bool isEndIndicator;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class SelectableItem extends StatelessWidget {
         decoration: isSelected
             ? BoxDecoration(
                 color: context.colors.primary,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(radius),
               )
             : null,
       ),
@@ -53,7 +55,7 @@ class SelectableItem extends StatelessWidget {
         decoration: isSelected
             ? BoxDecoration(
                 color: context.theme.inputDecorationTheme.fillColor,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(radius),
               )
             : null,
         child: Row(

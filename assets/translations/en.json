@@ -4,5 +4,10 @@
     "choose_category" : {
         "title": "Choose Category",
         "new" : "NEW"
+    },
+    "date":{
+    "yesterday": "Yesterday",
+    "today": "Today",
+    "tomorrow": "Tomorrow"
     }
 }

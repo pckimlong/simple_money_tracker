@@ -45,6 +45,7 @@ class BaseConfirmDialog extends StatelessWidget {
     this.cancelBtnText = "Cancel",
     this.confirmBtnColor,
     this.isConfirmBtnLoading = false,
+    this.showCancelBtn = true,
   }) : super(key: key);
 
   final String? title;
@@ -56,6 +57,7 @@ class BaseConfirmDialog extends StatelessWidget {
   final String cancelBtnText;
   final Color? confirmBtnColor;
   final bool isConfirmBtnLoading;
+  final bool showCancelBtn;
 
   @override
   Widget build(BuildContext context) {
@@ -92,23 +94,25 @@ class BaseConfirmDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => onCancelBtnTap == null
-                        ? Navigator.pop(context)
-                        : onCancelBtnTap!(),
-                    child: Center(
-                      child: Text(
-                        cancelBtnText,
-                        style: TextStyle(
-                          color: context.theme.hintColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.0,
+                showCancelBtn
+                    ? Expanded(
+                        child: GestureDetector(
+                          onTap: () => onCancelBtnTap == null
+                              ? Navigator.pop(context)
+                              : onCancelBtnTap!(),
+                          child: Center(
+                            child: Text(
+                              cancelBtnText,
+                              style: TextStyle(
+                                color: context.theme.hintColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
+                      )
+                    : const Spacer(),
                 Expanded(
                   child: MaterialButton(
                     shape: const RoundedRectangleBorder(

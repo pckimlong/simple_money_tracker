@@ -27,6 +27,7 @@ class TransactionPage extends ConsumerWidget {
           IconButton(
             onPressed: () {
               context.setLocale(const Locale('km'));
+              // ChooseDateFormatDialog.show(context);
             },
             icon: const Icon(Icons.more_vert_rounded),
           ),
@@ -48,7 +49,7 @@ class _Balance extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const textStyle = TextStyle(
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.bold,
       fontSize: 26,
       height: 1,
     );
@@ -75,14 +76,5 @@ class _Balance extends ConsumerWidget {
         },
       ),
     );
-  }
-}
-
-class _RootBody extends ConsumerWidget {
-  const _RootBody({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
   }
 }

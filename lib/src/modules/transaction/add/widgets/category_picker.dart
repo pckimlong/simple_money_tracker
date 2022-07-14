@@ -57,7 +57,7 @@ class CategoryPicker extends HookConsumerWidget {
               TextButton.icon(
                 onPressed: () => AddCategoryDialog.show(
                   context,
-                  type: TranType.income,
+                  type: TranType.values[tabController.index],
                 ),
                 icon: const Icon(Icons.add),
                 label: const Text('choose_category.new').tr(),
@@ -141,11 +141,14 @@ class _CategoryListBuilder extends HookConsumerWidget {
       data: (categories) {
         return ScrollablePositionedList.builder(
           itemScrollController: scrollController,
-          padding: const EdgeInsets.symmetric(vertical: AS.sidePadding),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           itemCount: categories.length,
           itemBuilder: (_, index) {
             final data = categories[index];
-            return _CategoryListItem.overrideWithValue(data);
+            return ProviderScope(
+              overrides: [_itemProvider.overrideWithValue(data)],
+              child: const _CategoryListItem(),
+            );
           },
         );
       },
@@ -167,13 +170,6 @@ final _itemProvider = Provider<CategoryModel>((ref) {
 class _CategoryListItem extends ConsumerWidget {
   const _CategoryListItem({Key? key}) : super(key: key);
 
-  static Widget overrideWithValue(CategoryModel categoryModel) {
-    return ProviderScope(
-      overrides: [_itemProvider.overrideWithValue(categoryModel)],
-      child: const _CategoryListItem(),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(_itemProvider);
@@ -186,47 +182,15 @@ class _CategoryListItem extends ConsumerWidget {
         ref.read(TranProvider.addStateData.notifier).onCategoryChanged(data);
         AddTransactionBottomsheet.nextPage(ref);
       },
-      margin: const EdgeInsets.only(bottom: 2),
+      radius: 4,
+      margin: const EdgeInsets.only(bottom: 4),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Text(
         data.name,
         style: const TextStyle(
           fontWeight: FontWeight.w600,
+          fontSize: 16,
         ),
-      ),
-    );
-  }
-}
-
-class _NewCategoryButton extends StatelessWidget {
-  const _NewCategoryButton({
-    Key? key,
-    required this.tranType,
-  }) : super(key: key);
-
-  final TranType tranType;
-
-  @override
-  Widget build(BuildContext context) {
-    String label;
-    switch (tranType) {
-      case TranType.income:
-        label = "INCOME";
-        break;
-      case TranType.expense:
-        label = "EXPENSE";
-        break;
-    }
-
-    return Padding(
-      padding: const EdgeInsets.only(top: AS.sidePadding),
-      child: TextButton.icon(
-        onPressed: () => AddCategoryDialog.show(
-          context,
-          type: tranType,
-        ),
-        icon: const Icon(Icons.add),
-        label: Text("NEW $label CATEGORY"),
       ),
     );
   }

@@ -75,7 +75,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
 }
 
 class AddTranNotifier extends StateNotifier<AddTranState> {
-  AddTranNotifier() : super(AddTranState());
+  AddTranNotifier() : super(AddTranState(onDate: DateTime.now().dateOnly()));
 
   void onCategoryChanged(CategoryModel categoryModel) {
     state = state.copyWith(category: some(categoryModel));
@@ -83,6 +83,10 @@ class AddTranNotifier extends StateNotifier<AddTranState> {
 
   void onAmountChanged(double value) {
     state = state.copyWith(amount: value);
+  }
+
+  void onDateChanged(DateTime dateTime) {
+    state = state.copyWith(onDate: dateTime);
   }
 }
 
@@ -93,6 +97,8 @@ class AddTranState with _$AddTranState {
   factory AddTranState({
     @Default(None()) Option<CategoryModel> category,
     @Default(0) double amount,
+    required DateTime onDate,
+    @Default('') String note,
   }) = _AddTranState;
 
   Option<TranType> get tranType => category.map((t) => t.tranType);
