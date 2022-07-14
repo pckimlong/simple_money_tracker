@@ -5,7 +5,7 @@ import 'enter_amount_state.dart';
 
 final enterAmountProvider =
     StateNotifierProvider.autoDispose<_EnterAmountNotifier, EnterAmountState>(
-  (ref) => _EnterAmountNotifier(),
+  (_) => _EnterAmountNotifier(),
 );
 
 class _EnterAmountNotifier extends StateNotifier<EnterAmountState> {
@@ -24,12 +24,17 @@ class _EnterAmountNotifier extends StateNotifier<EnterAmountState> {
       numberPress: _addNumber,
       equalPress: _performCalculation,
       operatorPress: _operatorPress,
-      clearPress: () =>
-          _changeCalItemState(<CalculatorItem>[const CalculatorItem.number("0")].lock),
+      clearPress: () => _changeCalItemState([const CalculatorItem.number("0")].lock),
       dotPress: _onDotPress,
       backspacePress: _backspacePress,
       threeZeroPress: _threeZeroPress,
     );
+  }
+
+  /// If list is in invalid state, restore it to normal, this should call
+  /// when calItems list state changed
+  void clearValueError() {
+    state = state.copyWith(incorrecFormat: false, valueErrorMgs: none());
   }
 
   void _addCalItemToTheLastAndUpdateState(CalculatorItem item) {
@@ -147,12 +152,6 @@ class _EnterAmountNotifier extends StateNotifier<EnterAmountState> {
     state = state.copyWith(calItems: items);
   }
 
-  /// If list is in invalid state, restore it to normal, this should call
-  /// when calItems list state changed
-  void clearValueError() {
-    state = state.copyWith(incorrecFormat: false, valueErrorMgs: none());
-  }
-
   CalculatorItem get _lastItem => state.calItems.last;
 
   void _onDotPress() {
@@ -205,12 +204,13 @@ class _EnterAmountNotifier extends StateNotifier<EnterAmountState> {
     /// user that list cannot be calculate
     _lastItem.maybeWhen(
       number: (_) => _calculate(),
-      orElse: () {
-        /// make widget shaking
-        state = state.copyWith(incorrecFormat: false);
-        state = state.copyWith(incorrecFormat: true);
-      },
+      orElse: () => _raiseIncorrectFormatError(),
     );
+  }
+
+  void _raiseIncorrectFormatError() {
+    state = state.copyWith(incorrecFormat: false);
+    state = state.copyWith(incorrecFormat: true);
   }
 
   bool _reachedMaxLength(String string) {
@@ -228,7 +228,13 @@ class _EnterAmountNotifier extends StateNotifier<EnterAmountState> {
     calcs[pos].whenOrNull(
       add: () => result = num.parse(leftOp) + num.parse(rightOp),
       substract: () => result = num.parse(leftOp) - num.parse(rightOp),
-      divide: () => result = num.parse(leftOp) / num.parse(rightOp),
+      divide: () {
+        final result = num.parse(leftOp) / num.parse(rightOp);
+        if (!result.isFinite) {
+          _raiseIncorrectFormatError();
+          return null;
+        }
+      },
       multiply: () => result = num.parse(leftOp) * num.parse(rightOp),
     );
     calcs.removeAt(pos);

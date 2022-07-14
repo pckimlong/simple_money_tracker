@@ -68,10 +68,7 @@ class FirebaseDataSource {
 
     final docRef = _firestore.tranColl.doc();
     docRef.set(model.copyWith(id: docRef.id));
-    _firestore.accountDoc.update({
-      AccountModel.balanceKey: FieldValue.increment(model.amount),
-      AccountModel.totalIncomeKey: FieldValue.increment(model.amount),
-    });
+    incrementAccountBalance(model.amount, includeTotalIncome: true);
     return model.copyWith(id: docRef.id);
   }
 
@@ -80,10 +77,10 @@ class FirebaseDataSource {
 
     final docRef = _firestore.tranColl.doc();
     docRef.set(model.copyWith(id: docRef.id));
-    _firestore.accountDoc.update({
-      AccountModel.balanceKey: FieldValue.increment(model.amount.toNegative()),
-      AccountModel.totalIncomeKey: FieldValue.increment(model.amount.toNegative()),
-    });
+    incrementAccountBalance(
+      model.amount.toNegative(),
+      includeTotalIncome: false,
+    );
     return model.copyWith(id: docRef.id);
   }
 
@@ -169,5 +166,16 @@ class FirebaseDataSource {
         }
       }
     }
+  }
+
+  @visibleForTesting
+  void incrementAccountBalance(double amount, {required bool includeTotalIncome}) {
+    assert(!amount.isInfinite || !amount.isNaN);
+    assert(amount.isFinite);
+
+    _firestore.accountDoc.update({
+      AccountModel.balanceKey: FieldValue.increment(amount),
+      if (includeTotalIncome) AccountModel.totalIncomeKey: FieldValue.increment(amount),
+    });
   }
 }

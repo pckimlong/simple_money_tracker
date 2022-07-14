@@ -23,8 +23,8 @@ extension ResponsiveX on BuildContext {
   bool get isDesktopSize => responsive.isLargerThan(TABLET) || responsive.isDesktop;
 }
 
-extension NumX on num {
-  num toNegative() {
+extension DoubleX on double {
+  double toNegative() {
     return this - (this * 2);
   }
 }

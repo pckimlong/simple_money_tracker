@@ -98,7 +98,7 @@ class AS {
 
   static TextStyle bottomsheetTitleTextStyle(BuildContext context) {
     return const TextStyle(
-      fontSize: 22,
+      fontSize: 20,
       fontWeight: FontWeight.bold,
     );
   }

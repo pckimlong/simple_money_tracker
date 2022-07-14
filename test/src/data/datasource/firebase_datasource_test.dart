@@ -288,55 +288,81 @@ void main() {
     );
 
     group('Transaction', () {
-      Future<void> _createAccountForTransaction() async {
+      Future<void> _createAccountForTransaction({
+        double balance = 1000,
+        double totalIncome = 500,
+      }) async {
         await fakeFirestore.accountDoc.set(
           AccountModel(
-            balance: 1000,
-            totalIncome: 500,
+            balance: balance,
+            totalIncome: totalIncome,
             defaultCurrencyId: 'fdf',
             selectedCurrencyId: null,
           ),
         );
       }
 
-      group('Expense', () {
-        group('create method', () {
-          test('should create expense and update total ', () async {
-            //Arrange
+      group('IncrementAccountBalance', () {
+        test(
+          'should throw assert error if the number is invalid such as NaN or infinit',
+          () async {
+            await _createAccountForTransaction(balance: 0, totalIncome: 0);
+            final doc = await fakeFirestore.accountDoc.get();
+            expect(doc.data()?.balance, 0);
+            expect(doc.data()?.totalIncome, 0);
 
-            //Act
+            expect((2 / 0).isInfinite, isTrue);
 
-            //Assert
-          });
-        });
-        group('update method', () {
-          test('', () async {
-            //Arrange
+            expect(
+              () => dataSource.incrementAccountBalance(2 / 0, includeTotalIncome: true),
+              throwsAssertionError,
+            );
+          },
+        );
+        test(
+          'should increment only account balance if includeTotalIncome.isFalse',
+          () async {
+            await _createAccountForTransaction(balance: 0, totalIncome: 0);
+            final doc = await fakeFirestore.accountDoc.get();
+            expect(doc.data()?.balance, 0);
+            expect(doc.data()?.totalIncome, 0);
 
-            //Act
+            dataSource.incrementAccountBalance(10, includeTotalIncome: false);
+            final docAfter = await fakeFirestore.accountDoc.get();
+            expect(docAfter.data()?.balance, 10);
+            expect(docAfter.data()?.totalIncome, 0);
+          },
+        );
+        test(
+          'should increment account balance and totalIncome if includeTotalIncome.isTrue',
+          () async {
+            await _createAccountForTransaction(balance: 0, totalIncome: 0);
+            final doc = await fakeFirestore.accountDoc.get();
+            expect(doc.data()?.balance, 0);
+            expect(doc.data()?.totalIncome, 0);
 
-            //Assert
-          });
-        });
-        group('delete method', () {
-          test('', () async {
-            //Arrange
+            dataSource.incrementAccountBalance(10, includeTotalIncome: true);
+            final docAfter = await fakeFirestore.accountDoc.get();
+            expect(docAfter.data()?.balance, 10);
+            expect(docAfter.data()?.totalIncome, 10);
+          },
+        );
+        test(
+          'should decrement account balance and totalIncome if includeTotalIncome.isTrue and amount is negative',
+          () async {
+            await _createAccountForTransaction(balance: 0, totalIncome: 0);
+            final doc = await fakeFirestore.accountDoc.get();
+            expect(doc.data()?.balance, 0);
+            expect(doc.data()?.totalIncome, 0);
 
-            //Act
-
-            //Assert
-          });
-        });
-        group('stream method', () {
-          test('', () async {
-            //Arrange
-
-            //Act
-
-            //Assert
-          });
-        });
+            dataSource.incrementAccountBalance(-10, includeTotalIncome: true);
+            final docAfter = await fakeFirestore.accountDoc.get();
+            expect(docAfter.data()?.balance, -10);
+            expect(docAfter.data()?.totalIncome, -10);
+          },
+        );
       });
+
       group('Income', () {
         final mockData = Income(
           id: null,
@@ -352,6 +378,15 @@ void main() {
               () async {
             //Arrange
             final model = mockData.copyWith(type: TranType.expense);
+
+            expect(() async {
+              await dataSource.createIncomeTran(model);
+            }, throwsAssertionError);
+          });
+          test('should throw assert error if toCreate.amount is not a valid number',
+              () async {
+            //Arrange
+            final model = mockData.copyWith(type: TranType.expense, amount: 2 / 0);
 
             expect(() async {
               await dataSource.createIncomeTran(model);
@@ -457,13 +492,23 @@ void main() {
               await dataSource.createExpenseTran(model);
             }, throwsAssertionError);
           });
+          test('should throw assert error if toCreate.amount is not a valid number',
+              () async {
+            //Arrange
+            final model = mockData.copyWith(amount: 2 / 0);
 
-          test('should decrement account balance and totalIncome', () async {
+            expect(() async {
+              await dataSource.createExpenseTran(model);
+            }, throwsAssertionError);
+          });
+
+          test('should decrement account balance not touching totalIncome', () async {
             await _createAccountForTransaction();
             await dataSource.createExpenseTran(mockData);
             final accountDoc = await fakeFirestore.accountDoc.get();
 
             expect(accountDoc.data()?.balance, equals(500));
+            expect(accountDoc.data()?.totalIncome, equals(500));
           });
 
           test(

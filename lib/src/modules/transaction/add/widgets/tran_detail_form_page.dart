@@ -34,6 +34,7 @@ class TranDetailFormPage extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const _NoteAndDate(),
               Shaker(
                 key: shakerKey,
                 child: MyTextFormField(
@@ -41,7 +42,7 @@ class TranDetailFormPage extends HookConsumerWidget {
                   autofocus: false,
                   hintText: 'Amount',
                   backgroundColor: Colors.transparent,
-                  textAlign: TextAlign.end,
+                  // textAlign: TextAlign.end,
                   readonly: true,
                   maxLines: 3,
                   textInputType: TextInputType.number,
@@ -60,7 +61,6 @@ class TranDetailFormPage extends HookConsumerWidget {
                   ),
                 ),
               ),
-              const _NoteAndDate(),
             ],
           ),
         ),

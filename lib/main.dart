@@ -28,9 +28,7 @@ void main() async {
           supportedLocales: const [Locale('en'), Locale('km')],
           fallbackLocale: const Locale('en'),
           child: ProviderScope(
-            overrides: [
-              sharePrefsProvider.overrideWithValue(prefs),
-            ],
+            overrides: [sharePrefsProvider.overrideWithValue(prefs)],
             child: const AppWidget(),
           ),
         ),

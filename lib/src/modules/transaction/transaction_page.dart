@@ -48,11 +48,7 @@ class _Balance extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const textStyle = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 26,
-      height: 1,
-    );
+    const textStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 26, height: 1);
     final balance = ref.watch(AccountProvider.balance);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AS.sidePadding),
