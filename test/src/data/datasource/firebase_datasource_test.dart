@@ -5,7 +5,6 @@ import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:simple_money_tracker/src/data/datasource/firebase_datasource.dart';
 import 'package:simple_money_tracker/src/data/datasource/firebase_helpers.dart';
 import 'package:simple_money_tracker/src/data/models/account_model.dart';
-import 'package:simple_money_tracker/src/data/models/category_model.dart';
 import 'package:simple_money_tracker/src/data/models/currency_model.dart';
 import 'package:simple_money_tracker/src/data/models/tran_model.dart';
 import 'package:uuid/uuid.dart';
@@ -436,155 +435,105 @@ void main() {
           });
         });
       });
+
+      group('Expense', () {
+        final mockData = Expenses(
+          id: null,
+          categoryId: "categoryId",
+          amount: 500,
+          date: DateTime.now(),
+          note: "",
+          createdAt: DateTime.now(),
+        );
+
+        group('create method', () {
+          test('should throw assert error if toCreate.type is not TranType.income',
+              () async {
+            //Arrange
+            final model = mockData.copyWith(type: TranType.income);
+
+            expect(() async {
+              await dataSource.createExpenseTran(model);
+            }, throwsAssertionError);
+          });
+
+          test('should decrement account balance and totalIncome', () async {
+            await _createAccountForTransaction();
+            await dataSource.createExpenseTran(mockData);
+            final accountDoc = await fakeFirestore.accountDoc.get();
+
+            expect(accountDoc.data()?.balance, equals(500));
+          });
+
+          test(
+              'should create expense and make sure cloud database model.id is not null return created income model with id',
+              () async {
+            await _createAccountForTransaction();
+            final result = await dataSource.createExpenseTran(mockData);
+            final doc = await fakeFirestore.tranColl.doc(result!.id).get();
+            expect(doc.data()!.id, isNotNull);
+            expect(result, mockData.copyWith(id: result.id));
+          });
+        });
+        group('update method', () {
+          test('should throw assert error if toUpdate.id is null', () async {
+            //Arrange
+            // final model = mockData.copyWith(id: null);
+
+            // expect(() async {
+            //   await dataSource.updateIncomeTran(model);
+            // }, throwsAssertionError);
+          });
+          test('should throw assert error if toUpdate.type is not TranType.income',
+              () async {
+            //Arrange
+            // final model = mockData.copyWith(type: TranType.expense, id: 'id');
+
+            // expect(() async {
+            //   await dataSource.updateIncomeTran(model);
+            // }, throwsAssertionError);
+          });
+          test('should update balance and totalIncome of account', () async {
+            //Arrange
+            // await _createAccountForTransaction();
+            // final result =
+            //     await dataSource.createIncomeTran(mockData.copyWith(amount: 2000));
+
+            // final accBefore = await fakeFirestore.accountDoc.get();
+            // expect(accBefore.data()?.balance, equals(3000));
+            // expect(accBefore.data()?.totalIncome, equals(2500));
+
+            // //Act
+            // await dataSource.updateIncomeTran(mockData.copyWith(
+            //   amount: 1000,
+            //   id: result!.id,
+            // ));
+
+            // //Assert
+            // final accAfter = await fakeFirestore.accountDoc.get();
+            // expect(accAfter.data()?.balance, equals(2000));
+            // expect(accAfter.data()?.totalIncome, equals(1500));
+          });
+        });
+        group('delete method', () {
+          test('', () async {
+            //Arrange
+
+            //Act
+
+            //Assert
+          });
+        });
+        group('stream method', () {
+          test('', () async {
+            //Arrange
+
+            //Act
+
+            //Assert
+          });
+        });
+      });
     });
-
-    group(
-      'Category',
-      () {
-        const id = "id";
-        final mockData = CategoryModel(
-          id: id,
-          name: "name",
-          tranType: TranType.income,
-        );
-        group(
-          'Create method',
-          () {
-            test(
-              'should create currency',
-              () async {
-                //Act
-                await dataSource.createCategory(mockData);
-                final doc = await fakeFirestore.categoriesDoc.get();
-
-                //Assert
-                expect(doc.data()?.length, 1);
-                expect(doc.data(), {id: mockData.toJson()});
-
-                // Add another
-                final id2 = const Uuid().v1();
-                final toCreate2 = mockData.copyWith(id: id2);
-                await dataSource.createCategory(toCreate2);
-                final doc2 = await fakeFirestore.currenciesDoc.get();
-
-                expect(doc2.data()!.length, 2);
-                expect(doc2.data(), {
-                  id: mockData.toJson(),
-                  id2: toCreate2.toJson(),
-                });
-              },
-            );
-
-            test(
-                'should throw Failure.uniqueConstrant if category name is alreay existed',
-                () async {
-              //Arrange
-              await fakeFirestore.categoriesDoc.set({id: mockData.toJson()});
-
-              expect(() async {
-                await dataSource.createCategory(mockData.copyWith(id: 'id2'));
-              }, throwsException);
-              try {
-                await dataSource.createCategory(mockData.copyWith(id: 'id2'));
-              } catch (e) {
-                final failure = e as Failure;
-                expect(failure.mapOrNull(uniqueConstrant: (_) => true), isTrue);
-              }
-            });
-          },
-        );
-
-        group(
-          'Update method',
-          () {
-            test(
-              'should update category model without effect other field',
-              () async {
-                //Arrange
-                await fakeFirestore.categoriesDoc.set({
-                  id: mockData.toJson(),
-                  "id2": mockData.copyWith(id: 'id2').toJson(),
-                });
-
-                //Act
-                await dataSource.updateCategory(mockData.copyWith(name: 'newName'));
-                final doc = await fakeFirestore.categoriesDoc.get();
-                //Assert
-                expect(doc.data(), {
-                  id: mockData.copyWith(name: 'newName').toJson(),
-                  "id2": mockData.copyWith(id: 'id2').toJson(),
-                });
-              },
-            );
-
-            test(
-              'should set doc if there is a not-found exception when trying to updata on empty doc',
-              () async {
-                //Act
-                final emptyDoc = await fakeFirestore.categoriesDoc.get();
-                expect(emptyDoc.data(), isNull);
-
-                await dataSource.updateCategory(mockData.copyWith(name: 'u'));
-
-                final docAfter = await fakeFirestore.categoriesDoc.get();
-                expect(docAfter.data(), {id: mockData.copyWith(name: 'u').toJson()});
-              },
-            );
-          },
-        );
-
-        // group(
-        //   'WatchAll method',
-        //   () {
-        //     test(
-        //       'should return stream of categories',
-        //       () async {
-        //         //Act
-        //         dataSource.createCategory(mockData);
-        //         dataSource.createCategory(mockData.copyWith(id: 'id2'));
-        //         expect(
-        //           dataSource.watchAllCategories().map(
-        //                 (event) => event.fold(
-        //                   (l) => <String>[],
-        //                   (r) => r.map((e) => e.id).toList(),
-        //                 ),
-        //               ),
-        //           emitsInAnyOrder([
-        //             [],
-        //             [id],
-        //             [id, "id2"],
-        //           ]),
-        //         );
-        //       },
-        //     );
-        //   },
-        // );
-
-        group(
-          'DeleteCurrency method',
-          () {
-            test('should delete currency', () async {
-              //Arrange
-              await dataSource.createCategory(mockData);
-              await dataSource.createCategory(
-                mockData.copyWith(id: 'id2'),
-              );
-              final initialDoc = await fakeFirestore.categoriesDoc.get();
-
-              //Act
-              expect(initialDoc.data(), {
-                'id': mockData.copyWith(id: 'id').toJson(),
-                'id2': mockData.copyWith(id: 'id2').toJson(),
-              });
-              await dataSource.deleteCategory('id2');
-
-              final doc = await fakeFirestore.categoriesDoc.get();
-              //Assert
-              expect(doc.data(), {id: mockData.toJson()});
-            });
-          },
-        );
-      },
-    );
   });
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:simple_money_tracker/src/data/models/tran_model.dart';
 import 'package:simple_money_tracker/src/modules/transaction/add/add_transaction_bottomsheet.dart';
 import 'package:simple_money_tracker/src/providers/tran_providers.dart';
@@ -106,21 +107,40 @@ class CategoryPicker extends HookConsumerWidget {
   }
 }
 
-class _CategoryListBuilder extends ConsumerWidget {
+class _CategoryListBuilder extends HookConsumerWidget {
   const _CategoryListBuilder({Key? key, required this.tranType}) : super(key: key);
 
   final TranType tranType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scrollController = useMemoized(() => ItemScrollController());
+
     final listAsync = ref.watch(tranType == TranType.income
         ? CategoryProvider.incomeCategories
         : CategoryProvider.expenseCategories);
 
+    useMemoized(() {
+      Future.microtask(
+        () {
+          final category = ref.read(TranProvider.addStateData).category;
+          category.match(
+            (selected) {
+              final index = listAsync.valueOrNull?.indexOf(selected);
+              if (index != null && index >= 0) {
+                scrollController.jumpTo(index: index);
+              }
+            },
+            () => null,
+          );
+        },
+      );
+    });
+
     return listAsync.when(
       data: (categories) {
-        ///todo use scroll list
-        return ListView.builder(
+        return ScrollablePositionedList.builder(
+          itemScrollController: scrollController,
           padding: const EdgeInsets.symmetric(vertical: AS.sidePadding),
           itemCount: categories.length,
           itemBuilder: (_, index) {

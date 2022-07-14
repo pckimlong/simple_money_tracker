@@ -75,6 +75,18 @@ class FirebaseDataSource {
     return model.copyWith(id: docRef.id);
   }
 
+  Future<Expenses?> createExpenseTran(Expenses model) async {
+    assert(model.type == TranType.expense);
+
+    final docRef = _firestore.tranColl.doc();
+    docRef.set(model.copyWith(id: docRef.id));
+    _firestore.accountDoc.update({
+      AccountModel.balanceKey: FieldValue.increment(model.amount.toNegative()),
+      AccountModel.totalIncomeKey: FieldValue.increment(model.amount.toNegative()),
+    });
+    return model.copyWith(id: docRef.id);
+  }
+
   Future<void> updateIncomeTran(Income model) async {
     assert(model.type == TranType.income);
     assert(model.id != null);

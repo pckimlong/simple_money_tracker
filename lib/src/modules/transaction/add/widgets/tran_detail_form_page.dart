@@ -69,8 +69,8 @@ class TranDetailFormPage extends HookConsumerWidget {
           onDisplayTextChanged: (value) {
             controller.text = "$currency $value";
           },
-          onDonePressed: (value) {
-            Navigator.pop(context);
+          onDonePressed: (_) async {
+            await ref.read(TranProvider.save.notifier).create();
           },
           onResultChanged: (value) {
             if (value != null) {

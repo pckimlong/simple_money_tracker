@@ -1,4 +1,5 @@
 import 'package:simple_money_tracker/src/modules/transaction/add/widgets/tran_detail_form_page.dart';
+import 'package:simple_money_tracker/src/providers/tran_providers.dart';
 
 import '../../../../exports.dart';
 import '../../../core/core.dart';
@@ -51,6 +52,16 @@ class AddTransactionBottomsheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<AsyncValue<bool>>(
+      TranProvider.save,
+      (previous, next) {
+        // When success
+        if (previous?.isLoading == true && next == const AsyncValue.data(true)) {
+          context.popRoute();
+        }
+      },
+    );
+
     return Container(
       decoration: BoxDecoration(
         color: AS.cardColor(context),

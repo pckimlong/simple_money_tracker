@@ -1,5 +1,4 @@
 import 'package:currency_picker/currency_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:money2/money2.dart' as m;
 
@@ -22,6 +21,12 @@ extension ResponsiveX on BuildContext {
       (responsive.isLargerThan(MOBILE) && responsive.isSmallerThan(DESKTOP)) ||
       responsive.isTablet;
   bool get isDesktopSize => responsive.isLargerThan(TABLET) || responsive.isDesktop;
+}
+
+extension NumX on num {
+  num toNegative() {
+    return this - (this * 2);
+  }
 }
 
 extension ThemeDataX on ThemeData {
