@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:simple_money_tracker/src/core/core.dart';
+
 import '../../../../exports.dart';
 import '../../../widgets/widgets.dart';
 import 'enter_amount_provider.dart';
@@ -12,6 +14,7 @@ class EnterAmountWidget extends HookConsumerWidget {
     required this.onDisplayTextChanged,
     required this.onDonePressed,
     required this.onResultChanged,
+    this.isProgressing = false,
     this.onError,
   }) : super(key: key);
 
@@ -20,6 +23,7 @@ class EnterAmountWidget extends HookConsumerWidget {
   final void Function(String value) onDisplayTextChanged;
   final void Function(num? value) onResultChanged;
   final void Function(num value) onDonePressed;
+  final bool isProgressing;
 
   void _bindInitialValue(WidgetRef ref) {
     useMemoized(() {
@@ -142,7 +146,10 @@ class EnterAmountWidget extends HookConsumerWidget {
                 height: MediaQuery.of(context).size.width / 4 + 8,
                 child: Material(
                   color: Colors.transparent,
-                  child: _SubmitButton(onSubmitPressed: onDonePressed),
+                  child: _SubmitButton(
+                    onSubmitPressed: onDonePressed,
+                    isProgressing: isProgressing,
+                  ),
                 ),
               ),
             ),
@@ -157,13 +164,16 @@ class _SubmitButton extends ConsumerWidget {
   const _SubmitButton({
     Key? key,
     required this.onSubmitPressed,
+    this.isProgressing = false,
   }) : super(key: key);
 
   final void Function(num value) onSubmitPressed;
+  final bool isProgressing;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(enterAmountProvider.notifier);
+    final color = context.colors.onPrimary;
 
     final showEqualButton =
         ref.watch(enterAmountProvider.select((value) => value.showEqualButton));
@@ -177,19 +187,17 @@ class _SubmitButton extends ConsumerWidget {
             },
       child: Center(
         child: showEqualButton
-            ? const Text(
+            ? Text(
                 '=',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: color,
                   fontWeight: FontWeight.bold,
                   fontSize: 48,
                 ),
               )
-            : const Icon(
-                Icons.check,
-                color: Colors.white,
-                size: 32,
-              ),
+            : isProgressing
+                ? CircularProgressIndicator(color: color)
+                : Icon(Icons.check, color: color, size: 32),
       ),
     );
   }
@@ -213,7 +221,9 @@ class _Button extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return Container(
       decoration: BoxDecoration(
-        color: greyColor ? Theme.of(context).scaffoldBackgroundColor : Colors.white,
+        color: greyColor
+            ? Theme.of(context).scaffoldBackgroundColor
+            : AS.whiteBackground(context),
         border: Border.all(
           color: Theme.of(context).hintColor.withOpacity(0.1),
           width: 0.6,

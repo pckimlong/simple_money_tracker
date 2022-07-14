@@ -26,7 +26,7 @@ class TransactionPage extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-              context.setLocale(const Locale('km'));
+              context.setLocale(const Locale('en'));
               // ChooseDateFormatDialog.show(context);
             },
             icon: const Icon(Icons.more_vert_rounded),

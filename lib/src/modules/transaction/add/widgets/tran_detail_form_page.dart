@@ -1,3 +1,4 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:simple_money_tracker/src/modules/setting/datetime_format/datetime_format_widget.dart';
 import 'package:simple_money_tracker/src/providers/currency_providers.dart';
@@ -13,6 +14,7 @@ class TranDetailFormPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final shakerKey = useMemoized(() => GlobalKey<ShakerState>());
     final currency = ref.watch(CurrencyProvider.currentCurrency
         .select((value) => value.valueOrNull?.currency.symbol ?? ""));
 
@@ -20,6 +22,8 @@ class TranDetailFormPage extends HookConsumerWidget {
       text:
           "$currency ${ref.read(TranProvider.addStateData).amount > 0 ? ref.read(TranProvider.addStateData).amount : "0"}",
     );
+
+    ref.listen<AsyncValue<bool>>(TranProvider.save, (previous, next) {});
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,27 +34,30 @@ class TranDetailFormPage extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyTextFormField(
-                controller: controller,
-                autofocus: false,
-                hintText: 'Amount',
-                backgroundColor: Colors.transparent,
-                textAlign: TextAlign.end,
-                readonly: true,
-                maxLines: 3,
-                textInputType: TextInputType.number,
-                textInputAction: TextInputAction.done,
-                textCapitalization: TextCapitalization.sentences,
-                minLines: 1,
-                focusBorder: const OutlineInputBorder(
-                  borderRadius: AS.roundedBorderRadius,
-                  borderSide: BorderSide(color: Colors.transparent),
-                ),
-                contentPadding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 38,
-                  height: 1.2,
+              Shaker(
+                key: shakerKey,
+                child: MyTextFormField(
+                  controller: controller,
+                  autofocus: false,
+                  hintText: 'Amount',
+                  backgroundColor: Colors.transparent,
+                  textAlign: TextAlign.end,
+                  readonly: true,
+                  maxLines: 3,
+                  textInputType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  textCapitalization: TextCapitalization.sentences,
+                  minLines: 1,
+                  focusBorder: const OutlineInputBorder(
+                    borderRadius: AS.roundedBorderRadius,
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
+                  contentPadding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 38,
+                    height: 1.2,
+                  ),
                 ),
               ),
               const _NoteAndDate(),
@@ -62,7 +69,15 @@ class TranDetailFormPage extends HookConsumerWidget {
           onDisplayTextChanged: (value) {
             controller.text = "$currency $value";
           },
-          onDonePressed: (_) async {
+          onDonePressed: (value) async {
+            if (value == 0) {
+              shakerKey.currentState!.shake();
+              EasyLoading.showToast(
+                'Amount must greater than zero',
+                toastPosition: EasyLoadingToastPosition.top,
+              );
+              return;
+            }
             await ref.read(TranProvider.save.notifier).create();
           },
           onResultChanged: (value) {

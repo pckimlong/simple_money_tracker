@@ -74,12 +74,14 @@ class CategoryPicker extends HookConsumerWidget {
                 height: AS.buttonHeight - 4,
                 borderRadius: AS.radiusValue,
                 selectedIndex: tabIndex.value,
+                selectedBackgroundColors: [context.colors.primary],
+                unSelectedBackgroundColors: [context.colors.background],
                 selectedTextStyle: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                 ),
-                unSelectedTextStyle: const TextStyle(
-                  color: Colors.grey,
+                unSelectedTextStyle: TextStyle(
+                  color: context.theme.hintColor.withOpacity(0.6),
                   fontWeight: FontWeight.w600,
                 ),
                 labels: [TranType.expense.name.tr(), TranType.income.name.tr()],

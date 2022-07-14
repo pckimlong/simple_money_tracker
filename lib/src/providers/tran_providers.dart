@@ -49,7 +49,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
           id: null,
           categoryId: data.category.getOrCrash().id,
           amount: data.amount,
-          date: DateTime.now(),
+          date: data.onDate,
           note: "",
           createdAt: DateTime.now(),
         );
@@ -59,7 +59,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
           id: null,
           categoryId: data.category.getOrCrash().id,
           amount: data.amount,
-          date: DateTime.now(),
+          date: data.onDate,
           note: '',
           createdAt: DateTime.now(),
         );
