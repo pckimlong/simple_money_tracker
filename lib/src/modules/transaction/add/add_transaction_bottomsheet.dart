@@ -37,15 +37,16 @@ class AddTransactionBottomsheet extends HookConsumerWidget {
       // enableDrag: false,
       isScrollControlled: true,
       builder: (context) {
-        return SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: const AddTransactionBottomsheet(),
-          ),
-        );
+        return const AddTransactionBottomsheet();
+        // return SingleChildScrollView(
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   child: Padding(
+        //     padding: EdgeInsets.only(
+        //       bottom: MediaQuery.of(context).viewInsets.bottom,
+        //     ),
+        //     child: const AddTransactionBottomsheet(),
+        //   ),
+        // );
       },
     );
   }
@@ -75,7 +76,7 @@ class AddTransactionBottomsheet extends HookConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: context.screenHeight * 0.7,
+            height: context.screenHeight * 0.8,
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: ref.watch(_pageControllerProvider),

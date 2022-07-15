@@ -96,10 +96,11 @@ class AS {
   static Color? whiteBackground(BuildContext context) =>
       context.isDarkTheme ? context.theme.backgroundColor : Colors.white;
 
-  static TextStyle bottomsheetTitleTextStyle(BuildContext context) {
-    return const TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-    );
+  static TextStyle? bottomsheetTitleTextStyle(BuildContext context) {
+    return context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500);
+    // return const TextStyle(
+    //   fontSize: 20,
+    //   fontWeight: FontWeight.bold,
+    // );
   }
 }

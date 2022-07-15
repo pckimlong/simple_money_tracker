@@ -50,7 +50,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
           categoryId: data.category.getOrCrash().id,
           amount: data.amount,
           date: data.onDate,
-          note: "",
+          note: data.note,
           createdAt: DateTime.now(),
         );
         break;
@@ -60,7 +60,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
           categoryId: data.category.getOrCrash().id,
           amount: data.amount,
           date: data.onDate,
-          note: '',
+          note: data.note,
           createdAt: DateTime.now(),
         );
         break;
@@ -87,6 +87,10 @@ class AddTranNotifier extends StateNotifier<AddTranState> {
 
   void onDateChanged(DateTime dateTime) {
     state = state.copyWith(onDate: dateTime);
+  }
+
+  void onNoteChanged(String note) {
+    state = state.copyWith(note: note);
   }
 }
 

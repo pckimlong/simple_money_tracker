@@ -72,7 +72,7 @@ class EnterAmountWidget extends HookConsumerWidget {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
-              childAspectRatio: 1.8,
+              childAspectRatio: 1.7,
             ),
             children: [
               _Button(
@@ -143,7 +143,7 @@ class EnterAmountWidget extends HookConsumerWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 width: MediaQuery.of(context).size.width / 4 - 2,
-                height: MediaQuery.of(context).size.width / 4 + 8,
+                height: MediaQuery.of(context).size.width / 4 + 16,
                 child: Material(
                   color: Colors.transparent,
                   child: _SubmitButton(

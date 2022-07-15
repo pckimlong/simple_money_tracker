@@ -179,6 +179,7 @@ class _CategoryListItem extends ConsumerWidget {
         TranProvider.addStateData.select((value) => value.category.map((t) => t.id)));
 
     return SelectableItem(
+      isEndIndicator: true,
       isSelected: selecedId.match((id) => data.id == id, () => false),
       onTap: () {
         ref.read(TranProvider.addStateData.notifier).onCategoryChanged(data);
@@ -187,12 +188,25 @@ class _CategoryListItem extends ConsumerWidget {
       radius: 4,
       margin: const EdgeInsets.only(bottom: 4),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      child: Text(
-        data.name,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 16,
-        ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: context.colors.primary.withOpacity(0.3),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.shop),
+          ),
+          AS.wGap12,
+          Text(
+            data.name,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+          ),
+        ],
       ),
     );
   }

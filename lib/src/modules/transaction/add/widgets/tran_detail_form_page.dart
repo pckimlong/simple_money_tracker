@@ -1,6 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:simple_money_tracker/src/modules/setting/datetime_format/datetime_format_widget.dart';
+import 'package:simple_money_tracker/src/modules/transaction/add/widgets/edit_note_bottom_sheet.dart';
 import 'package:simple_money_tracker/src/providers/currency_providers.dart';
 import 'package:simple_money_tracker/src/providers/tran_providers.dart';
 
@@ -34,7 +38,7 @@ class TranDetailFormPage extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const _NoteAndDate(),
+              const _DetailItem(),
               Shaker(
                 key: shakerKey,
                 child: MyTextFormField(
@@ -42,7 +46,7 @@ class TranDetailFormPage extends HookConsumerWidget {
                   autofocus: false,
                   hintText: 'Amount',
                   backgroundColor: Colors.transparent,
-                  // textAlign: TextAlign.end,
+                  textAlign: TextAlign.end,
                   readonly: true,
                   maxLines: 3,
                   textInputType: TextInputType.number,
@@ -56,7 +60,7 @@ class TranDetailFormPage extends HookConsumerWidget {
                   contentPadding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
                   textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 38,
+                    fontSize: 48,
                     height: 1.2,
                   ),
                 ),
@@ -93,75 +97,102 @@ class TranDetailFormPage extends HookConsumerWidget {
   }
 }
 
-class _NoteAndDate extends ConsumerWidget {
-  const _NoteAndDate({Key? key}) : super(key: key);
+class _DetailItem extends ConsumerWidget {
+  const _DetailItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final note = ref.watch(TranProvider.addStateData.select((value) => value.note));
-    final date = ref.watch(TranProvider.addStateData.select((value) => value.onDate));
+    final state = ref.watch(TranProvider.addStateData);
 
     return Padding(
-      padding: const EdgeInsets.all(AS.sidePadding),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AS.sidePadding,
+        vertical: 8,
+      ),
       child: Column(
         children: [
-          Row(
-            children: [
-              const Icon(Icons.calendar_month),
-              AS.wGap16,
-              Expanded(
-                child: InkWell(
-                  onTap: () async {
-                    final now = DateTime.now();
-                    final result = await showDatePicker(
-                      context: context,
-                      initialDate: date,
-                      firstDate: DateTime(2000),
-                      lastDate: now + 3600.days,
-                      locale: context.locale,
-                    );
-                    if (result != null) {
-                      ref
-                          .read(TranProvider.addStateData.notifier)
-                          .onDateChanged(result);
-                    }
-                  },
-                  child: DateFormatWidget(
-                      value: date,
-                      showWeekdayPrefix: true,
-                      builder: (_, text, __) {
-                        return Text(
-                          text,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        );
-                      }),
-                ),
+          _Item(
+            leading: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: context.colors.primary.withOpacity(0.3),
+                shape: BoxShape.circle,
               ),
-            ],
+              child: const Icon(Icons.shop),
+            ),
+            content: InkWell(
+              onTap: () => AddTransactionBottomsheet.previousPage(ref),
+              child: Text(
+                state.category.map((t) => t.name).getOrElse(() => ''),
+                style: context.textTheme.titleMedium,
+              ),
+            ),
           ),
-          // AS.hGap16,
-          const Divider(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(Icons.subject),
-              AS.wGap16,
-              Expanded(
-                child: MyTextFormField(
-                  maxLines: 2,
-                  readonly: true,
-                  hintText: 'Add note',
-                  contentPadding: const EdgeInsets.all(0),
-                  borderColor: Colors.transparent,
-                  focusBorder: InputBorder.none,
-                  backgroundColor: Colors.transparent,
-                  onTap: () {},
-                ),
-              ),
-            ],
+          AS.hGap20,
+          _Item(
+            leading: const Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Icon(Icons.calendar_month),
+            ),
+            content: InkWell(
+              onTap: () async {
+                final now = DateTime.now();
+                final result = await showDatePicker(
+                  context: context,
+                  initialDate: state.onDate,
+                  firstDate: DateTime(2000),
+                  lastDate: now + 3600.days,
+                  locale: context.locale,
+                );
+                if (result != null) {
+                  ref.read(TranProvider.addStateData.notifier).onDateChanged(result);
+                }
+              },
+              child: DateFormatWidget(
+                  value: state.onDate,
+                  showWeekdayPrefix: true,
+                  builder: (_, text, __) {
+                    return Text(
+                      text,
+                      style: context.textTheme.titleMedium,
+                    );
+                  }),
+            ),
+          ),
+          AS.hGap20,
+          _Item(
+            leading: const Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Icon(Icons.subject),
+            ),
+            content: InkWell(
+              onTap: () async {
+                final result =
+                    await EditNoteBottomSheet.show(context, initial: state.note);
+                if (result != null) {
+                  ref.read(TranProvider.addStateData.notifier).onNoteChanged(result);
+                }
+              },
+              child: state.note.isBlank
+                  ? Text(
+                      'Tap to enter note',
+                      style: TextStyle(color: context.theme.hintColor),
+                    )
+                  : ExpandableText(
+                      state.note,
+                      maxLines: 3,
+                      expandText: 'Show more',
+                      onLinkTap: () async {
+                        final result = await EditNoteBottomSheet.show(context,
+                            initial: state.note);
+                        if (result != null) {
+                          ref
+                              .read(TranProvider.addStateData.notifier)
+                              .onNoteChanged(result);
+                        }
+                      },
+                    ),
+            ),
           ),
         ],
       ),
@@ -174,8 +205,6 @@ class _Header extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final category = ref.watch(TranProvider.addStateData
-        .select((value) => value.category.map((t) => t.name).getOrElse(() => '')));
     final type = ref.watch(TranProvider.addStateData
         .select((value) => value.tranType.map((t) => t.name.tr()).getOrElse(() => '')));
 
@@ -187,22 +216,55 @@ class _Header extends ConsumerWidget {
         color: AS.whiteBackground(context),
         boxShadow: const [AS.defaultShadow],
       ),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () => AddTransactionBottomsheet.previousPage(ref),
-            icon: const Icon(Icons.arrow_back_ios),
-            iconSize: 18,
-          ),
-          AS.wGap4,
-          Expanded(
-            child: Text(
-              "$type ($category)",
-              style: AS.bottomsheetTitleTextStyle(context),
+      child: _Item(
+        showExpandMoreIcon: false,
+        leading: InkWell(
+          onTap: () => AddTransactionBottomsheet.previousPage(ref),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.arrow_back_ios,
+              size: 20,
             ),
           ),
-        ],
+        ),
+        content: Text(
+          type,
+          style: AS.bottomsheetTitleTextStyle(context),
+        ),
       ),
+    );
+  }
+}
+
+class _Item extends StatelessWidget {
+  const _Item({
+    Key? key,
+    required this.leading,
+    required this.content,
+    this.showExpandMoreIcon = true,
+  }) : super(key: key);
+
+  final Widget leading;
+  final Widget content;
+  final bool showExpandMoreIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          width: 50,
+          child: leading,
+        ),
+        Expanded(child: content),
+        if (showExpandMoreIcon)
+          const Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 14,
+          )
+      ],
     );
   }
 }
