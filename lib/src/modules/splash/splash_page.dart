@@ -3,6 +3,8 @@
 import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:simple_money_tracker/src/providers/account_providers.dart';
 import 'package:simple_money_tracker/src/providers/auth_providers.dart';
+import 'package:simple_money_tracker/src/providers/category_providers.dart';
+import 'package:simple_money_tracker/src/providers/tran_list_providers.dart';
 import 'package:simple_money_tracker/src/router/app_router.dart';
 
 import '../../../exports.dart';
@@ -21,6 +23,11 @@ class SplashPage extends HookConsumerWidget {
           Future.microtask(() async {
             final isRegistered = await ref.read(AccountProvider.hasSetup.future);
             if (isMounted()) {
+              if (isRegistered) {
+                /// initialize this in splash
+                await ref.read(TranListProvider.streamAll.future);
+                await ref.read(CategoryProvider.streamAll.future);
+              }
               context.replaceRoute(
                 isRegistered ? const RootRoute() : const SetUpAccountRoute(),
               );

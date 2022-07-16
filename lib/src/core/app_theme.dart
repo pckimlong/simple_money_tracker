@@ -22,7 +22,7 @@ class AppTheme {
       ),
       useMaterial3ErrorColors: true,
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      // useMaterial3: true,
+      useMaterial3: true,
     );
     return lightTheme.copyWith(
       inputDecorationTheme: lightTheme.inputDecorationTheme.copyWith(isDense: true),

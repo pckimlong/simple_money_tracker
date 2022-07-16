@@ -1,7 +1,11 @@
 import 'dart:math';
 
+import 'package:animated_list_plus/animated_list_plus.dart';
+import 'package:animated_list_plus/transitions.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
+import 'package:simple_money_tracker/src/data/models/tran_model.dart';
+import 'package:simple_money_tracker/src/modules/setting/datetime_format/datetime_format_widget.dart';
 import 'package:simple_money_tracker/src/modules/transaction/add/add_transaction_bottomsheet.dart';
 import 'package:simple_money_tracker/src/providers/cache_providers.dart';
 import 'package:simple_money_tracker/src/providers/category_providers.dart';
@@ -12,7 +16,6 @@ import '../../providers/account_providers.dart';
 import '../currency/widget/currency_text_widget.dart';
 
 const double _kAppBarHeight = kToolbarHeight + 4;
-const double _kAppBarBottomHeight = 16;
 
 class TransactionPage extends ConsumerWidget {
   const TransactionPage({Key? key}) : super(key: key);
@@ -22,9 +25,6 @@ class TransactionPage extends ConsumerWidget {
     final dateCountedAsync = ref.watch(TranListProvider.allDateCount);
     return dateCountedAsync.when(
       data: (count) {
-        print(count);
-        print(ref.watch(TranListProvider.streamAll).value!.length);
-
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AS.whiteBackground(context),
@@ -92,10 +92,49 @@ class _DayCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final dateIndex = ref.watch(_dateIndexProvider);
     final date = ref.watch(TranListProvider.dateByIndex(dateIndex));
-    final tranCountAsync = ref.watch(TranListProvider.dailyTranCount(date));
+    final trans = ref.watch(TranListProvider.dailyTrans(date)).valueOrNull ??
+        const IListConst([]);
+
+    return SliverImplicitlyAnimatedList<TranModel>(
+      spawnIsolate: false,
+      items: [TranModel.empty().copyWith(id: 'empty'), ...trans],
+      areItemsTheSame: (oldTran, newTran) => oldTran.id == newTran.id,
+      itemBuilder: (_, itemAnimation, item, index) {
+        if (item.id == 'empty') {
+          return _CardHeader(
+            key: ValueKey(item.id),
+          );
+        }
+
+        return SizeFadeTransition(
+          key: ValueKey(item.id),
+          sizeFraction: 0.7,
+          curve: Curves.easeInOut,
+          animation: itemAnimation,
+          child: ProviderScope(
+            overrides: [
+              _itemProvider.overrideWithValue(
+                TranDateAndIndex(date: date, index: index - 1),
+              ),
+            ],
+            child: const _TranItem(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _CardHeader extends ConsumerWidget {
+  const _CardHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dateIndex = ref.watch(_dateIndexProvider);
+    final date = ref.watch(TranListProvider.dateByIndex(dateIndex));
     final amount = ref.watch(TranListProvider.totalDailyAmount(date));
 
-    final header = Container(
+    return Container(
       margin: const EdgeInsets.only(top: AS.sidePadding, bottom: 1),
       decoration: BoxDecoration(color: AS.whiteBackground(context)),
       padding: const EdgeInsets.fromLTRB(AS.sidePadding - 3, 8, AS.sidePadding, 0),
@@ -109,38 +148,36 @@ class _DayCard extends ConsumerWidget {
               AS.wGap12,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'TODAY',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                    ),
+                children: [
+                  DateFormatWidget(
+                    value: date,
+                    customPattern: 'EEEE',
+                    builder: (context, text, pattern) {
+                      return Text(
+                        text,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      );
+                    },
                   ),
-                  Text('JUNE 2021'),
+                  DateFormatWidget(
+                    value: date,
+                    useTodayTmrYts: false,
+                    customPattern: 'MMMM yyyy',
+                    builder: (context, text, pattern) {
+                      return Text(text.toUpperCase());
+                    },
+                  ),
                 ],
               ),
             ],
           ),
-          CurrencyTextWidget(value: amount.valueOrNull ?? 0)
+          CurrencyTextWidget(
+            value: amount.valueOrNull ?? 0,
+            textStyle: const TextStyle(
+              fontSize: 16,
+            ),
+          )
         ],
-      ),
-    );
-
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (_, index) {
-          if (index == 0) return header;
-
-          return ProviderScope(
-            overrides: [
-              _itemProvider.overrideWithValue(
-                TranDateAndIndex(date: date, index: index - 1),
-              ),
-            ],
-            child: const _TranItem(),
-          );
-        },
-        childCount: (tranCountAsync.valueOrNull ?? 0) + 1,
       ),
     );
   }
@@ -155,7 +192,6 @@ class _TranItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('rendered...');
     final filter = ref.watch(_itemProvider);
     final tran = ref.watch(TranListProvider.tranDetail(filter));
     final category = ref.watch(CategoryProvider.ofId(tran.categoryId));
@@ -170,8 +206,16 @@ class _TranItem extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(child: Text(ref.watch(_dateIndexProvider).toString())),
-          const SizedBox(width: 12),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: category.value!.iconColor.withOpacity(0.3),
+            ),
+            child: Icon(category.value!.iconData),
+          ),
+          AS.wGap12,
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

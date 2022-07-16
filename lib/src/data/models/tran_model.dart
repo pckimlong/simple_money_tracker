@@ -57,5 +57,14 @@ class TranModel with _$TranModel {
     required DateTime createdAt,
   }) = Income;
 
+  factory TranModel.empty() => TranModel.expenses(
+        id: null,
+        categoryId: "",
+        amount: 0,
+        date: DateTime.now(),
+        note: "",
+        createdAt: DateTime.now(),
+      );
+
   static const dateKey = "date";
 }

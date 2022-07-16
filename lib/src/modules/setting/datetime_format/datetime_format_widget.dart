@@ -17,7 +17,7 @@ class DateFormatWidget extends ConsumerWidget {
   }) : super(key: key);
 
   final DateTime? value;
-  final DateFormatPatterns? customPattern;
+  final String? customPattern;
   final String onNullText;
   final bool showWeekdayPrefix;
   final bool useLongweekday;
@@ -30,16 +30,20 @@ class DateFormatWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final format = customPattern ?? ref.watch(CacheProvider.dateFormat)!;
+    final format = ref.watch(CacheProvider.dateFormat);
     String pattern;
-    if (showWeekdayPrefix) {
-      if (useLongweekday) {
-        pattern = "EEEE, ${format.pattern}";
-      } else {
-        pattern = "EEE, ${format.pattern}";
-      }
+    if (customPattern != null) {
+      pattern = customPattern!;
     } else {
-      pattern = format.pattern;
+      if (showWeekdayPrefix) {
+        if (useLongweekday) {
+          pattern = "EEEE, ${format.pattern}";
+        } else {
+          pattern = "EEE, ${format.pattern}";
+        }
+      } else {
+        pattern = format.pattern;
+      }
     }
 
     String formattedText;

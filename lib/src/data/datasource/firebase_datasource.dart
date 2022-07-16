@@ -134,7 +134,7 @@ class FirebaseDataSource {
         .where(TranModel.dateKey,
             isGreaterThanOrEqualTo: startedDate.millisecondsSinceEpoch)
         .where(TranModel.dateKey, isLessThanOrEqualTo: endedDate.millisecondsSinceEpoch)
-        .orderBy(TranModel.dateKey)
+        .orderBy(TranModel.dateKey, descending: true)
         .snapshots()
         .map((event) => right(event.docs.map((tran) => tran.data()!).toIList()));
   }

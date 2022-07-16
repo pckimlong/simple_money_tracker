@@ -38,7 +38,7 @@ class TranListProvider {
           endedDate: tranFilter.endedDate.lastMinuteOfDay(),
         )
         .map((event) => event.fold((l) => throw l, id));
-  });
+  }, cacheTime: const Duration(minutes: 1));
 
   static final allDate = Provider.autoDispose<AsyncValue<IList<DateTime>>>((ref) {
     return ref.watch(streamAll).whenData((value) {
@@ -75,6 +75,7 @@ class TranListProvider {
       Provider.autoDispose.family<AsyncValue<IList<TranModel>>, DateTime>((ref, date) {
     return ref.watch(streamAll).whenData((list) => list
         .where((e) => e.date.between(date.dateOnly(), date.lastMinuteOfDay()))
+        .sortedByDescending((instance) => instance.createdAt)
         .toIList());
   });
   static final totalDailyAmount =

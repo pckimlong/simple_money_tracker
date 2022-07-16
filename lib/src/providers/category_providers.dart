@@ -26,7 +26,7 @@ class CategoryProvider {
     return ref
         .watch(streamAllEither)
         .whenData((value) => value.fold((l) => throw l, id));
-  });
+  }, cacheTime: const Duration(minutes: 1));
 
   static final ofId =
       Provider.autoDispose.family<AsyncValue<CategoryModel?>, CategoryId>((ref, id) {
@@ -64,8 +64,8 @@ class SaveCategoryNotifier extends StateNotifier<AsyncValue<bool>> {
         id: const Uuid().v1(),
         name: name,
         tranType: type,
-        iconColorValue: Colors.red.value,
-        iconIndex: 1,
+        iconColorValue: Colors.blue.value,
+        iconIndex: 0,
       ),
     );
     state = result.fold(
