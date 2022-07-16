@@ -59,6 +59,11 @@ class AS {
     color: Colors.black26,
     spreadRadius: -5,
   );
+  static const BoxShadow lightShadow = BoxShadow(
+    blurRadius: 15,
+    color: Colors.black12,
+    spreadRadius: -5,
+  );
 
   static const BoxDecoration shadowedContainerDecoration = BoxDecoration(
     borderRadius: roundedBorderRadius,

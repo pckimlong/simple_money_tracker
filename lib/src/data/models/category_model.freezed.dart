@@ -26,6 +26,8 @@ mixin _$CategoryModel {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: CategoryModel.tranTypeKey)
   TranType get tranType => throw _privateConstructorUsedError;
+  int get iconIndex => throw _privateConstructorUsedError;
+  int get iconColorValue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,9 @@ abstract class $CategoryModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: CategoryModel.idKey) String id,
       @JsonKey(name: CategoryModel.nameKey) String name,
-      @JsonKey(name: CategoryModel.tranTypeKey) TranType tranType});
+      @JsonKey(name: CategoryModel.tranTypeKey) TranType tranType,
+      int iconIndex,
+      int iconColorValue});
 }
 
 /// @nodoc
@@ -58,6 +62,8 @@ class _$CategoryModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? tranType = freezed,
+    Object? iconIndex = freezed,
+    Object? iconColorValue = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -72,6 +78,14 @@ class _$CategoryModelCopyWithImpl<$Res>
           ? _value.tranType
           : tranType // ignore: cast_nullable_to_non_nullable
               as TranType,
+      iconIndex: iconIndex == freezed
+          ? _value.iconIndex
+          : iconIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      iconColorValue: iconColorValue == freezed
+          ? _value.iconColorValue
+          : iconColorValue // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -86,7 +100,9 @@ abstract class _$$_CategoryModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: CategoryModel.idKey) String id,
       @JsonKey(name: CategoryModel.nameKey) String name,
-      @JsonKey(name: CategoryModel.tranTypeKey) TranType tranType});
+      @JsonKey(name: CategoryModel.tranTypeKey) TranType tranType,
+      int iconIndex,
+      int iconColorValue});
 }
 
 /// @nodoc
@@ -105,6 +121,8 @@ class __$$_CategoryModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? tranType = freezed,
+    Object? iconIndex = freezed,
+    Object? iconColorValue = freezed,
   }) {
     return _then(_$_CategoryModel(
       id: id == freezed
@@ -119,17 +137,28 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.tranType
           : tranType // ignore: cast_nullable_to_non_nullable
               as TranType,
+      iconIndex: iconIndex == freezed
+          ? _value.iconIndex
+          : iconIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      iconColorValue: iconColorValue == freezed
+          ? _value.iconColorValue
+          : iconColorValue // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CategoryModel implements _CategoryModel {
+class _$_CategoryModel extends _CategoryModel {
   _$_CategoryModel(
       {@JsonKey(name: CategoryModel.idKey) required this.id,
       @JsonKey(name: CategoryModel.nameKey) required this.name,
-      @JsonKey(name: CategoryModel.tranTypeKey) required this.tranType});
+      @JsonKey(name: CategoryModel.tranTypeKey) required this.tranType,
+      required this.iconIndex,
+      required this.iconColorValue})
+      : super._();
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
@@ -143,10 +172,14 @@ class _$_CategoryModel implements _CategoryModel {
   @override
   @JsonKey(name: CategoryModel.tranTypeKey)
   final TranType tranType;
+  @override
+  final int iconIndex;
+  @override
+  final int iconColorValue;
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, name: $name, tranType: $tranType)';
+    return 'CategoryModel(id: $id, name: $name, tranType: $tranType, iconIndex: $iconIndex, iconColorValue: $iconColorValue)';
   }
 
   @override
@@ -156,7 +189,10 @@ class _$_CategoryModel implements _CategoryModel {
             other is _$_CategoryModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.tranType, tranType));
+            const DeepCollectionEquality().equals(other.tranType, tranType) &&
+            const DeepCollectionEquality().equals(other.iconIndex, iconIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.iconColorValue, iconColorValue));
   }
 
   @JsonKey(ignore: true)
@@ -165,7 +201,9 @@ class _$_CategoryModel implements _CategoryModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(tranType));
+      const DeepCollectionEquality().hash(tranType),
+      const DeepCollectionEquality().hash(iconIndex),
+      const DeepCollectionEquality().hash(iconColorValue));
 
   @JsonKey(ignore: true)
   @override
@@ -178,14 +216,17 @@ class _$_CategoryModel implements _CategoryModel {
   }
 }
 
-abstract class _CategoryModel implements CategoryModel {
+abstract class _CategoryModel extends CategoryModel {
   factory _CategoryModel(
       {@JsonKey(name: CategoryModel.idKey)
           required final String id,
       @JsonKey(name: CategoryModel.nameKey)
           required final String name,
       @JsonKey(name: CategoryModel.tranTypeKey)
-          required final TranType tranType}) = _$_CategoryModel;
+          required final TranType tranType,
+      required final int iconIndex,
+      required final int iconColorValue}) = _$_CategoryModel;
+  _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$_CategoryModel.fromJson;
@@ -199,6 +240,10 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   @JsonKey(name: CategoryModel.tranTypeKey)
   TranType get tranType;
+  @override
+  int get iconIndex;
+  @override
+  int get iconColorValue;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>

@@ -89,6 +89,7 @@ extension CurrencyDouble on double {
 
 extension DateTimeX on DateTime {
   DateTime dateOnly() => DateTime(year, month, day);
+  DateTime lastMinuteOfDay() => DateTime(year, month, day, 23, 59, 59);
   // bool get isToday {
   //   final now = DateTime.now();
   //   return now.day == day && now.month == month && now.year == year;

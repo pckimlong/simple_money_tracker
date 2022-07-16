@@ -11,4 +11,8 @@ final tranRepoProvider = Provider<ITranRepo>((ref) {
 
 abstract class ITranRepo {
   Future<Either<Failure, TranModel>> create(TranModel model);
+  Stream<Either<Failure, IList<TranModel>>> streamByDate({
+    required DateTime startedDate,
+    required DateTime endedDate,
+  });
 }

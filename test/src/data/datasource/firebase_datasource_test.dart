@@ -589,6 +589,8 @@ void main() {
             id: id,
             name: "name",
             tranType: TranType.income,
+            iconColorValue: 3,
+            iconIndex: 1,
           );
           group(
             'Create method',

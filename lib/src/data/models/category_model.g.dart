@@ -11,6 +11,8 @@ _$_CategoryModel _$$_CategoryModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       tranType: $enumDecode(_$TranTypeEnumMap, json['tranType']),
+      iconIndex: json['iconIndex'] as int,
+      iconColorValue: json['iconColorValue'] as int,
     );
 
 Map<String, dynamic> _$$_CategoryModelToJson(_$_CategoryModel instance) =>
@@ -18,6 +20,8 @@ Map<String, dynamic> _$$_CategoryModelToJson(_$_CategoryModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'tranType': _$TranTypeEnumMap[instance.tranType]!,
+      'iconIndex': instance.iconIndex,
+      'iconColorValue': instance.iconColorValue,
     };
 
 const _$TranTypeEnumMap = {

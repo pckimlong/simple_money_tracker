@@ -193,10 +193,10 @@ class _CategoryListItem extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: context.colors.primary.withOpacity(0.3),
+              color: data.iconColor.withOpacity(0.3),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.shop),
+            child: Icon(data.iconData),
           ),
           AS.wGap12,
           Text(

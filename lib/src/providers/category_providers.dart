@@ -28,6 +28,13 @@ class CategoryProvider {
         .whenData((value) => value.fold((l) => throw l, id));
   });
 
+  static final ofId =
+      Provider.autoDispose.family<AsyncValue<CategoryModel?>, CategoryId>((ref, id) {
+    return ref
+        .watch(streamAll)
+        .whenData((value) => value.firstOrNullWhere((element) => element.id == id));
+  });
+
   static final streamAllEither =
       StreamProvider<Either<Failure, IList<CategoryModel>>>((ref) {
     return ref.watch(categoryRepoProvider).streamAll();
@@ -57,6 +64,8 @@ class SaveCategoryNotifier extends StateNotifier<AsyncValue<bool>> {
         id: const Uuid().v1(),
         name: name,
         tranType: type,
+        iconColorValue: Colors.red.value,
+        iconIndex: 1,
       ),
     );
     state = result.fold(

@@ -1,4 +1,5 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:simple_money_tracker/src/core/app_icons.dart';
 import 'package:simple_money_tracker/src/data/models/tran_model.dart';
 import 'package:simple_money_tracker/src/providers/category_providers.dart';
 
@@ -53,16 +54,8 @@ class AddCategoryDialog extends HookConsumerWidget {
       child: Form(
         key: formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MyTextFormField(
-              controller: nameController,
-              autofocus: true,
-              hintText: "Enter Category Name",
-              maxLength: 16,
-              textCapitalization: TextCapitalization.words,
-              errorText: (state.error as Failure?)?.message,
-              counterWidget: const SizedBox.shrink(),
-            ),
             Row(
               children: [
                 Expanded(
@@ -97,6 +90,48 @@ class AddCategoryDialog extends HookConsumerWidget {
                 ),
               ],
             ),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: context.theme.primaryColor.withOpacity(0.4),
+                  ),
+                  child: const Icon(Icons.question_mark),
+                ),
+                AS.wGap12,
+                Expanded(
+                  child: MyTextFormField(
+                    controller: nameController,
+                    autofocus: true,
+                    hintText: "Enter Category Name",
+                    maxLength: 16,
+                    textCapitalization: TextCapitalization.words,
+                    errorText: (state.error as Failure?)?.message,
+                    counterWidget: const SizedBox.shrink(),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            Container(
+              padding: const EdgeInsets.all(8),
+              width: context.screenWidth,
+              height: 100,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 4,
+                  mainAxisSpacing: 0,
+                  crossAxisCount: 5,
+                ),
+                itemCount: categoryIcons.length,
+                itemBuilder: (_, index) {
+                  return const Icon(Icons.holiday_village);
+                },
+              ),
+            ),
+            AS.hGap20,
           ],
         ),
       ),

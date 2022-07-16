@@ -4,6 +4,8 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:simple_money_tracker/src/core/core.dart';
 import 'package:simple_money_tracker/src/modules/transaction/add/add_transaction_bottomsheet.dart';
 import 'package:simple_money_tracker/src/providers/cache_providers.dart';
+import 'package:simple_money_tracker/src/providers/category_providers.dart';
+import 'package:simple_money_tracker/src/providers/tran_list_providers.dart';
 
 import '../../../exports.dart';
 import '../../providers/account_providers.dart';
@@ -17,36 +19,310 @@ class TransactionPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: context.theme.scaffoldBackgroundColor,
-        leading: const SizedBox.expand(),
-        title: const _Balance(),
-        toolbarHeight: _kAppBarHeight,
-        elevation: 0,
-        leadingWidth: 0,
-        scrolledUnderElevation: 0,
-        titleSpacing: 0,
-        actions: [
-          IconButton(
+    final dateCountedAsync = ref.watch(TranListProvider.allDateCount);
+    return dateCountedAsync.when(
+      data: (count) {
+        print(count);
+        print(ref.watch(TranListProvider.streamAll).value!.length);
+
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: AS.whiteBackground(context),
+            leading: const SizedBox.expand(),
+            title: const _Balance(),
+            toolbarHeight: _kAppBarHeight,
+            elevation: 0,
+            leadingWidth: 0,
+            scrolledUnderElevation: 0,
+            titleSpacing: 0,
+            actions: [
+              IconButton(
+                onPressed: () {
+                  // context.setLocale(const Locale('en'));
+                  // ChooseDateFormatDialog.show(context);
+                  final randomIndex = Random().nextInt(FlexScheme.values.length - 1);
+                  ref.read(CacheProvider.flexScheme.notifier).state =
+                      FlexScheme.values[randomIndex];
+                },
+                icon: const Icon(Icons.more_vert_rounded),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
             onPressed: () {
-              // context.setLocale(const Locale('en'));
-              // ChooseDateFormatDialog.show(context);
-              final randomIndex = Random().nextInt(FlexScheme.values.length - 1);
-              ref.read(CacheProvider.flexScheme.notifier).state =
-                  FlexScheme.values[randomIndex];
+              AddTransactionBottomsheet.show(context);
             },
-            icon: const Icon(Icons.more_vert_rounded),
+            child: const Icon(Icons.add),
+          ),
+          body: Column(
+            children: [
+              Container(decoration: const BoxDecoration(boxShadow: [AS.lightShadow])),
+              Expanded(
+                child: CustomScrollView(
+                  slivers: [
+                    const SliverToBoxAdapter(child: _SummarizeCard()),
+                    ...List.generate(
+                      count,
+                      (index) => ProviderScope(
+                        overrides: [_dateIndexProvider.overrideWithValue(index)],
+                        child: const _DayCard(),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
+      error: (err, _) => Text(err.toString()),
+      loading: () => const CircularProgressIndicator(),
+    );
+  }
+}
+
+final _dateIndexProvider = Provider<int>((ref) {
+  throw UnimplementedError();
+});
+
+class _DayCard extends ConsumerWidget {
+  const _DayCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dateIndex = ref.watch(_dateIndexProvider);
+    final date = ref.watch(TranListProvider.dateByIndex(dateIndex));
+    final tranCountAsync = ref.watch(TranListProvider.dailyTranCount(date));
+    final amount = ref.watch(TranListProvider.totalDailyAmount(date));
+
+    final header = Container(
+      margin: const EdgeInsets.only(top: AS.sidePadding, bottom: 1),
+      decoration: BoxDecoration(color: AS.whiteBackground(context)),
+      padding: const EdgeInsets.fromLTRB(AS.sidePadding - 3, 8, AS.sidePadding, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(date.day.toString(), style: const TextStyle(fontSize: 36)),
+              AS.wGap12,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'TODAY',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text('JUNE 2021'),
+                ],
+              ),
+            ],
+          ),
+          CurrencyTextWidget(value: amount.valueOrNull ?? 0)
+        ],
+      ),
+    );
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (_, index) {
+          if (index == 0) return header;
+
+          return ProviderScope(
+            overrides: [
+              _itemProvider.overrideWithValue(
+                TranDateAndIndex(date: date, index: index - 1),
+              ),
+            ],
+            child: const _TranItem(),
+          );
+        },
+        childCount: (tranCountAsync.valueOrNull ?? 0) + 1,
+      ),
+    );
+  }
+}
+
+final _itemProvider = Provider<TranDateAndIndex>((ref) {
+  throw UnimplementedError();
+});
+
+class _TranItem extends ConsumerWidget {
+  const _TranItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    print('rendered...');
+    final filter = ref.watch(_itemProvider);
+    final tran = ref.watch(TranListProvider.tranDetail(filter));
+    final category = ref.watch(CategoryProvider.ofId(tran.categoryId));
+
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: AS.sidePadding,
+      ),
+      decoration: BoxDecoration(
+        color: AS.whiteBackground(context),
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(child: Text(ref.watch(_dateIndexProvider).toString())),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      category.valueOrNull?.name ?? "...",
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    CurrencyTextWidget(
+                      key: const ValueKey('amount'),
+                      value: tran.amount,
+                      textBuilder: (_, text, currency) {
+                        return tran.map(
+                          expenses: (value) => Text(
+                            "- $text",
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          income: (value) => Text(
+                            "+ $text",
+                            style: const TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 3),
+                const Text("Nothing"),
+              ],
+            ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          AddTransactionBottomsheet.show(context);
-        },
-        child: const Icon(Icons.add),
+    );
+  }
+}
+
+class _SummarizeCard extends ConsumerWidget {
+  const _SummarizeCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final expenseIncome = ref
+        .watch(TranListProvider.expenseIncome)
+        .maybeWhen(data: id, orElse: () => ExpanseIncome(expense: 0, income: 0));
+
+    return Container(
+      padding: const EdgeInsets.only(top: AS.sidePadding),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              constraints: const BoxConstraints(minHeight: 80),
+              decoration: BoxDecoration(
+                color: AS.whiteBackground(context),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.red[100],
+                      borderRadius: AS.roundedBorderRadius,
+                    ),
+                    child: Icon(Icons.upload_rounded, color: Colors.red[400]),
+                  ),
+                  AS.wGap12,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Expense', style: context.textTheme.caption),
+                      CurrencyTextWidget(
+                        value: expenseIncome.expense,
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          AS.wGap12,
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              constraints: const BoxConstraints(minHeight: 80),
+              decoration: BoxDecoration(
+                color: AS.whiteBackground(context),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.green[100],
+                      borderRadius: AS.roundedBorderRadius,
+                    ),
+                    child: Icon(
+                      Icons.download_rounded,
+                      color: Colors.green[400],
+                    ),
+                  ),
+                  AS.wGap12,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Income', style: context.textTheme.caption),
+                      CurrencyTextWidget(
+                        value: expenseIncome.income,
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-      body: Center(child: Text(ref.watch(CacheProvider.flexScheme).toString())),
     );
   }
 }

@@ -126,6 +126,19 @@ class FirebaseDataSource {
     });
   }
 
+  Stream<Either<Failure, IList<TranModel>>> watchTransByDate(
+    DateTime startedDate,
+    DateTime endedDate,
+  ) {
+    return _firestore.tranColl
+        .where(TranModel.dateKey,
+            isGreaterThanOrEqualTo: startedDate.millisecondsSinceEpoch)
+        .where(TranModel.dateKey, isLessThanOrEqualTo: endedDate.millisecondsSinceEpoch)
+        .orderBy(TranModel.dateKey)
+        .snapshots()
+        .map((event) => right(event.docs.map((tran) => tran.data()!).toIList()));
+  }
+
   Future<void> deleteCategory(String categoryId) async {
     final docRef = _firestore.categoriesDoc;
     docRef.update({categoryId: FieldValue.delete()});

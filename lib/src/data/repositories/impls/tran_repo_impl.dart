@@ -15,4 +15,12 @@ class _TranRepoImpl implements ITranRepo {
       return right(result!);
     });
   }
+
+  @override
+  Stream<Either<Failure, IList<TranModel>>> streamByDate(
+      {required DateTime startedDate, required DateTime endedDate}) {
+    return _dataSource
+        .watchTransByDate(startedDate, endedDate)
+        .onErrorReturnWithFailure();
+  }
 }

@@ -49,7 +49,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
           id: null,
           categoryId: data.category.getOrCrash().id,
           amount: data.amount,
-          date: data.onDate,
+          date: data.onDate.dateOnly(),
           note: data.note,
           createdAt: DateTime.now(),
         );
@@ -59,7 +59,7 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
           id: null,
           categoryId: data.category.getOrCrash().id,
           amount: data.amount,
-          date: data.onDate,
+          date: data.onDate.dateOnly(),
           note: data.note,
           createdAt: DateTime.now(),
         );
@@ -75,7 +75,8 @@ class SaveTranNotifier extends StateNotifier<AsyncValue<bool>> {
 }
 
 class AddTranNotifier extends StateNotifier<AddTranState> {
-  AddTranNotifier() : super(AddTranState(onDate: DateTime.now().dateOnly()));
+  AddTranNotifier([AddTranState? initial])
+      : super(initial ?? AddTranState(onDate: DateTime.now().dateOnly()));
 
   void onCategoryChanged(CategoryModel categoryModel) {
     state = state.copyWith(category: some(categoryModel));
